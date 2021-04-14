@@ -30,6 +30,7 @@ import paramiko
 cfg = configparser.ConfigParser()
 cfg.read("configuration.ini")
 
+# Credentials can be either retrieved from an Environment Variable or from the configuration.ini using config parser
 username = os.getenv("ADM_USER")
 password = os.getenv("ADM_PASSWORD")
 default_domain_name = cfg["DEFAULT"]["domain-name"]
@@ -66,9 +67,8 @@ def open_session(hostname):
 def extract_cdp_neighbors(ip):
     interface_names = []
     command = "show cdp neighbors"
-    # print("This command is going to be executed: '{0}'".format(command))
     # skip first 17 characters, then take the next 17 characters which start with Gi,Te,Vl,Loop or F
-    regex = r"^.{17}(\b(Ten|Gig|Loo|Vla).{15})"
+    regex = r"^.{17}(\b(Ten|Gig|Loo|Vla|F).{15})"
     # try to connect to server, if there is no connection, return none
     ssh, connection = open_session(ip)
     if not connection:
@@ -98,7 +98,6 @@ def extract_cdp_neighbors(ip):
 def neighbor_detail(ip, commands):
     formatted_commands = []
     global ip_list
-    # print("Now, this command is going to be executed: '{0}'".format(commands))
     # regular expression rule for finding lines with " IP address: xxx"
     regex = r"(?=[\n\r].*IP address:[\s]*([^\n\r]*))"
     # try to connect to server, if there is no connection, return none
@@ -138,7 +137,6 @@ def neighbor_detail(ip, commands):
 def find_ips(ip):
     commands = []
     interface_names = extract_cdp_neighbors(ip)
-    # print(interface_names)
     # if there is no neighbor, continue with the next IP in the ip_addresses list
     if not interface_names:
         return -1
@@ -192,7 +190,6 @@ def get_hostname_and_domain_name(ip):
 def match_name_with_ip_address(ip, hostname, domain_name):
     temp_data = []
     command = "show ip interface brief | exclude unassigned"
-    # print("\nNow, this command is going to be executed: '", command,"'")
     # take the first 25 characters which start with G,T,V,L or F
     regex = r"(^[GTVLF].{22})+(.{16})"
     # try to connect to server, if there is no connection, return none
@@ -208,13 +205,12 @@ def match_name_with_ip_address(ip, hostname, domain_name):
         # find matching lines in output with regex rule
         matches = re.finditer(regex, output, re.MULTILINE)
         for match in matches:
-            # print ("Match: {match}".format(match = match.group()))
 
-            # temp interface means temp interface name
+            # Store the interface in a temporary variable to strip off the white spaces
             temp_interface = match.group(1)
             temp_interface = temp_interface.strip()
 
-            # temp ip means the ip number of the temp interface
+            # Store the IP in a temporary variable to strip off the white spaces
             temp_ip = match.group(2)
             temp_ip = temp_ip.strip()
 
