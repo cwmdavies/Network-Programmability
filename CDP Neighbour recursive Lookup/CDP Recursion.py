@@ -1,23 +1,3 @@
-#
-#
-# This file traverses Cisco network devices with the help of CDP.
-# It reads an IP from ip.txt file and starts traversing from there.
-# After it connects to that IP, it runs 'show cdp neighbors' and
-# extracts the interface names. Then it creates and runs a new
-# command for each interface name. For instance:
-# 'show cdp neighbors Gig 0/9 detail | include IP'
-# If the IP address is not on the list of ip_addresses,
-# it adds the IP to the list. This process continues until all the
-# IP addresses on the list are traversed.
-#
-# After IP list created, it is written to the file and then ???????
-# For each time an IP is visited, the functions in matching.py work.
-# Hostname and domain name of the IP address are found. Then all the
-# interface names are found and are abbreviated. Finally, a list
-# that contain this kind of lines is created by this file's function:
-#
-# hostname + '-' + abbreviated interface name + '.' + domain_name + a separator + IP address
-
 import os
 import configparser
 import re
@@ -26,11 +6,9 @@ from multiprocessing.pool import ThreadPool
 
 import paramiko
 
-# take data for ssh connection from configuration.ini file
 cfg = configparser.ConfigParser()
 cfg.read("configuration.ini")
 
-# Credentials can be either retrieved from an Environment Variable or from the configuration.ini using config parser
 username = os.getenv("ADM_USER")
 password = os.getenv("ADM_PASSWORD")
 default_domain_name = cfg["DEFAULT"]["domain-name"]
@@ -67,9 +45,7 @@ def open_session(hostname):
 def extract_cdp_neighbors(ip):
     interface_names = []
     command = "show cdp neighbors"
-    # skip first 17 characters, then take the next 17 characters which start with Gi,Te,Vl,Loop or F
     regex = r"^.{17}(\b(Ten|Gig|Loo|Vla|F).{15})"
-    # try to connect to server, if there is no connection, return none
     ssh, connection = open_session(ip)
     if not connection:
         return None
@@ -77,13 +53,10 @@ def extract_cdp_neighbors(ip):
         _, output, _ = ssh.exec_command(command)
         output = output.read()
         output = output.decode("utf-8")
-        # find matching lines in output with regex rule
         matches = re.finditer(regex, output, re.MULTILINE)
         for match in matches:
-            # delete the whitespace characters at the end
             temp_interface_name = match.group(1)
             temp_interface_name = temp_interface_name.strip()
-            # add the name to the interface_name list
             interface_names.append(temp_interface_name)
         return interface_names
     except paramiko.ssh_exception.SSHException:
@@ -98,9 +71,7 @@ def extract_cdp_neighbors(ip):
 def neighbor_detail(ip, commands):
     formatted_commands = []
     global ip_list
-    # regular expression rule for finding lines with " IP address: xxx"
     regex = r"(?=[\n\r].*IP address:[\s]*([^\n\r]*))"
-    # try to connect to server, if there is no connection, return none
     ssh, connection = open_session(ip)
     if not connection:
         return None
@@ -123,7 +94,6 @@ def neighbor_detail(ip, commands):
         for match in matches:
             if match.group(i):
                 found_ip = match.group(i)
-                # add the found IP if it's not in the list
                 if found_ip not in ip_list:
                     ip_list.append(found_ip)
     except paramiko.ssh_exception.SSHException:
@@ -137,10 +107,8 @@ def neighbor_detail(ip, commands):
 def find_ips(ip):
     commands = []
     interface_names = extract_cdp_neighbors(ip)
-    # if there is no neighbor, continue with the next IP in the ip_addresses list
     if not interface_names:
         return -1
-    # for all interface names, find their IP and add to the ip_addresses list
     for name in interface_names:
         commands.append(f"show cdp neighbors {name} detail | include IP")
     commands.append("exit")
@@ -152,7 +120,6 @@ def get_hostname_and_domain_name(ip):
     domain_name = default_domain_name
     regex_hostname = r"^\bhostname[\s\r]+(.*)$"
     regex_domain_name = r"^ip[\s\r]domain-name[\s\r]+(.*)$"
-    # try to connect to server, if there is no connection, return none
     ssh, connection = open_session(ip)
     if not connection:
         return "-1", default_domain_name
@@ -190,9 +157,7 @@ def get_hostname_and_domain_name(ip):
 def match_name_with_ip_address(ip, hostname, domain_name):
     temp_data = []
     command = "show ip interface brief | exclude unassigned"
-    # take the first 25 characters which start with G,T,V,L or F
     regex = r"(^[GTVLF].{22})+(.{16})"
-    # try to connect to server, if there is no connection, return none
     ssh, connection = open_session(ip)
     if not connection:
         return None
@@ -201,33 +166,19 @@ def match_name_with_ip_address(ip, hostname, domain_name):
         output = output.read()
         output = output.decode("utf-8").splitlines()
         output = "\n".join(output)
-
-        # find matching lines in output with regex rule
         matches = re.finditer(regex, output, re.MULTILINE)
         for match in matches:
-
-            # Store the interface in a temporary variable to strip off the white spaces
             temp_interface = match.group(1)
             temp_interface = temp_interface.strip()
-
-            # Store the IP in a temporary variable to strip off the white spaces
             temp_ip = match.group(2)
             temp_ip = temp_ip.strip()
-
-            # shortened means the first the characters of the temp interface name
             shortened = temp_interface[0:2]
-
-            # temp no means the numbers at last of the interface name, i.e xxxx1/29 to 1/29, xxxxx3 to 3
             temp_no = []
-            # this loop parses the temp interface name from the end and takes the characters for temp no
             for j in range(1, len(temp_interface)):
                 if temp_interface[-j] == "/" or temp_interface[-j].isdigit():
                     temp_no.append(temp_interface[-j])
-
-            # temp name means the shortened+numbers of the interface name, i.e TenGigabitEthernet1/1 to Te1_1
             temp_name = shortened + "".join(temp_no[::-1])
             temp_name = temp_name.replace("/", "_")
-            # name means this type of data: istnswbb0001-te1_1.euea.corp.bshg.com    IP-Number
             name = f"{hostname}-{temp_name.lower()}.{domain_name}\t{temp_ip}"
             temp_data.append(name)
 
@@ -262,7 +213,6 @@ def write_file(ip):
 
 def main():
     global ip_list
-    # ip for first ssh connection
     with open("ip.txt") as f:
         ip = f.readline()
     ip_list.append(ip)
