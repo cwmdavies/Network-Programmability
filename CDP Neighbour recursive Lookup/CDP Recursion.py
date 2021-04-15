@@ -9,9 +9,11 @@ import paramiko
 cfg = configparser.ConfigParser()
 cfg.read("configuration.ini")
 
+# Get username and password from users environment variables
 username = os.getenv("ADM_USER")
 password = os.getenv("ADM_PASSWORD")
 
+# Get configuration data, including credentials(optional), from configuration.ini
 # username = cfg["DEFAULT"]["username"]
 # password = cfg["DEFAULT"]["password"]
 default_domain_name = cfg["DEFAULT"]["domain-name"]
