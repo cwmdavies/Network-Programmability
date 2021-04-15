@@ -1,0 +1,6 @@
+ospf:
+  - id: 10
+    network:
+      - ip: 10.1.1.11
+        mask: 0.0.0.0
+        area: 0
