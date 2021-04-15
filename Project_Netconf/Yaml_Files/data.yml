@@ -1,0 +1,12 @@
+---
+- name: GigabitEthernet0/1
+  desc: uplink port
+  uplink: true
+- name: GigabitEthernet0/2
+  desc: Server Port One
+  vlan: 10
+  uplink: false
+- name: GigabitEthernet0/3
+  desc: Server Port Two
+  vlan: 20
+  uplink: false

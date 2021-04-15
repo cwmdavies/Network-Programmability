@@ -1,0 +1,14 @@
+GB-CAY2-001CSW001.cns.muellergroup.com
+                 Gig 1/0/50        154             R S I  WS-C3850- Gig 1/0/24
+GB-CAY2-001CSW001.cns.muellergroup.com
+                 Gig 1/0/49        177             R S I  WS-C3850- Gig 1/0/23
+gb-cay2-001wap003
+                 Gig 1/0/3         179              R T   AIR-AP380 Gig 0
+gb-cay2-001wap002
+                 Gig 1/0/2         149              R T   AIR-AP380 Gig 0
+gb-cay2-001wap001
+                 Gig 1/0/1         168              R T   AIR-AP380 Gig 0
+SEP7CAD4FF6A6B8  Gig 1/0/29        129             H P M  IP Phone  Port 1
+SEP501CB076D851  Gig 1/0/32        136             H P M  IP Phone  Port 1
+SEP08CCA7F6BDD6  Gig 1/0/30        156             H P M  IP Phone  Port 1
+SEP501CB076D84B  Gig 1/0/31        133             H P M  IP Phone  Port 1

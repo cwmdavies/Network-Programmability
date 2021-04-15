@@ -1,0 +1,3 @@
+{
+    "ned:hostname": "CUBE-1"
+}

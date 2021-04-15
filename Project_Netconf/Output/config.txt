@@ -1,0 +1,186 @@
+<?xml version="1.0" ?>
+<rpc-reply message-id="urn:uuid:196f9acf-dcf4-4c85-a908-c47d16ed9b25" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <data>
+  <cli-config-data-block>!
+! Last configuration change at 00:57:55 UTC Mon Jan 2 2006 by chris
+!
+version 15.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname WM-Switch
+!
+boot-start-marker
+boot-end-marker
+!
+!
+username chris privilege 15 password 0 !Lepsodizle0!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authorization exec default local 
+!
+!
+!
+!
+!
+!
+aaa session-id common
+switch 1 provision ws-c2960s-24ps-l
+!
+!
+ip domain-name Weavermanor
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-4250068096
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-4250068096
+ revocation-check none
+ rsakeypair TP-self-signed-4250068096
+!
+!
+crypto pki certificate chain TP-self-signed-4250068096
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0
+ no ip address
+!
+interface GigabitEthernet1/0/1
+ switchport access vlan 2
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/2
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/3
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/4
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/5
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/6
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/7
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/8
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/9
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/10
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/11
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/12
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/13
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/14
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/15
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/17
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/18
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/19
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/20
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/21
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/22
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/25
+!
+interface GigabitEthernet1/0/26
+!
+interface GigabitEthernet1/0/27
+!
+interface GigabitEthernet1/0/28
+!
+interface Vlan1
+ ip address 192.168.1.250 255.255.255.0
+!
+interface Vlan2
+ ip address 192.168.2.250 255.255.255.0
+!
+interface Vlan3
+ ip address 192.168.3.250 255.255.255.0
+!
+ip default-gateway 192.168.1.254
+ip http server
+ip http authentication aaa
+ip http secure-server
+!
+ip ssh dh min size 2048
+ip ssh client algorithm mac hmac-sha1-96
+ip ssh client algorithm encryption aes256-ctr
+!
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ transport input ssh
+line vty 5 15
+ transport input ssh
+!
+netconf ssh
+end
+</cli-config-data-block>
+ </data>
+</rpc-reply>

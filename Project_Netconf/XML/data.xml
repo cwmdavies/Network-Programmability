@@ -1,0 +1,11 @@
+<native xmlns="http://cisco.com/ns/yang/ned/ios">
+    <interface>
+        <GigabitEthernet>
+            <name>1</name>
+                <ip></ip>
+                <address></address>
+                    <primary></primary>
+                    <mask></mask>
+        </GigabitEthernet>
+    </interface>
+</native>
