@@ -15,4 +15,4 @@ class _excel:
         col_name = workbook.create_sheet(col_name, 0)
         workbook.save(filename=self.name + ".xlsx")
 
-sheet1 = _excel("Test")
+book1 = _excel("Test")
