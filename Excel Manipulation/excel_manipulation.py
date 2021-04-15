@@ -1,4 +1,4 @@
-from openpyxl import *
+from openpyxl import load_workbook, Workbook
 
 
 class _excel:
