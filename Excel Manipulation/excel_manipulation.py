@@ -22,5 +22,11 @@ class __excel:
         if "Sheet" in workbook.sheetnames:
             del workbook["Sheet"]
         workbook.save(filename=self.filename)
+    def write(self, sheet, key, index, value):
+        workbook = load_workbook(filename=self.filename)
+        ws = workbook[f"{sheet}"]
+        ws[f"{key}{index}"] = value
+        workbook.save(filename=self.filename)
+
 
 book1 = __excel("Test")

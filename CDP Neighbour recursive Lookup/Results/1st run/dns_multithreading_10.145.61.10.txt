@@ -1,0 +1,24 @@
+GB-CAY2-001CSW001-vl2.cns.muellergroup.com	10.145.61.1
+GB-CAY2-001CSW001-vl10.cns.muellergroup.com	10.145.62.1
+GB-CAY2-001CSW001-vl110.cns.muellergroup.com	10.145.8.1
+GB-CAY2-001CSW001-vl111.cns.muellergroup.com	10.145.9.1
+GB-CAY2-001CSW001-vl112.cns.muellergroup.com	10.145.10.1
+GB-CAY2-001CSW001-vl120.cns.muellergroup.com	10.145.11.1
+GB-CAY2-001CSW001-vl121.cns.muellergroup.com	10.145.12.1
+GB-CAY2-001CSW001-vl130.cns.muellergroup.com	10.145.13.1
+GB-CAY2-001CSW001-vl140.cns.muellergroup.com	10.145.14.1
+GB-CAY2-001CSW001-vl190.cns.muellergroup.com	10.145.15.1
+GB-CAY2-001CSW001-vl201.cns.muellergroup.com	10.145.16.1
+GB-CAY2-001CSW001-vl203.cns.muellergroup.com	10.145.17.1
+GB-CAY2-001CSW001-vl205.cns.muellergroup.com	10.145.18.1
+GB-CAY2-001CSW001-vl206.cns.muellergroup.com	10.145.19.1
+GB-CAY2-001CSW001-vl207.cns.muellergroup.com	10.145.20.1
+GB-CAY2-001CSW001-vl208.cns.muellergroup.com	10.145.21.1
+GB-CAY2-001CSW001-vl610.cns.muellergroup.com	10.145.48.1
+GB-CAY2-001CSW001-gi1_0_2.cns.muellergroup.com	10.250.16.18
+GB-CAY2-001CSW001-gi1_0_6.cns.muellergroup.com	10.250.16.22
+GB-CAY2-001CSW001-lo0.cns.muellergroup.com	10.145.63.1
+GB-CAY2-001ASW001-vl2.cns.muellergroup.com	10.145.61.10
+GB-CAY2-001ASW002-vl2.cns.muellergroup.com	10.145.61.11
+
+Total execution time: 1.276506 minutes.
