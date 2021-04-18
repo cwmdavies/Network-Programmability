@@ -96,3 +96,105 @@ def neighbor_detail(ip, commands):
         )
     finally:
         ssh.close()
+
+def find_ips(ip):
+    commands = []
+    interface_names = extract_cdp_neighbors(ip)
+    if not interface_names:
+        return -1
+    for name in interface_names:
+        commands.append(f"show cdp neighbors {name} detail | include IP")
+    commands.append("exit")
+    neighbor_detail(ip, commands)
+
+def get_hostname_and_domain_name(ip):
+    hostname = None
+    domain_name = default_domain_name
+    regex_hostname = r"^\bhostname[\s\r]+(.*)$"
+    regex_domain_name = r"^ip[\s\r]domain-name[\s\r]+(.*)$"
+    ssh, connection = open_session(ip)
+    if not connection:
+        return "-1", default_domain_name
+    try:
+        channel = ssh.invoke_shell()
+        stdin = channel.makefile("wb")
+        output = channel.makefile("rb")
+        stdin.write(
+            """
+        show run | i hostname
+        show run | i domain-name
+        exit
+        """
+        )
+
+        output = output.read()
+        output = output.decode("utf-8").splitlines()
+        output = "\n".join(output)
+        hostname_matches = re.finditer(regex_hostname, output, re.MULTILINE)
+        for h in hostname_matches:
+            hostname = h.group(1)
+
+        domain_name_matches = re.finditer(regex_domain_name, output, re.MULTILINE)
+        for d in domain_name_matches:
+            domain_name = d.group(1)
+
+        stdin.close()
+        return hostname, domain_name
+    except paramiko.ssh_exception.SSHException:
+        print("There is an error connecting or establishing SSH session")
+    finally:
+        ssh.close()
+
+
+def match_name_with_ip_address(ip, hostname, domain_name):
+    temp_data = []
+    command = "show ip interface brief | exclude unassigned"
+    regex = r"(^[GTVLF].{22})+(.{16})"
+    ssh, connection = open_session(ip)
+    if not connection:
+        return None
+    try:
+        _, output, _ = ssh.exec_command(command)
+        output = output.read()
+        output = output.decode("utf-8").splitlines()
+        output = "\n".join(output)
+        matches = re.finditer(regex, output, re.MULTILINE)
+        for match in matches:
+            temp_interface = match.group(1)
+            temp_interface = temp_interface.strip()
+            temp_ip = match.group(2)
+            temp_ip = temp_ip.strip()
+            shortened = temp_interface[0:2]
+            temp_no = []
+            for j in range(1, len(temp_interface)):
+                if temp_interface[-j] == "/" or temp_interface[-j].isdigit():
+                    temp_no.append(temp_interface[-j])
+            temp_name = shortened + "".join(temp_no[::-1])
+            temp_name = temp_name.replace("/", "_")
+            name = f"{hostname}-{temp_name.upper()}.{domain_name}\t{temp_ip}"
+            temp_data.append(name)
+        return temp_data
+    except paramiko.ssh_exception.SSHException:
+        print("There is an error connecting or establishing SSH session")
+    finally:
+        ssh.close()
+
+def write_file(ip):
+    global fqdn_list
+    hostname, domain_name = get_hostname_and_domain_name(ip)
+    if hostname == "-1":
+        return -1
+    elif not hostname:
+        print("Hostname couldn't be found!")
+        return -2
+    elif hostname not in hostname_list:
+        hostname_list.append(hostname)
+        print(f"Hostname: {hostname}")
+        fqdn = f"{hostname}.{domain_name}"
+        fqdn_list.append(fqdn)
+        lines_to_write = match_name_with_ip_address(ip, hostname, domain_name)
+        for line in lines_to_write:
+            matched_list.append(line)
+    else:
+        print(f"Hostname:{hostname} is in the list of hostnames")
+        return -3
