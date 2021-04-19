@@ -40,7 +40,7 @@ def open_session(IP):
 
 def extract_cdp_neighbors(ip):
     interface_names = []
-    command = "show cdp neighbors"
+    command = "sh cdp neighbors | exclude (SEP|AIR)"
     regex = r"^.{17}(\b(Ten|Gig|Loo|Vla|F).{15})"
     ssh, connection = open_session(ip)
     if not connection:
@@ -164,14 +164,14 @@ def match_name_with_ip_address(ip, hostname, domain_name):
             temp_interface = temp_interface.strip()
             temp_ip = match.group(2)
             temp_ip = temp_ip.strip()
-            shortened = temp_interface[0:2]
+            shortened = temp_interface[0:4]
             temp_no = []
             for j in range(1, len(temp_interface)):
                 if temp_interface[-j] == "/" or temp_interface[-j].isdigit():
                     temp_no.append(temp_interface[-j])
             temp_name = shortened + "".join(temp_no[::-1])
             temp_name = temp_name.replace("/", "_")
-            name = f"{hostname}-{temp_name.upper()}.{domain_name}\t{temp_ip}"
+            name = f"{temp_ip}-{temp_name.upper()}-{hostname}.{domain_name}"
             temp_data.append(name)
         return temp_data
     except paramiko.ssh_exception.SSHException:
@@ -198,3 +198,52 @@ def write_file(ip):
     else:
         print(f"Hostname:{hostname} is in the list of hostnames")
         return -3
+
+def main():
+    global ip_list
+    with open("ip.txt") as f:
+        ip = f.readline()
+    ip_list.append(ip)
+
+    pool = ThreadPool(15)
+    i = 0
+
+    start = time.time()
+    while i < len(ip_list) < 15:
+        find_ips(ip_list[i])
+        i = i + 1
+
+    while i < len(ip_list):
+        limit = i + min(15, (len(ip_list) - i))
+        hostnames = ip_list[i:limit]
+        pool.map(find_ips, hostnames)
+        i = limit
+
+    pool.map(write_file, ip_list)
+    pool.close()
+    pool.join()
+
+    end = time.time()
+    elapsed = (end - start) / 60
+    string = f"\nTotal execution time: {elapsed:.7} minutes."
+    print(string)
+
+    ip_filename = "found_ips_multithreading_" + ip + ".txt"
+    fqdn_filename = "fqdn_multithreading_" + ip + ".txt"
+    dns_filename = "dns_multithreading_" + ip + ".txt"
+    with open(ip_filename, "w") as ip_file:
+        for ip in ip_list:
+            ip_file.write(ip + "\n")
+
+    with open(fqdn_filename, "w") as fqdn_file:
+        for fqdn in fqdn_list:
+            fqdn_file.write(fqdn + "\n")
+
+    with open(dns_filename, "w") as dns_file:
+        for match in matched_list:
+            dns_file.write(match.strip() + "\n")
+        dns_file.write(string)
+
+
+if __name__ == "__main__":
+    main()

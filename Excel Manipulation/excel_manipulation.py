@@ -11,7 +11,7 @@ class __excel:
     def get_sheets(self):
         workbook = load_workbook(filename=self.filename)
         return workbook.sheetnames
-    def add_columns(self, *col_name):
+    def add_sheets(self, *col_name):
         workbook = load_workbook(filename=self.filename)
         for value in col_name:
             if value not in workbook.sheetnames:
