@@ -5,15 +5,15 @@
 ###############################################
 
 import os
-import configparser
 import re
 import time
 from multiprocessing.pool import ThreadPool
 import paramiko
 
+
 username = os.getenv("ADM_USER")
 password = os.getenv("ADM_PASSWORD")
-default_domain_name = "cns.muellergroup.com"
+default_domain_name = os.getenv("Domain_Name")
 port = "22"
 
 ip_list = []
@@ -154,11 +154,11 @@ def match_name_with_ip_address(ip, hostname, domain_name):
     if not connection:
         return None
     try:
-        _, output, _ = ssh.exec_command(command)
-        output = output.read()
-        output = output.decode("utf-8").splitlines()
-        output = "\n".join(output)
-        matches = re.finditer(regex, output, re.MULTILINE)
+        stdin, stdout, stderr = ssh.exec_command(command)
+        stdout = stdout.read()
+        stdout = stdout.decode("utf-8").splitlines()
+        stdout = "\n".join(stdout)
+        matches = re.finditer(regex, stdout, re.MULTILINE)
         for match in matches:
             temp_interface = match.group(1)
             temp_interface = temp_interface.strip()

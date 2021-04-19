@@ -28,5 +28,4 @@ class __excel:
         ws[f"{key}{index}"] = value
         workbook.save(filename=self.filename)
 
-
 book1 = __excel("Test")
