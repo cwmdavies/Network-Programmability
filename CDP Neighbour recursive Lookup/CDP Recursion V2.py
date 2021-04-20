@@ -283,11 +283,6 @@ def main():
     for fqdn in fqdn_list:
         CDP_Recursion.write("FQDN","A",f"{FQDN_cellnumber}",f"{fqdn}")
         FQDN_cellnumber += 1
-    
-    DNS_cellnumber = 1
-    for dns in matched_list:
-        CDP_Recursion.write("DNS","A",f"{DNS_cellnumber}",f"{dns}")
-        DNS_cellnumber += 1
 
     DNS_cellnumber = 2
     for a,b,c,d in matched_list:
