@@ -8,14 +8,14 @@ import os
 import re
 import time
 from multiprocessing.pool import ThreadPool
-from typing import final
 import paramiko
 from datetime import datetime
 from openpyxl import load_workbook, Workbook
+from getpass import getpass
 
-username = os.getenv("ADM_USER")
-password = os.getenv("ADM_PASSWORD")
-default_domain_name = os.getenv("Domain_Name")
+username = input("Type in your username: ")
+password = getpass(prompt="Type in your password: ")
+default_domain_name = "cns.muellergroup.com"
 port = "22"
 
 IP_list = []
