@@ -193,7 +193,7 @@ def match_name_with_IP_address(IP, hostname, domain_name):
     if not connection:
         return None
     try:
-        stdin, stdout, stderr = ssh.exec_command(command)
+        _, stdout, _ = ssh.exec_command(command)
         stdout = stdout.read()
         stdout = stdout.decode("utf-8").splitlines()
         stdout = "\n".join(stdout)
