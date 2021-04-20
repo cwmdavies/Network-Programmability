@@ -239,7 +239,8 @@ def write_file(IP):
 
 def main():
     global IP_list
-
+    start = time.time()
+    
     CDP_Recursion = __excel("CDP Recursion")
     CDP_Recursion.add_sheets("Found IPs","FQDN","DNS",)
     CDP_Recursion.write("DNS","A","1","Interface",)
@@ -254,7 +255,6 @@ def main():
     pool = ThreadPool(15)
     i = 0
 
-    start = time.time()
     while i < len(IP_list) < 15:
         find_IPs(IP_list[i])
         i = i + 1
@@ -268,11 +268,6 @@ def main():
     pool.map(write_file, IP_list)
     pool.close()
     pool.join()
-
-    end = time.time()
-    elapsed = (end - start) / 60
-    string = f"\nTotal execution time: {elapsed:.7} minutes."
-    print(string)
 
     IP_cellnumber = 1
     for IP in IP_list:
@@ -291,6 +286,10 @@ def main():
         CDP_Recursion.write("DNS","C",f"{DNS_cellnumber}",f"{c}",)
         CDP_Recursion.write("DNS","D",f"{DNS_cellnumber}",f"{d}",)
         DNS_cellnumber += 1
+    
+    end = time.time()
+    elapsed = (end - start) / 60
+    output_log(f"Total execution time: {elapsed:.7} minutes.")
 
 if __name__ == "__main__":
     main()
