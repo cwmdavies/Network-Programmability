@@ -209,8 +209,7 @@ def match_name_with_IP_address(IP, hostname, domain_name):
                 if temp_interface[-j] == "/" or temp_interface[-j].isdigit():
                     temp_no.append(temp_interface[-j])
             temp_name = shortened + "".join(temp_no[::-1])
-            temp_name = temp_name.replace("/", "_")
-            name = f"{temp_IP}-{temp_name.upper()}-{hostname}.{domain_name}"
+            name = [temp_name.upper(),temp_IP,hostname,domain_name]
             temp_data.append(name)
         return temp_data
     except paramiko.ssh_exception.SSHException:
@@ -243,6 +242,10 @@ def main():
 
     CDP_Recursion = __excel("CDP Recursion")
     CDP_Recursion.add_sheets("Found IPs","FQDN","DNS",)
+    CDP_Recursion.write("DNS","A","1","Interface",)
+    CDP_Recursion.write("DNS","B","1","IP Address",)
+    CDP_Recursion.write("DNS","C","1","Hostname",)
+    CDP_Recursion.write("DNS","D","1","Domain Name",)
 
     with open("IP.txt") as f:
         IP = f.readline()
@@ -284,6 +287,14 @@ def main():
     DNS_cellnumber = 1
     for dns in matched_list:
         CDP_Recursion.write("DNS","A",f"{DNS_cellnumber}",f"{dns}")
+        DNS_cellnumber += 1
+
+    DNS_cellnumber = 2
+    for a,b,c,d in matched_list:
+        CDP_Recursion.write("DNS","A",f"{DNS_cellnumber}",f"{a}",)
+        CDP_Recursion.write("DNS","B",f"{DNS_cellnumber}",f"{b}",)
+        CDP_Recursion.write("DNS","C",f"{DNS_cellnumber}",f"{c}",)
+        CDP_Recursion.write("DNS","D",f"{DNS_cellnumber}",f"{d}",)
         DNS_cellnumber += 1
 
 if __name__ == "__main__":
