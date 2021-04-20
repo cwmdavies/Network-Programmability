@@ -40,7 +40,7 @@ class __excel:
                 col_name = workbook.create_sheet(value, self.i)
                 self.i += 1
             else:
-                print(f"{value} already exists in {self.name}. Ignoring column creation!")
+                output_log(f"{value} already exists in {self.name}. Ignoring column creation!")
         if "Sheet" in workbook.sheetnames:
             del workbook["Sheet"]
         workbook.save(filename=self.filename)
