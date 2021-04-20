@@ -8,41 +8,84 @@ import os
 import re
 import time
 from multiprocessing.pool import ThreadPool
+from typing import final
 import paramiko
-
+from datetime import datetime
+from openpyxl import load_workbook, Workbook
 
 username = os.getenv("ADM_USER")
 password = os.getenv("ADM_PASSWORD")
 default_domain_name = os.getenv("Domain_Name")
 port = "22"
 
-ip_list = []
+IP_list = []
 hostname_list = []
 fqdn_list = []
 matched_list = []
 
+class __excel:
+    def __init__(self, name):
+        self.i = 0
+        self.name = name
+        self.filename = self.name + ".xlsx"
+        workbook = Workbook()
+        workbook.save(filename=self.filename)
+    def get_sheets(self):
+        workbook = load_workbook(filename=self.filename)
+        return workbook.sheetnames
+    def add_sheets(self, *col_name):
+        workbook = load_workbook(filename=self.filename)
+        for value in col_name:
+            if value not in workbook.sheetnames:
+                col_name = workbook.create_sheet(value, self.i)
+                self.i += 1
+            else:
+                print(f"{value} already exists in {self.name}. Ignoring column creation!")
+        if "Sheet" in workbook.sheetnames:
+            del workbook["Sheet"]
+        workbook.save(filename=self.filename)
+    def write(self, sheet, key, index, value):
+        workbook = load_workbook(filename=self.filename)
+        ws = workbook[f"{sheet}"]
+        ws[f"{key}{index}"] = value
+        workbook.save(filename=self.filename)
+
+def error_log(message):
+    dateTimeObj = datetime.now()
+    print(f"{message}")
+    error_file = open("Error Log.txt", "a")
+    error_file.write(f"{dateTimeObj} - {message}")
+    error_file.close()
+
+def output_log(message):
+    dateTimeObj = datetime.now()
+    print(f"{message}")
+    output_file = open("Output Log.txt", "a")
+    output_file.write(f"{dateTimeObj} - {message}")
+    output_file.close()
+
 def open_session(IP):
     try:
-        print(f"Connected to:{IP}")
+        output_log(f"Connected to: {IP}")
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect(hostname=IP, port=port, username=username, password=password)
         return ssh, True
     except paramiko.ssh_exception.AuthenticationException:
-        print(f"Authentication to IP:{IP} failed! Please check your IP, username and password.")
+        error_log(f"Authentication to IP: {IP} failed! Please check your IP, username and password.\n")
         return None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
-        print(f"Unable to connect to IP:{IP}")
+        error_log(f"Unable to connect to IP: {IP}!\n")
         return None, False
     except (ConnectionError, TimeoutError):
-        print(f"Timeout error occured for IP:{IP}!")
+        error_log(f"Timeout error occured for IP: {IP}!\n")
         return None, False
 
-def extract_cdp_neighbors(ip):
+def extract_cdp_neighbors(IP):
     interface_names = []
     command = "sh cdp neighbors | exclude (SEP|AIR)"
     regex = r"^.{17}(\b(Ten|Gig|Loo|Vla|F).{15})"
-    ssh, connection = open_session(ip)
+    ssh, connection = open_session(IP)
     if not connection:
         return None
     try:
@@ -56,18 +99,16 @@ def extract_cdp_neighbors(ip):
             interface_names.append(temp_interface_name)
         return interface_names
     except paramiko.ssh_exception.SSHException:
-        print(
-            "Extract CDP Neighbor Function Error: There is an error connecting or establishing SSH session"
-        )
+        error_log(f"Extract CDP Neighbor Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
         return None
     finally:
         ssh.close()
 
-def neighbor_detail(ip, commands):
+def neighbor_detail(IP, commands):
     formatted_commands = []
-    global ip_list
+    global IP_list
     regex = r"(?=[\n\r].*IP address:[\s]*([^\n\r]*))"
-    ssh, connection = open_session(ip)
+    ssh, connection = open_session(IP)
     if not connection:
         return None
     try:
@@ -87,32 +128,30 @@ def neighbor_detail(ip, commands):
         i = 1
         for match in matches:
             if match.group(i):
-                found_ip = match.group(i)
-                if found_ip not in ip_list:
-                    ip_list.append(found_ip)
+                found_IP = match.group(i)
+                if found_IP not in IP_list:
+                    IP_list.append(found_IP)
     except paramiko.ssh_exception.SSHException:
-        print(
-            "Neighbor Detail Function Error: There is an error connecting or establishing SSH session"
-        )
+        error_log(f"Neighbor Detail Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
     finally:
         ssh.close()
 
-def find_ips(ip):
+def find_IPs(IP):
     commands = []
-    interface_names = extract_cdp_neighbors(ip)
+    interface_names = extract_cdp_neighbors(IP)
     if not interface_names:
         return -1
     for name in interface_names:
         commands.append(f"show cdp neighbors {name} detail | include IP")
     commands.append("exit")
-    neighbor_detail(ip, commands)
+    neighbor_detail(IP, commands)
 
-def get_hostname_and_domain_name(ip):
+def get_hostname_and_domain_name(IP):
     hostname = None
     domain_name = default_domain_name
     regex_hostname = r"^\bhostname[\s\r]+(.*)$"
-    regex_domain_name = r"^ip[\s\r]domain-name[\s\r]+(.*)$"
-    ssh, connection = open_session(ip)
+    regex_domain_name = r"^IP[\s\r]domain-name[\s\r]+(.*)$"
+    ssh, connection = open_session(IP)
     if not connection:
         return "-1", default_domain_name
     try:
@@ -141,16 +180,16 @@ def get_hostname_and_domain_name(ip):
         stdin.close()
         return hostname, domain_name
     except paramiko.ssh_exception.SSHException:
-        print("There is an error connecting or establishing SSH session")
+        error_log(f"There is an error connecting or establishing SSH session to IP Address {IP}")
     finally:
         ssh.close()
 
 
-def match_name_with_ip_address(ip, hostname, domain_name):
+def match_name_with_IP_address(IP, hostname, domain_name):
     temp_data = []
-    command = "show ip interface brief | exclude unassigned"
+    command = "show IP interface brief | exclude unassigned"
     regex = r"(^[GTVLF].{22})+(.{16})"
-    ssh, connection = open_session(ip)
+    ssh, connection = open_session(IP)
     if not connection:
         return None
     try:
@@ -162,8 +201,8 @@ def match_name_with_ip_address(ip, hostname, domain_name):
         for match in matches:
             temp_interface = match.group(1)
             temp_interface = temp_interface.strip()
-            temp_ip = match.group(2)
-            temp_ip = temp_ip.strip()
+            temp_IP = match.group(2)
+            temp_IP = temp_IP.strip()
             shortened = temp_interface[0:4]
             temp_no = []
             for j in range(1, len(temp_interface)):
@@ -171,55 +210,59 @@ def match_name_with_ip_address(ip, hostname, domain_name):
                     temp_no.append(temp_interface[-j])
             temp_name = shortened + "".join(temp_no[::-1])
             temp_name = temp_name.replace("/", "_")
-            name = f"{temp_ip}-{temp_name.upper()}-{hostname}.{domain_name}"
+            name = f"{temp_IP}-{temp_name.upper()}-{hostname}.{domain_name}"
             temp_data.append(name)
         return temp_data
     except paramiko.ssh_exception.SSHException:
-        print("There is an error connecting or establishing SSH session")
+        error_log(f"There is an error connecting or establishing SSH session to IP Address {IP}")
     finally:
         ssh.close()
 
-def write_file(ip):
+def write_file(IP):
     global fqdn_list
-    hostname, domain_name = get_hostname_and_domain_name(ip)
+    hostname, domain_name = get_hostname_and_domain_name(IP)
     if hostname == "-1":
         return -1
     elif not hostname:
-        print("Hostname couldn't be found!")
+        error_log(f"Hostname for IP Address: {IP} couldn't be found!")
         return -2
     elif hostname not in hostname_list:
         hostname_list.append(hostname)
-        print(f"Hostname: {hostname}")
+        output_log(f"Hostname: {hostname}")
         fqdn = f"{hostname}.{domain_name}"
         fqdn_list.append(fqdn)
-        lines_to_write = match_name_with_ip_address(ip, hostname, domain_name)
+        lines_to_write = match_name_with_IP_address(IP, hostname, domain_name)
         for line in lines_to_write:
             matched_list.append(line)
     else:
-        print(f"Hostname:{hostname} is in the list of hostnames")
+        output_log(f"Hostname: {hostname} is in the list of hostnames")
         return -3
 
 def main():
-    global ip_list
-    with open("ip.txt") as f:
-        ip = f.readline()
-    ip_list.append(ip)
+    global IP_list
+
+    CDP_Recursion = __excel("CDP Recursion")
+    CDP_Recursion.add_sheets("Found IPs","FQDN","DNS",)
+
+    with open("IP.txt") as f:
+        IP = f.readline()
+    IP_list.append(IP)
 
     pool = ThreadPool(15)
     i = 0
 
     start = time.time()
-    while i < len(ip_list) < 15:
-        find_ips(ip_list[i])
+    while i < len(IP_list) < 15:
+        find_IPs(IP_list[i])
         i = i + 1
 
-    while i < len(ip_list):
-        limit = i + min(15, (len(ip_list) - i))
-        hostnames = ip_list[i:limit]
-        pool.map(find_ips, hostnames)
+    while i < len(IP_list):
+        limit = i + min(15, (len(IP_list) - i))
+        hostnames = IP_list[i:limit]
+        pool.map(find_IPs, hostnames)
         i = limit
 
-    pool.map(write_file, ip_list)
+    pool.map(write_file, IP_list)
     pool.close()
     pool.join()
 
@@ -228,22 +271,20 @@ def main():
     string = f"\nTotal execution time: {elapsed:.7} minutes."
     print(string)
 
-    ip_filename = "found_ips_multithreading_" + ip + ".txt"
-    fqdn_filename = "fqdn_multithreading_" + ip + ".txt"
-    dns_filename = "dns_multithreading_" + ip + ".txt"
-    with open(ip_filename, "w") as ip_file:
-        for ip in ip_list:
-            ip_file.write(ip + "\n")
-
-    with open(fqdn_filename, "w") as fqdn_file:
-        for fqdn in fqdn_list:
-            fqdn_file.write(fqdn + "\n")
-
-    with open(dns_filename, "w") as dns_file:
-        for match in matched_list:
-            dns_file.write(match.strip() + "\n")
-        dns_file.write(string)
-
+    IP_cellnumber = 1
+    for IP in IP_list:
+        CDP_Recursion.write("Found IPs","A",f"{IP_cellnumber}",f"{IP}")
+        IP_cellnumber += 1
+    
+    FQDN_cellnumber = 1
+    for fqdn in fqdn_list:
+        CDP_Recursion.write("FQDN","A",f"{FQDN_cellnumber}",f"{fqdn}")
+        FQDN_cellnumber += 1
+    
+    DNS_cellnumber = 1
+    for dns in matched_list:
+        CDP_Recursion.write("DNS","A",f"{DNS_cellnumber}",f"{dns}")
+        DNS_cellnumber += 1
 
 if __name__ == "__main__":
     main()
