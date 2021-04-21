@@ -1,10 +1,13 @@
 from openpyxl import load_workbook, Workbook
+import os
 
 class __excel:
     def __init__(self, name):
         self.i = 0
         self.name = name
         self.filename = self.name + ".xlsx"
+        if os.path.exists(f"{self.filename}"):
+            os.remove(f"{self.filename}")
         workbook = Workbook()
         workbook.save(filename=self.filename)
     def get_sheets(self):
@@ -25,4 +28,10 @@ class __excel:
         workbook = load_workbook(filename=self.filename)
         ws = workbook[f"{sheet}"]
         ws[f"{key}{index}"] = value
+        workbook.save(filename=self.filename)
+    def filter_Cols(self, sheet, col, width):
+        workbook = load_workbook(filename=self.filename)
+        ws = workbook[f"{sheet}"]
+        ws.auto_filter.ref = ws.dimensions
+        ws.column_dimensions[f'{col}'].width = width
         workbook.save(filename=self.filename)
