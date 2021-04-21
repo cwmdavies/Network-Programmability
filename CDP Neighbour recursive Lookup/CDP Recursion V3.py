@@ -311,6 +311,7 @@ def main():
     end = time.time()
     elapsed = (end - start) / 60
     output_log(f"Total execution time: {elapsed:.3} minutes.")
+    output_log("Script Complete!")
 
 if __name__ == "__main__":
     main()
