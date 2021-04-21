@@ -1,6 +1,6 @@
 ###############################################
 #                                             #
-#             Under Contruction               #
+#              In Testing Phase               #
 #                                             #
 ###############################################
 
@@ -28,6 +28,8 @@ class __excel:
         self.i = 0
         self.name = name
         self.filename = self.name + ".xlsx"
+        if os.path.exists(f"{self.filename}"):
+            os.remove(f"{self.filename}")
         workbook = Workbook()
         workbook.save(filename=self.filename)
     def get_sheets(self):
@@ -49,12 +51,19 @@ class __excel:
         ws = workbook[f"{sheet}"]
         ws[f"{key}{index}"] = value
         workbook.save(filename=self.filename)
+    def filter_Cols(self, sheet, col, width):
+        workbook = load_workbook(filename=self.filename)
+        ws = workbook[f"{sheet}"]
+        ws.auto_filter.ref = ws.dimensions
+        ws.column_dimensions[f'{col}'].width = width
+        workbook.save(filename=self.filename)
 
 def error_log(message):
     dateTimeObj = datetime.now()
     print(f"{message}")
     error_file = open("Error Log.txt", "a")
     error_file.write(f"{dateTimeObj} - {message}")
+    error_file.write("\n")
     error_file.close()
 
 def output_log(message):
@@ -62,6 +71,7 @@ def output_log(message):
     print(f"{message}")
     output_file = open("Output Log.txt", "a")
     output_file.write(f"{dateTimeObj} - {message}")
+    output_file.write("\n")
     output_file.close()
 
 def open_session(IP):
@@ -72,13 +82,13 @@ def open_session(IP):
         ssh.connect(hostname=IP, port=port, username=username, password=password)
         return ssh, True
     except paramiko.ssh_exception.AuthenticationException:
-        error_log(f"Authentication to IP: {IP} failed! Please check your IP, username and password.\n")
+        error_log(f"Authentication to IP: {IP} failed! Please check your IP, username and password.")
         return None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
-        error_log(f"Unable to connect to IP: {IP}!\n")
+        error_log(f"Unable to connect to IP: {IP}!")
         return None, False
     except (ConnectionError, TimeoutError):
-        error_log(f"Timeout error occured for IP: {IP}!\n")
+        error_log(f"Timeout error occured for IP: {IP}!")
         return None, False
 
 def extract_cdp_neighbors(IP):
@@ -242,11 +252,13 @@ def main():
     start = time.time()
     
     CDP_Recursion = __excel("CDP Recursion")
-    CDP_Recursion.add_sheets("Found IPs","FQDN","DNS",)
-    CDP_Recursion.write("DNS","A","1","Interface",)
-    CDP_Recursion.write("DNS","B","1","IP Address",)
-    CDP_Recursion.write("DNS","C","1","Hostname",)
-    CDP_Recursion.write("DNS","D","1","Domain Name",)
+    CDP_Recursion.add_sheets("Found IPs","FQDN","Interfaces",)
+    CDP_Recursion.write("Found IPs","A","1","IP Address",)
+    CDP_Recursion.write("FQDN","A","1","Fully Qualified Domain Name",)
+    CDP_Recursion.write("Interfaces","A","1","Interface",)
+    CDP_Recursion.write("Interfaces","B","1","IP Address",)
+    CDP_Recursion.write("Interfaces","C","1","Hostname",)
+    CDP_Recursion.write("Interfaces","D","1","Domain Name",)
 
     with open("IP.txt") as f:
         IP = f.readline()
@@ -269,27 +281,34 @@ def main():
     pool.close()
     pool.join()
 
-    IP_cellnumber = 1
+    IP_cellnumber = 2
     for IP in IP_list:
         CDP_Recursion.write("Found IPs","A",f"{IP_cellnumber}",f"{IP}")
         IP_cellnumber += 1
     
-    FQDN_cellnumber = 1
+    FQDN_cellnumber = 2
     for fqdn in fqdn_list:
         CDP_Recursion.write("FQDN","A",f"{FQDN_cellnumber}",f"{fqdn}")
         FQDN_cellnumber += 1
 
-    DNS_cellnumber = 2
+    Interfaces_cellnumber = 2
     for a,b,c,d in matched_list:
-        CDP_Recursion.write("DNS","A",f"{DNS_cellnumber}",f"{a}",)
-        CDP_Recursion.write("DNS","B",f"{DNS_cellnumber}",f"{b}",)
-        CDP_Recursion.write("DNS","C",f"{DNS_cellnumber}",f"{c}",)
-        CDP_Recursion.write("DNS","D",f"{DNS_cellnumber}",f"{d}",)
-        DNS_cellnumber += 1
+        CDP_Recursion.write("Interfaces","A",f"{Interfaces_cellnumber}",f"{a}",)
+        CDP_Recursion.write("Interfaces","B",f"{Interfaces_cellnumber}",f"{b}",)
+        CDP_Recursion.write("Interfaces","C",f"{Interfaces_cellnumber}",f"{c}",)
+        CDP_Recursion.write("Interfaces","D",f"{Interfaces_cellnumber}",f"{d}",)
+        Interfaces_cellnumber += 1
     
+    CDP_Recursion.filter_Cols("Found IPs","A",25)
+    CDP_Recursion.filter_Cols("FQDN","A",50)
+    CDP_Recursion.filter_Cols("Interfaces","A",25)
+    CDP_Recursion.filter_Cols("Interfaces","B",25)
+    CDP_Recursion.filter_Cols("Interfaces","C",25)
+    CDP_Recursion.filter_Cols("Interfaces","D",25)
+
     end = time.time()
     elapsed = (end - start) / 60
-    output_log(f"Total execution time: {elapsed:.7} minutes.")
+    output_log(f"Total execution time: {elapsed:.3} minutes.")
 
 if __name__ == "__main__":
     main()
