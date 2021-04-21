@@ -1,6 +1,6 @@
 ###############################################
-#                                             #
-#              In Testing Phase               #
+#             Under Contruction               #
+#               Testing Phase                 #
 #                                             #
 ###############################################
 
@@ -195,7 +195,6 @@ def get_hostname_and_domain_name(IP):
         error_log(f"There is an error connecting or establishing SSH session to IP Address {IP}")
     finally:
         ssh.close()
-
 
 def match_name_with_IP_address(IP, hostname, domain_name):
     temp_data = []
