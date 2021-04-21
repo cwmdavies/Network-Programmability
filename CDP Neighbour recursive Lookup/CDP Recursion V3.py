@@ -19,6 +19,9 @@ default_domain_name = "cns.muellergroup.com"
 Sitename = input("Enter the site name/code: ")
 port = "22"
 
+dateTimeObj = datetime.now()
+datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
+
 IP_list = []
 hostname_list = []
 fqdn_list = []
@@ -60,18 +63,16 @@ class __excel:
         workbook.save(filename=self.filename)
 
 def error_log(message):
-    dateTimeObj = datetime.now()
     print(f"{message}")
     error_file = open("Error Log.txt", "a")
-    error_file.write(f"{dateTimeObj} - {message}")
+    error_file.write(f"{datetime} - {message}")
     error_file.write("\n")
     error_file.close()
 
 def output_log(message):
-    dateTimeObj = datetime.now()
     print(f"{message}")
     output_file = open("Output Log.txt", "a")
-    output_file.write(f"{dateTimeObj} - {message}")
+    output_file.write(f"{datetime} - {message}")
     output_file.write("\n")
     output_file.close()
 
