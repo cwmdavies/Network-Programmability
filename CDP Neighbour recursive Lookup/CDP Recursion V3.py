@@ -16,6 +16,7 @@ from getpass import getpass
 username = input("Type in your username: ")
 password = getpass(prompt="Type in your password: ")
 default_domain_name = "cns.muellergroup.com"
+Sitename = input("Enter the site name/code: ")
 port = "22"
 
 IP_list = []
@@ -251,7 +252,7 @@ def main():
     global IP_list
     start = time.time()
     
-    CDP_Recursion = __excel("CDP Recursion")
+    CDP_Recursion = __excel(Sitename)
     CDP_Recursion.add_sheets("Found IPs","FQDN","Interfaces",)
     CDP_Recursion.write("Found IPs","A","1","IP Address",)
     CDP_Recursion.write("FQDN","A","1","Fully Qualified Domain Name",)
