@@ -1,0 +1,31 @@
+Hostname = r"(?=[\n\r].*Device ID:[\s]*([^\n\r]*))"
+Platform = r"(?=[\n\r].*Platform:[\s]*([^\n\r]*))"
+Interface = r"(?=[\n\r].*Interface:[\s]*([^\n\r]*))"
+IPAddr = r"(?=[\n\r].*IP address:[\s]*([^\n\r]*))"
+RemoteInt = r"(?=[\n\r].*Port ID.*: [\s]*([^\n\r]*))"
+Native = r"(?=[\n\r].*Native VLAN:[\s]*([^\n\r]*))"
+
+Hostname_match = re.finditer(Hostname, stdout, re.MULTILINE)
+Platform_match = re.finditer(Platform, stdout, re.MULTILINE)
+Interface_match = re.finditer(Interface, stdout, re.MULTILINE)
+IPAddr_match = re.finditer(IPAddr, stdout, re.MULTILINE)
+RemoteInt_match = re.finditer(RemoteInt, stdout, re.MULTILINE)
+Native_match = re.finditer(Native, stdout, re.MULTILINE)
+
+for line in Hostname_match:
+    Hostname = line[1].split()
+for line in Platform_match:
+    Platform = line[1].split()
+    Platform = Platform[1]
+for line in Interface_match:
+    Interface = line[1].split()
+    Interface = Interface[0]
+for line in IPAddr_match:
+    IPAddr = line[1].split()
+    IPAddr = IPAddr[0]
+for line in RemoteInt_match:
+    RemoteInt = line[1].split()
+    RemoteInt = RemoteInt[0]
+for line in Native_match:
+    Native = line[1].split()
+    Native = Native[0]
