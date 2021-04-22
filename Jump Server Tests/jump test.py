@@ -14,14 +14,14 @@ password = getpass(prompt="Enter your password")
 def open_session(IP):
   jumpbox=paramiko.SSHClient()
   jumpbox.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-  jumpbox.connect(IP, username=username, password=password )
+  jumpbox.connect(local_IP_addr, username=username, password=password )
   jumpbox_transport = jumpbox.get_transport()
   src_addr = (jumpserver_private_addr, 22)
   dest_addr = (target_addr, 22)
   jumpbox_channel = jumpbox_transport.open_channel("direct-tcpip", dest_addr, src_addr)
   target=paramiko.SSHClient()
   target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-  target.connect(target_addr, username=username, password=password, sock=jumpbox_channel)
+  target.connect(IP, username=username, password=password, sock=jumpbox_channel)
   return target, jumpbox
 
 def main():
