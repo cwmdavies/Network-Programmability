@@ -15,10 +15,10 @@ from excel_writer import __excel
 
 IP_list = []
 CDP_Info_List = []
+IPAddr = input("Enter your IP Address: ")
 
 jumpserver_private_addr = '10.251.6.31'   # The internal IP Address for the Jump server
 local_IP_addr = '127.0.0.1' # IP Address of the machine you are connecting from
-target_addr = '10.145.61.10' # The IP Address of the network device you are connecting to
 
 username = input("Type in your username: ")
 password = getpass(prompt="Type in your password: ")
@@ -30,6 +30,7 @@ datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
 
 def open_session(IP):
     try:
+        output_log(f"Trying to establish a connection to: {IP}")
         jumpbox=paramiko.SSHClient()
         jumpbox.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         jumpbox.connect(jumpserver_private_addr, username=username, password=password )
@@ -40,6 +41,7 @@ def open_session(IP):
         target=paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         target.connect(dest_addr, username=username, password=password, sock=jumpbox_channel)
+        output_log(f"Connection to IP: {IP} established")
         return target, jumpbox, True
     except paramiko.ssh_exception.AuthenticationException:
         error_log(f"Authentication to IP: {IP} failed! Please check your IP, username and password.")
@@ -54,11 +56,12 @@ def open_session(IP):
 def extract_cdp_neighbors(IP):
     interface_names = []
     command = "sh cdp neighbors"
-    regex = r"^.{17}(\b(Ten|Gig|Loo|Vla|F).{15})"
+    regex = r"^.{17}(\b(Ten|Gig|Loo|Vla|F|Twe|Ten|Fo).{15})"
     ssh, jumpbox, connection = open_session(IP)
     if not connection:
         return None
     try:
+        output_log(f"Extracting CDP Neighbor Information for IP: {IP}")
         _, output, _ = ssh.exec_command(command)
         output = output.read()
         output = output.decode("utf-8")
@@ -194,15 +197,21 @@ def output_log(message):
     output_file.write("\n")
     output_file.close()
 
-
 def main():
+    global IPAddr
     global IP_list
     global CDP_Info_List
 
-    IP_list.append("10.145.61.1")
+    start = time.time()
+    IP_list.append(IPAddr)
     pool = ThreadPool()
     pool.map(find_IPs, IP_list[0::])
     pool.close()
+
+    end = time.time()
+    elapsed = (end - start) / 60
+    output_log(f"Total execution time: {elapsed:.3} minutes.")
+    output_log("Script Complete!")
 
 if __name__ == "__main__":
     main()
