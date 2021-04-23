@@ -4,29 +4,39 @@ import re
 
 CDP_Info = {}
 
-local_IP_addr = '10.251.6.31'   # IP Address of the machine you are connecting from
-jumpserver_private_addr = '10.2.151.86' # The internal IP Address for the Jump server
-target_addr = '10.145.61.10' # The IP Address You are connecting to
+jumpserver_private_addr = '10.251.6.31'   # The internal IP Address for the Jump server
+local_IP_addr = '127.0.0.1' # IP Address of the machine you are connecting from
+target_addr = '10.145.61.10' # The IP Address of the network device you are connecting to
 
 username = input("Enter your username: ")
 password = getpass(prompt="Enter your password")
 
 def open_session(IP):
-  jumpbox=paramiko.SSHClient()
-  jumpbox.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-  jumpbox.connect(local_IP_addr, username=username, password=password )
-  jumpbox_transport = jumpbox.get_transport()
-  src_addr = (jumpserver_private_addr, 22)
-  dest_addr = (target_addr, 22)
-  jumpbox_channel = jumpbox_transport.open_channel("direct-tcpip", dest_addr, src_addr)
-  target=paramiko.SSHClient()
-  target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-  target.connect(IP, username=username, password=password, sock=jumpbox_channel)
-  return target, jumpbox
+    try:
+        jumpbox=paramiko.SSHClient()
+        jumpbox.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        jumpbox.connect(jumpserver_private_addr, username=username, password=password )
+        jumpbox_transport = jumpbox.get_transport()
+        src_addr = (local_IP_addr, 22)
+        dest_addr = (target_addr, 22)
+        jumpbox_channel = jumpbox_transport.open_channel("direct-tcpip", dest_addr, src_addr)
+        target=paramiko.SSHClient()
+        target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        target.connect(IP, username=username, password=password, sock=jumpbox_channel)
+        return target, jumpbox
+    except paramiko.ssh_exception.AuthenticationException:
+        error_log(f"Authentication to IP: {IP} failed! Please check your IP, username and password.")
+        return None, False
+    except paramiko.ssh_exception.NoValidConnectionsError:
+        error_log(f"Unable to connect to IP: {IP}!")
+        return None, False
+    except (ConnectionError, TimeoutError):
+        error_log(f"Timeout error occured for IP: {IP}!")
+        return None, False
 
 def main():
   target, jumpbox = open_session(target_addr)
-  stdin, stdout, stderr = target.exec_command("sh cdp neighbors Gig 1/0/50 detail")
+  stdin, stdout, stderr = target.exec_command("show cdp neighbors Gig 1/0/50 detail")
   stdout = stdout.read()
   stdout = stdout.decode("utf-8")
   Hostname = r"(?=[\n\r].*Device ID:[\s]*([^\n\r]*))"
