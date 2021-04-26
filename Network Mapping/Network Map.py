@@ -209,60 +209,61 @@ def main():
     global IPAddr
     global IP_list
     global CDP_Info_List
-
     print("Please wait until the script finished - This may take a while depending on the size ofthe network!")
-
+    
     start = time.time()
-
     IP_list.append(IPAddr)
-
     pool = ThreadPool(30)
     i = 0
 
-    while i < len(IP_list):
-        limit = i + min(30, (len(IP_list) - i))
-        hostnames = IP_list[i:limit]
-        pool.map(find_IPs, hostnames)
-        i = limit
+    try:
+        while i < len(IP_list):
+            limit = i + min(30, (len(IP_list) - i))
+            hostnames = IP_list[i:limit]
+            pool.map(find_IPs, hostnames)
+            i = limit
 
-    pool.close()
-    pool.join()
+        pool.close()
+        pool.join()
 
-    CDP_Detail = excel_writer(Sitecode)
-    CDP_Detail.add_sheets("CDP_Nei_Info",)
-    CDP_Detail.write("CDP_Nei_Info","A","1","Local IP Address",)
-    CDP_Detail.write("CDP_Nei_Info","B","1","Remote Host",)
-    CDP_Detail.write("CDP_Nei_Info","C","1","Platform",)
-    CDP_Detail.write("CDP_Nei_Info","D","1","Local Interface",)
-    CDP_Detail.write("CDP_Nei_Info","E","1","Remote IP Address",)
-    CDP_Detail.write("CDP_Nei_Info","F","1","Remote Interface",)
-    CDP_Detail.write("CDP_Nei_Info","G","1","Native VLAN",)
-    CDP_Detail.filter_Cols("CDP_Nei_Info","A","25")
-    CDP_Detail.filter_Cols("CDP_Nei_Info","B","45")
-    CDP_Detail.filter_Cols("CDP_Nei_Info","C","25")
-    CDP_Detail.filter_Cols("CDP_Nei_Info","D","25")
-    CDP_Detail.filter_Cols("CDP_Nei_Info","E","25")
-    CDP_Detail.filter_Cols("CDP_Nei_Info","F","25")
-    CDP_Detail.filter_Cols("CDP_Nei_Info","G","25")
+        CDP_Detail = excel_writer(Sitecode)
+        CDP_Detail.add_sheets("CDP_Nei_Info",)
+        CDP_Detail.write("CDP_Nei_Info","A","1","Local IP Address",)
+        CDP_Detail.write("CDP_Nei_Info","B","1","Remote Host",)
+        CDP_Detail.write("CDP_Nei_Info","C","1","Platform",)
+        CDP_Detail.write("CDP_Nei_Info","D","1","Local Interface",)
+        CDP_Detail.write("CDP_Nei_Info","E","1","Remote IP Address",)
+        CDP_Detail.write("CDP_Nei_Info","F","1","Remote Interface",)
+        CDP_Detail.write("CDP_Nei_Info","G","1","Native VLAN",)
+        CDP_Detail.filter_Cols("CDP_Nei_Info","A","25")
+        CDP_Detail.filter_Cols("CDP_Nei_Info","B","45")
+        CDP_Detail.filter_Cols("CDP_Nei_Info","C","25")
+        CDP_Detail.filter_Cols("CDP_Nei_Info","D","25")
+        CDP_Detail.filter_Cols("CDP_Nei_Info","E","25")
+        CDP_Detail.filter_Cols("CDP_Nei_Info","F","25")
+        CDP_Detail.filter_Cols("CDP_Nei_Info","G","25")
 
-    index = 2
-    for entries in CDP_Info_List:
-        CDP_Detail.write("CDP_Nei_Info","A",f"{index}",entries["LocalHost"],)
-        CDP_Detail.write("CDP_Nei_Info","B",f"{index}",entries["RemoteHost"],)
-        CDP_Detail.write("CDP_Nei_Info","C",f"{index}",entries["Platform"],)
-        CDP_Detail.write("CDP_Nei_Info","D",f"{index}",entries["Local Interface"],)
-        CDP_Detail.write("CDP_Nei_Info","E",f"{index}",entries["Remote IP Address"],)
-        CDP_Detail.write("CDP_Nei_Info","F",f"{index}",entries["Remote Interface"],)
-        if "Native VLAN" in entries:
-            CDP_Detail.write("CDP_Nei_Info","G",f"{index}",entries["Native VLAN"],)
-        else:
-            CDP_Detail.write("CDP_Nei_Info","G",f"{index}","Not Found",)
-        index += 1
+        index = 2
+        for entries in CDP_Info_List:
+            CDP_Detail.write("CDP_Nei_Info","A",f"{index}",entries["LocalHost"],)
+            CDP_Detail.write("CDP_Nei_Info","B",f"{index}",entries["RemoteHost"],)
+            CDP_Detail.write("CDP_Nei_Info","C",f"{index}",entries["Platform"],)
+            CDP_Detail.write("CDP_Nei_Info","D",f"{index}",entries["Local Interface"],)
+            CDP_Detail.write("CDP_Nei_Info","E",f"{index}",entries["Remote IP Address"],)
+            CDP_Detail.write("CDP_Nei_Info","F",f"{index}",entries["Remote Interface"],)
+            if "Native VLAN" in entries:
+                CDP_Detail.write("CDP_Nei_Info","G",f"{index}",entries["Native VLAN"],)
+            else:
+                CDP_Detail.write("CDP_Nei_Info","G",f"{index}","Not Found",)
+            index += 1
+    except:
+        error_log("Function Main: An unknown error occured!")
+    finally:
+        end = time.time()
+        elapsed = (end - start) / 60
+        output_log(f"Total execution time: {elapsed:.3} minutes.")
+        output_log("Script Complete!")
+        print("Script Complete!")
 
-    end = time.time()
-    elapsed = (end - start) / 60
-    output_log(f"Total execution time: {elapsed:.3} minutes.")
-    output_log("Script Complete!")
-    print("Script Complete!")
 if __name__ == "__main__":
     main()
