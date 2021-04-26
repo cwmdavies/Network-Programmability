@@ -1,0 +1,22 @@
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.250.16.21!
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.250.16.17!
+26/04/2021 15:26:10 - Authentication to IP: 10.145.61.254 failed! Please check your IP, username and password.
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.145.17.27!
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.145.17.24!
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.145.17.26!
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.145.17.25!
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.250.16.18!
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.145.17.29!
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.145.17.21!
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.145.17.22!
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.145.17.23!
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.145.17.20!
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.145.17.30!
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.145.17.28!
+26/04/2021 15:26:10 - Authentication to IP: 10.145.62.21 failed! Please check your IP, username and password.
+26/04/2021 15:26:10 - Authentication to IP: 10.145.62.23 failed! Please check your IP, username and password.
+26/04/2021 15:26:10 - Authentication to IP: 10.145.62.22 failed! Please check your IP, username and password.
+26/04/2021 15:26:10 - Authentication to IP: 10.145.62.20 failed! Please check your IP, username and password.
+26/04/2021 15:26:10 - Authentication to IP: 10.145.62.24 failed! Please check your IP, username and password.
+26/04/2021 15:26:10 - Authentication to IP: 62.172.66.138 failed! Please check your IP, username and password.
+26/04/2021 15:26:10 - Open Session Error: An unknown error occured for IP: 10.250.16.22!

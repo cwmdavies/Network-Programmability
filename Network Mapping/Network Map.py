@@ -12,7 +12,6 @@ import paramiko
 from datetime import datetime
 from getpass import getpass
 from openpyxl import load_workbook, Workbook
-import os
 
 IP_list = []
 CDP_Info_List = []
@@ -23,10 +22,11 @@ local_IP_addr = '127.0.0.1' # IP Address of the machine you are connecting from
 username = input("Enter your username: ")
 password = getpass("Enter your password: ")
 IPAddr = input("Enter an IP Address: ")
-Sitecode = input("Enter the site code: ")
 port = "22"
+Sitecode = input("Enter the site code: ")
 
 dateTimeObj = datetime.now()
+datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
 
 class excel_writer:
     def __init__(self, name):
@@ -100,10 +100,10 @@ def extract_cdp_neighbors(IP):
         return None
     try:
         output_log(f"Function Extract CDP Neighbors: Extracting Neighbors: IP Address: {IP}")
-        stdin, stdout, stdout = ssh.exec_command(command)
-        stdout = stdout.read()
-        stdout = stdout.decode("utf-8")
-        matches = re.finditer(regex, stdout, re.MULTILINE)
+        _, output, _ = ssh.exec_command(command)
+        output = output.read()
+        output = output.decode("utf-8")
+        matches = re.finditer(regex, output, re.MULTILINE)
         for match in matches:
             temp_interface_name = match.group(1)
             temp_interface_name = temp_interface_name.strip()
@@ -130,6 +130,7 @@ def CDP_Details(IP, commands):
         stdin, stdout, stderr = ssh.exec_command(commands)
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
+
         RemoteHost = r"(?=[\n\r].*Device ID:[\s]*([^\n\r]*))"
         Platform = r"(?=[\n\r].*Platform:[\s]*([^\n\r]*))"
         Interface = r"(?=[\n\r].*Interface:[\s]*([^\n\r]*))"
@@ -193,16 +194,12 @@ def find_IPs(IP):
         CDP_Details(IP, command)
 
 def error_log(message):
-    datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
-    print(f"{message}")
     error_file = open("Error Log.txt", "a")
     error_file.write(f"{datetime} - {message}")
     error_file.write("\n")
     error_file.close()
 
 def output_log(message):
-    datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
-    print(f"{message}")
     output_file = open("Output Log.txt", "a")
     output_file.write(f"{datetime} - {message}")
     output_file.write("\n")
@@ -212,13 +209,16 @@ def main():
     global IPAddr
     global IP_list
     global CDP_Info_List
-    
-    IP_list.append(IPAddr)
+
+    print("Please wait until the script finished - This may take a while depending on the size ofthe network!")
 
     start = time.time()
+
+    IP_list.append(IPAddr)
+
     pool = ThreadPool(30)
-    
     i = 0
+
     while i < len(IP_list):
         limit = i + min(30, (len(IP_list) - i))
         hostnames = IP_list[i:limit]
@@ -230,20 +230,20 @@ def main():
 
     CDP_Detail = excel_writer(Sitecode)
     CDP_Detail.add_sheets("CDP_Nei_Info",)
-    CDP_Detail.write("CDP_Nei_Info","A","1","Local Host",)
+    CDP_Detail.write("CDP_Nei_Info","A","1","Local IP Address",)
     CDP_Detail.write("CDP_Nei_Info","B","1","Remote Host",)
     CDP_Detail.write("CDP_Nei_Info","C","1","Platform",)
     CDP_Detail.write("CDP_Nei_Info","D","1","Local Interface",)
     CDP_Detail.write("CDP_Nei_Info","E","1","Remote IP Address",)
     CDP_Detail.write("CDP_Nei_Info","F","1","Remote Interface",)
     CDP_Detail.write("CDP_Nei_Info","G","1","Native VLAN",)
-    CDP_Detail.filter_Cols("CDP_Nei_Info","A","20")
-    CDP_Detail.filter_Cols("CDP_Nei_Info","B","20")
-    CDP_Detail.filter_Cols("CDP_Nei_Info","C","20")
-    CDP_Detail.filter_Cols("CDP_Nei_Info","D","20")
-    CDP_Detail.filter_Cols("CDP_Nei_Info","E","20")
-    CDP_Detail.filter_Cols("CDP_Nei_Info","F","20")
-    CDP_Detail.filter_Cols("CDP_Nei_Info","G","20")
+    CDP_Detail.filter_Cols("CDP_Nei_Info","A","25")
+    CDP_Detail.filter_Cols("CDP_Nei_Info","B","45")
+    CDP_Detail.filter_Cols("CDP_Nei_Info","C","25")
+    CDP_Detail.filter_Cols("CDP_Nei_Info","D","25")
+    CDP_Detail.filter_Cols("CDP_Nei_Info","E","25")
+    CDP_Detail.filter_Cols("CDP_Nei_Info","F","25")
+    CDP_Detail.filter_Cols("CDP_Nei_Info","G","25")
 
     index = 2
     for entries in CDP_Info_List:
@@ -263,6 +263,6 @@ def main():
     elapsed = (end - start) / 60
     output_log(f"Total execution time: {elapsed:.3} minutes.")
     output_log("Script Complete!")
-
+    print("Script Complete!")
 if __name__ == "__main__":
     main()

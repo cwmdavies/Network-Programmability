@@ -17,3 +17,52 @@
 26/04/2021 15:09:08 - Connection to IP: 10.145.63.1 established
 26/04/2021 15:09:08 - Trying to establish a connection to: 10.145.63.1
 26/04/2021 15:09:08 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:19:45 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:19:45 - Total execution time: 0.0375 minutes.
+26/04/2021 15:19:45 - Script Complete!
+26/04/2021 15:20:13 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:20:13 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:20:13 - Extracting CDP Neighbor Information for IP: 10.145.63.1
+26/04/2021 15:20:13 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:20:13 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:20:13 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:20:13 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:20:13 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:21:52 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:21:52 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:21:52 - Function Extract CDP Neighbors: Extracting Neighbors: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Function Extract CDP Neighbors: Extraction Complete: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:21:52 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:21:52 - Function CDP Detail: Extracting Neighbor Details: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Function CDP Detail: Extraction Complete: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:21:52 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:21:52 - Function CDP Detail: Extracting Neighbor Details: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Function CDP Detail: Extraction Complete: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:21:52 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:21:52 - Function CDP Detail: Extracting Neighbor Details: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Function CDP Detail: Extraction Complete: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:21:52 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:21:52 - Function CDP Detail: Extracting Neighbor Details: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Function CDP Detail: Extraction Complete: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:21:52 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:21:52 - Function CDP Detail: Extracting Neighbor Details: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Function CDP Detail: Extraction Complete: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:21:52 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:21:52 - Function CDP Detail: Extracting Neighbor Details: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Function CDP Detail: Extraction Complete: IP Address: 10.145.63.1
+26/04/2021 15:21:52 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:24:58 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:24:58 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:24:58 - Function Extract CDP Neighbors: Extracting Neighbors: IP Address: 10.145.63.1
+26/04/2021 15:24:58 - Function Extract CDP Neighbors: Extraction Complete: IP Address: 10.145.63.1
+26/04/2021 15:24:58 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:24:58 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:24:58 - Function CDP Detail: Extracting Neighbor Details: IP Address: 10.145.63.1
+26/04/2021 15:24:58 - Function CDP Detail: Extraction Complete: IP Address: 10.145.63.1
+26/04/2021 15:24:58 - Trying to establish a connection to: 10.145.63.1
