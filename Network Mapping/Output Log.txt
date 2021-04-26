@@ -1,0 +1,6 @@
+26/04/2021 15:11:25 - Trying to establish a connection to: 10.145.63.1
+26/04/2021 15:11:25 - Connection to IP: 10.145.63.1 established
+26/04/2021 15:11:25 - Function Extract CDP Neighbors: Extracting Neighbors: IP Address: 10.145.63.1
+26/04/2021 15:11:25 - Function Extract CDP Neighbors: Extraction Complete: IP Address: 10.145.63.1
+26/04/2021 15:11:25 - Total execution time: 0.0467 minutes.
+26/04/2021 15:11:25 - Script Complete!

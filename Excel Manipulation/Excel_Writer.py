@@ -1,7 +1,7 @@
 from openpyxl import load_workbook, Workbook
 import os
 
-class __excel:
+class Excel_Write:
     def __init__(self, name):
         self.i = 0
         self.name = name
