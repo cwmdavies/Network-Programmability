@@ -12,15 +12,13 @@ import paramiko
 from datetime import datetime
 from getpass import getpass
 from openpyxl import load_workbook, Workbook
+import tkinter as tk
+from tkinter import ttk
+from tkinter.messagebox import showinfo
 
 IP_list = []
 CDP_Info_List = []
-
-username = input("Enter your username: ")
-password = getpass("Enter your password: ")
-IPAddr = input("Enter an IP Address: ")
 port = "22"
-Sitecode = input("Enter the site code: ")
 
 dateTimeObj = datetime.now()
 datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
@@ -60,6 +58,68 @@ class excel_writer:
         ws.column_dimensions[f'{col}'].width = width
         workbook.save(filename=self.filename)
 
+############################# Start of Tkinter Code #############################
+
+# root window
+root = tk.Tk()
+root.eval('tk::PlaceWindow . center')
+root.geometry("300x250")
+root.resizable(False, False)
+root.title('Site Details')
+
+# store email address and password
+Username_var = tk.StringVar()
+password_var = tk.StringVar()
+IP_Address_var = tk.StringVar()
+Site_code_var = tk.StringVar()
+
+# Site details frame
+Site_details = ttk.Frame(root)
+Site_details.pack(padx=10, pady=10, fill='x', expand=True)
+
+# Username
+Username_label = ttk.Label(Site_details, text="Username:")
+Username_label.pack(fill='x', expand=True)
+
+Username_entry = ttk.Entry(Site_details, textvariable=Username_var)
+Username_entry.pack(fill='x', expand=True)
+Username_entry.focus()
+
+# password
+password_label = ttk.Label(Site_details, text="Password:" )
+password_label.pack(fill='x', expand=True)
+
+password_entry = ttk.Entry(Site_details, textvariable=password_var, show="*")
+password_entry.pack(fill='x', expand=True)
+
+# IP Address
+IP_Address_label = ttk.Label(Site_details, text="IP Address:")
+IP_Address_label.pack(fill='x', expand=True)
+
+IP_Address_entry = ttk.Entry(Site_details, textvariable=IP_Address_var)
+IP_Address_entry.pack(fill='x', expand=True)
+
+# Site Code
+Site_code_label = ttk.Label(Site_details, text="Site code:")
+Site_code_label.pack(fill='x', expand=True)
+
+Site_code_entry = ttk.Entry(Site_details, textvariable=Site_code_var)
+Site_code_entry.pack(fill='x', expand=True)
+
+# login button
+Submit_button = ttk.Button(Site_details, text="Submit", command=root.destroy)
+Submit_button.pack(fill='x', expand=True, pady=10)
+
+root.attributes('-topmost', True)
+root.mainloop()
+
+username = Username_var.get()
+password = password_var.get()
+IPAddr = IP_Address_var.get()
+Sitecode = Site_code_var.get()
+
+############################# End of Tkinter Code #############################
+
 def open_session(IP):
     try:
         output_log(f"Connected to: {IP}")
@@ -85,7 +145,7 @@ def extract_cdp_neighbors(IP):
     if not connection:
         return None
     try:
-        output_log(f"Function Extract CDP Neighbors: Extracting Neighbors: IP Address: {IP}")
+        output_log(f"Extract CDP Neighbors Function: Extracting Neighbors: IP Address: {IP}")
         stdin, stdout, stderr = ssh.exec_command(command)
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
@@ -94,13 +154,13 @@ def extract_cdp_neighbors(IP):
             temp_interface_name = match.group(1)
             temp_interface_name = temp_interface_name.strip()
             interface_names.append(temp_interface_name)
-        output_log(f"Function Extract CDP Neighbors: Extraction Complete: IP Address: {IP}")
+        output_log(f"Extract CDP Neighbors Function: Extraction Complete: IP Address: {IP}")
         return interface_names
     except paramiko.ssh_exception.SSHException:
-        error_log(f"Extract CDP Neighbor Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
+        error_log(f"Extract CDP Neighbors Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
         return None, False
     except:
-        error_log(f"extract cdp neighbors Error: An unknown error occured for IP: {IP}!")
+        error_log(f"Extract CDP Neighbors Error: An unknown error occured for IP: {IP}!")
         return None, False
     finally:
         ssh.close()
@@ -111,7 +171,7 @@ def CDP_Details(IP, commands, hostname):
     if not connection:
         return None
     try:
-        output_log(f"Function CDP Detail: Extracting Neighbor Details: IP Address: {IP}")
+        output_log(f"CDP Detail Function: Extracting Neighbor Details: IP Address: {IP}")
         stdin, stdout, stderr = ssh.exec_command(commands)
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
@@ -161,11 +221,11 @@ def CDP_Details(IP, commands, hostname):
         if RIPAddr not in IP_list:
             IP_list.append(RIPAddr)
         CDP_Info_List.append(CDP_Info)
-        output_log(f"Function CDP Detail: Extraction Complete: IP Address: {IP}")
+        output_log(f"CDP Detail Function: Extraction Complete: IP Address: {IP}")
     except paramiko.ssh_exception.SSHException:
-        error_log(f"CDP Info Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
+        error_log(f"CDP Detail Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
     except:
-        error_log(f"CDP Details Error: An unknown error occured for IP: {IP}!")
+        error_log(f"CDP Details Function Error: An unknown error occured for IP: {IP}!")
         return None, False
     finally:
         ssh.close()
@@ -177,7 +237,7 @@ def get_hostname(IP):
     if not connection:
         return "-1"
     try:
-        output_log(f"Function Get Hostname: Extracting Hostname: IP Address: {IP}")        
+        output_log(f"Get Hostname Function: Extracting Hostname: IP Address: {IP}")        
         stdin, stdout, stderr = ssh.exec_command("show run | i hostname")
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
@@ -213,10 +273,8 @@ def output_log(message):
     output_file.close()
 
 def main():
-    global IPAddr
-    global IP_list
     global CDP_Info_List
-    global Sitecode
+    global IP_list
 
     start = time.time()
     IP_list.append(IPAddr)
@@ -270,13 +328,13 @@ def main():
                 CDP_Detail.write("CDP_Nei_Info","H",f"{index}","Not Found",)
             index += 1
     except:
-        error_log("Function Main: An unknown error occured!")
+        error_log("Main Function: An unknown error occured!")
     finally:
         end = time.time()
         elapsed = (end - start) / 60
         output_log(f"Total execution time: {elapsed:.3} minutes.")
         output_log(f"Script Complete for site: {Sitecode}")
-        print("Script Complete for site: {Sitecode}")
+        print(f"Script Complete for site: {Sitecode}")
 
 if __name__ == "__main__":
     main()
