@@ -86,10 +86,10 @@ def extract_cdp_neighbors(IP):
         return None
     try:
         output_log(f"Function Extract CDP Neighbors: Extracting Neighbors: IP Address: {IP}")
-        _, output, _ = ssh.exec_command(command)
-        output = output.read()
-        output = output.decode("utf-8")
-        matches = re.finditer(regex, output, re.MULTILINE)
+        stdin, stdout, stderr = ssh.exec_command(command)
+        stdout = stdout.read()
+        stdout = stdout.decode("utf-8")
+        matches = re.finditer(regex, stdout, re.MULTILINE)
         for match in matches:
             temp_interface_name = match.group(1)
             temp_interface_name = temp_interface_name.strip()
