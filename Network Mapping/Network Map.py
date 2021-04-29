@@ -216,14 +216,17 @@ def main():
     global IPAddr
     global IP_list
     global CDP_Info_List
-    print("Please wait until the script finished - This may take a while depending on the size of the network!")
-    
+    global Sitecode
+
     start = time.time()
     IP_list.append(IPAddr)
     pool = ThreadPool(30)
     i = 0
 
     try:
+        print(f"Script started for site: {Sitecode}")
+        print("You will be notified when the script finishes - This may take a while depending on the size of the network!")
+        output_log(f"Script started for site: {Sitecode}")
         while i < len(IP_list):
             limit = i + min(30, (len(IP_list) - i))
             hostnames = IP_list[i:limit]
@@ -272,8 +275,8 @@ def main():
         end = time.time()
         elapsed = (end - start) / 60
         output_log(f"Total execution time: {elapsed:.3} minutes.")
-        output_log("Script Complete!")
-        print("Script Complete!")
+        output_log(f"Script Complete for site: {Sitecode}")
+        print("Script Complete for site: {Sitecode}")
 
 if __name__ == "__main__":
     main()
