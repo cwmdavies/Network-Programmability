@@ -16,9 +16,6 @@ from openpyxl import load_workbook, Workbook
 IP_list = []
 CDP_Info_List = []
 
-jumpserver_private_addr = '10.251.6.31'   # The internal IP Address for the Jump server
-local_IP_addr = '127.0.0.1' # IP Address of the machine you are connecting from
-
 username = input("Enter your username: ")
 password = getpass("Enter your password: ")
 IPAddr = input("Enter an IP Address: ")
