@@ -15,6 +15,7 @@ from openpyxl import load_workbook, Workbook
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
+import ctypes
 
 IP_list = []
 CDP_Info_List = []
@@ -128,13 +129,13 @@ def open_session(IP):
         ssh.connect(hostname=IP, port=port, username=username, password=password)
         return ssh, True
     except paramiko.ssh_exception.AuthenticationException:
-        error_log(f"Authentication to IP: {IP} failed! Please check your IP, username and password.")
+        error_log(f"Open Session Function: Authentication to IP: {IP} failed! Please check your IP, username and password.")
         return None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
-        error_log(f"Unable to connect to IP: {IP}!")
+        error_log(f"Open Session Function Error: Unable to connect to IP: {IP}!")
         return None, False
     except (ConnectionError, TimeoutError):
-        error_log(f"Timeout error occured for IP: {IP}!")
+        error_log(f"Open Session Function Error: Timeout error occured for IP: {IP}!")
         return None, False
 
 def extract_cdp_neighbors(IP):
@@ -160,7 +161,7 @@ def extract_cdp_neighbors(IP):
         error_log(f"Extract CDP Neighbors Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
         return None, False
     except:
-        error_log(f"Extract CDP Neighbors Error: An unknown error occured for IP: {IP}!")
+        error_log(f"Extract CDP Neighbors Function Error: An unknown error occured for IP: {IP}!")
         return None, False
     finally:
         ssh.close()
@@ -190,7 +191,7 @@ def CDP_Details(IP, commands, hostname):
         RemoteInt_match = re.finditer(RemoteInt, stdout, re.MULTILINE)
         Native_match = re.finditer(Native, stdout, re.MULTILINE)
 
-        CDP_Info["Hostname"] = hostname
+        CDP_Info["Local Hostname"] = hostname
         CDP_Info["Local IP Address"] = IP
 
         for line in RemoteHost_match:
@@ -319,7 +320,7 @@ def main():
             CDP_Detail.write("CDP_Nei_Info","B",f"{index}",entries["Local IP Address"],)
             CDP_Detail.write("CDP_Nei_Info","C",f"{index}",entries["Local Interface"],)
             CDP_Detail.write("CDP_Nei_Info","D",f"{index}",entries["Remote Interface"],)
-            CDP_Detail.write("CDP_Nei_Info","E",f"{index}",entries["Remote Hostname"],)
+            CDP_Detail.write("CDP_Nei_Info","E",f"{index}",entries["Remote Host"],)
             CDP_Detail.write("CDP_Nei_Info","F",f"{index}",entries["Remote IP Address"],)
             CDP_Detail.write("CDP_Nei_Info","G",f"{index}",entries["Platform"],)
             if "Native VLAN" in entries:
@@ -328,13 +329,14 @@ def main():
                 CDP_Detail.write("CDP_Nei_Info","H",f"{index}","Not Found",)
             index += 1
     except:
-        error_log("Main Function: An unknown error occured!")
+        error_log("Main Function Error: An unknown error occured!")
     finally:
         end = time.time()
         elapsed = (end - start) / 60
         output_log(f"Total execution time: {elapsed:.3} minutes.")
         output_log(f"Script Complete for site: {Sitecode}")
         print(f"Script Complete for site: {Sitecode}")
+        ctypes.windll.user32.MessageBoxW(0, f"Script Complete for site: {Sitecode}", "Script Complete", 0)
 
 if __name__ == "__main__":
     main()
