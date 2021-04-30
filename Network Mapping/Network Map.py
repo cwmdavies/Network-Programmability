@@ -1,28 +1,23 @@
 ###############################################
 #             Under Contruction               #
-#                Test Phase                   #
+#               Testing Phase                 #
 #                                             #
 ###############################################
 
 import os
 import re
-import time
+import time as timer
 from multiprocessing.pool import ThreadPool
 import paramiko
-from datetime import datetime
-from getpass import getpass
+import datetime as time
 from openpyxl import load_workbook, Workbook
 import tkinter as tk
 from tkinter import ttk
-from tkinter.messagebox import showinfo
-import ctypes
+import tkinter.messagebox
 
 IP_list = []
 CDP_Info_List = []
 port = "22"
-
-dateTimeObj = datetime.now()
-datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
 
 class excel_writer:
     def __init__(self, name):
@@ -68,7 +63,7 @@ root.geometry("300x250")
 root.resizable(False, False)
 root.title('Site Details')
 
-# store email address and password
+# store entries
 Username_var = tk.StringVar()
 password_var = tk.StringVar()
 IP_Address_var = tk.StringVar()
@@ -86,7 +81,7 @@ Username_entry = ttk.Entry(Site_details, textvariable=Username_var)
 Username_entry.pack(fill='x', expand=True)
 Username_entry.focus()
 
-# password
+# Password
 password_label = ttk.Label(Site_details, text="Password:" )
 password_label.pack(fill='x', expand=True)
 
@@ -107,7 +102,7 @@ Site_code_label.pack(fill='x', expand=True)
 Site_code_entry = ttk.Entry(Site_details, textvariable=Site_code_var)
 Site_code_entry.pack(fill='x', expand=True)
 
-# login button
+# Submit button
 Submit_button = ttk.Button(Site_details, text="Submit", command=root.destroy)
 Submit_button.pack(fill='x', expand=True, pady=10)
 
@@ -119,23 +114,31 @@ password = password_var.get()
 IPAddr = IP_Address_var.get()
 Sitecode = Site_code_var.get()
 
+def MessageBox(text, title):
+        root = tkinter.Tk()
+        root.attributes('-topmost', True)
+        root.withdraw()
+        tkinter.messagebox.showinfo(title, text)
+        root.destroy()
+
 ############################# End of Tkinter Code #############################
 
 def open_session(IP):
     try:
-        output_log(f"Connected to: {IP}")
+        output_log(f"Open Session Function: Trying to connect to IP Address: {IP}")
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect(hostname=IP, port=port, username=username, password=password)
+        output_log(f"Open Session Function: Connected to IP Address: {IP}")
         return ssh, True
     except paramiko.ssh_exception.AuthenticationException:
-        error_log(f"Open Session Function: Authentication to IP: {IP} failed! Please check your IP, username and password.")
+        error_log(f"Open Session Function: Authentication to IP Address: {IP} failed! Please check your IP, username and password.")
         return None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
-        error_log(f"Open Session Function Error: Unable to connect to IP: {IP}!")
+        error_log(f"Open Session Function Error: Unable to connect to IP Address: {IP}!")
         return None, False
     except (ConnectionError, TimeoutError):
-        error_log(f"Open Session Function Error: Timeout error occured for IP: {IP}!")
+        error_log(f"Open Session Function Error: Timeout error occured for IP Address: {IP}!")
         return None, False
 
 def extract_cdp_neighbors(IP):
@@ -166,14 +169,14 @@ def extract_cdp_neighbors(IP):
     finally:
         ssh.close()
 
-def CDP_Details(IP, commands, hostname):
+def CDP_Details(IP, command, hostname):
     CDP_Info = {}
     ssh, connection = open_session(IP)
     if not connection:
         return None
     try:
         output_log(f"CDP Detail Function: Extracting Neighbor Details: IP Address: {IP}")
-        stdin, stdout, stderr = ssh.exec_command(commands)
+        stdin, stdout, stderr = ssh.exec_command(command)
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
 
@@ -245,7 +248,6 @@ def get_hostname(IP):
         hostname_matches = re.finditer(regex_hostname, stdout, re.MULTILINE)
         for h in hostname_matches:
             hostname = h.group(1)
-        stdin.close()
         return hostname
     except paramiko.ssh_exception.SSHException:
         error_log(f"Get Hostname Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
@@ -253,39 +255,47 @@ def get_hostname(IP):
         ssh.close()
 
 def find_IPs(IP):
-    hostname = get_hostname(IP)
     interface_names = extract_cdp_neighbors(IP)
+    hostname = get_hostname(IP)
     if not interface_names:
         return -1
     for name in interface_names:
         command = f"show cdp neighbors {name} detail"
         CDP_Details(IP, command, hostname)
 
-def error_log(message):
+def error_log(message, i=0):
+    dateTimeObj = time.datetime.now()
+    datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
     error_file = open(f"{Sitecode} - Error Log.txt", "a")
     error_file.write(f"{datetime} - {message}")
     error_file.write("\n")
     error_file.close()
+    if i == 1:
+        print(message)
 
-def output_log(message):
+def output_log(message, i=0):
+    dateTimeObj = time.datetime.now()
+    datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
     output_file = open(f"{Sitecode} - Output Log.txt", "a")
     output_file.write(f"{datetime} - {message}")
     output_file.write("\n")
     output_file.close()
+    if i == 1:
+        print(message)
 
 def main():
     global CDP_Info_List
     global IP_list
 
-    start = time.time()
+    start = timer.time()
     IP_list.append(IPAddr)
     pool = ThreadPool(30)
     i = 0
 
     try:
-        print(f"Script started for site: {Sitecode}")
+        output_log(f"Script started for site: {Sitecode}", i=1)
         print("You will be notified when the script finishes - This may take a while depending on the size of the network!")
-        output_log(f"Script started for site: {Sitecode}")
+        
         while i < len(IP_list):
             limit = i + min(30, (len(IP_list) - i))
             hostnames = IP_list[i:limit]
@@ -331,12 +341,11 @@ def main():
     except:
         error_log("Main Function Error: An unknown error occured!")
     finally:
-        end = time.time()
+        end = timer.time()
         elapsed = (end - start) / 60
-        output_log(f"Total execution time: {elapsed:.3} minutes.")
-        output_log(f"Script Complete for site: {Sitecode}")
-        print(f"Script Complete for site: {Sitecode}")
-        ctypes.windll.user32.MessageBoxW(0, f"Script Complete for site: {Sitecode}", "Script Complete", 0)
+        output_log(f"Total execution time: {elapsed:.3} minutes.", i=1)
+        output_log(f"Script Complete for site: {Sitecode}", i=1)
+        MessageBox(f"Script Complete for site: {Sitecode}", "Script Complete")
 
 if __name__ == "__main__":
     main()
