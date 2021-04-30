@@ -17,7 +17,6 @@ import tkinter.messagebox
 
 IP_list = []
 CDP_Info_List = []
-port = "22"
 
 class excel_writer:
     def __init__(self, name):
@@ -128,7 +127,7 @@ def open_session(IP):
         output_log(f"Open Session Function: Trying to connect to IP Address: {IP}")
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh.connect(hostname=IP, port=port, username=username, password=password)
+        ssh.connect(hostname=IP, port="22", username=username, password=password)
         output_log(f"Open Session Function: Connected to IP Address: {IP}")
         return ssh, True
     except paramiko.ssh_exception.AuthenticationException:
