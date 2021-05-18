@@ -139,6 +139,9 @@ def open_session(IP):
     except (ConnectionError, TimeoutError):
         error_log(f"Open Session Function Error: Timeout error occured for IP Address: {IP}!")
         return None, False
+    except:
+         error_log(f"Open Session Function Error: Unknown error occured for IP Address: {IP}!")
+         return None, False
 
 def extract_cdp_neighbors(IP):
     interface_names = []
@@ -250,6 +253,10 @@ def get_hostname(IP):
         return hostname
     except paramiko.ssh_exception.SSHException:
         error_log(f"Get Hostname Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
+        return None
+    except:
+         error_log(f"Get Hostname Function Error: Unknown error occured for IP Address: {IP}!")
+         return None
     finally:
         ssh.close()
 
