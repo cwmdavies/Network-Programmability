@@ -9,8 +9,6 @@
 #   command and writes it in a neat format
 #   to an excel spreadsheet.
 
-
-
 import os
 import paramiko
 import datetime as time
