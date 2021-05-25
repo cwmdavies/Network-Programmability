@@ -1,6 +1,6 @@
 ###############################################
 #             Under Contruction               #
-#                Design Phase                 #
+#               Testing Phase                 #
 #                                             #
 ###############################################
 #
@@ -23,7 +23,7 @@ username = input("Please enter your username: ")
 password = getpass("Please enter your password: ")
 IP_Addr = input("Please enter an IP Address: ")
 
-interfaces = dict()
+interfaces = list()
 
 class excel_writer:
     def __init__(self, name):
@@ -124,6 +124,7 @@ def get_interfaces(IP):
 
 def get_int_descr(IP, int_name):
     global interfaces
+    interfaces_dict = dict()
     command = f"show run interface {int_name} | inc description"
     ssh, jumpbox, connection = open_session(IP)
     if not connection:
@@ -135,10 +136,12 @@ def get_int_descr(IP, int_name):
         stdout = stdout.decode("utf-8")
         Inter_Desc = re.search(".*description.*", stdout)
         Inter_Desc = Inter_Desc[0]
-        interfaces[int_name] = Inter_Desc
+        interfaces_dict["Interface"] = int_name
+        interfaces_dict["Description"] = Inter_Desc
+        interfaces.append(interfaces_dict)
         output_log(f"Description retrieval successful for interface: {int_name}")
     except TypeError:
-        interfaces[int_name] = "No Description found"
+        interfaces_dict[int_name] = "No Description found"
     except paramiko.ssh_exception.SSHException:
         error_log(f"get_int_descr - Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
     except:
@@ -182,17 +185,33 @@ def main():
 
     start = timer.time()
 
+    Int_Detail = excel_writer("Interfaces")
+    Int_Detail.add_sheets("Interface Descriptions",)
+    Int_Detail.write("Interface Descriptions","A","1","Interface",)
+    Int_Detail.write("Interface Descriptions","B","1","Description",)
+    Int_Detail.filter_Cols("Interface Descriptions","A","30")
+    Int_Detail.filter_Cols("Interface Descriptions","B","60")
+
     try:
         interface_names = get_interfaces(IP_Addr)
 
-        for int in interface_names:
-            get_int_descr(IP_Addr, int)
+        for int_name in interface_names:
+            get_int_descr(IP_Addr, int_name)
+
+        index = 2
+        for entries in interfaces:
+            Int_Detail.write("Interface Descriptions","A",f"{index}",entries["Interface"],)
+            Int_Detail.write("Interface Descriptions","B",f"{index}",entries["Description"],)
+            index += 1
 
     except:
-        error_log(f"Main function error: An unknown error occured")
+         error_log(f"Main function error: An unknown error occured")
 
     finally:   
         end = timer.time()
         elapsed = (end - start) / 60
-        output_log(f"Total execution time: {elapsed:.3} minutes.", i=1)
-        output_log(f"Script Complete", i=1)
+        output_log(f"Total execution time: {elapsed:.3} minutes.", debug=1)
+        output_log(f"Script Complete", debug=1)
+
+if __name__ == "__main__":
+    main()
