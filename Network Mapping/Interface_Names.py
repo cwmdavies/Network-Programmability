@@ -14,11 +14,14 @@ import paramiko
 import datetime as time
 from openpyxl import load_workbook, Workbook
 import re
+import time as timer
+from getpass import getpass
 
 jumpserver_private_addr = '10.251.6.31'   # The internal IP Address for the Jump server
 local_IP_addr = '127.0.0.1' # IP Address of the machine you are connecting from
 username = input("Please enter your username: ")
-password = input("Please enter your password: ")
+password = getpass("Please enter your password: ")
+IP_Addr = input("Please enter an IP Address: ")
 
 interfaces = dict()
 
@@ -91,6 +94,7 @@ def get_interfaces(IP):
     if not connection:
         return None
     try:
+        output_log(f"retrieving list of interfaces from IP Address: {IP}")
         stdin, stdout, stderr = ssh.exec_command("show ip interface brief")
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
@@ -100,6 +104,7 @@ def get_interfaces(IP):
             temp_interface_name = match.group(1)
             temp_interface_name = temp_interface_name.strip()
             interface_names.append(temp_interface_name)
+        output_log(f"List retrieval successful for IP Address: {IP}")
         return interface_names
     except paramiko.ssh_exception.AuthenticationException:
         error_log(f"Interfaces function Error: Authentication to IP: {IP} failed! Please check your IP, username and password.")
@@ -117,22 +122,27 @@ def get_interfaces(IP):
         ssh.close()
         jumpbox.close()
 
-def get_inte_descr(IP, int_name):
+def get_int_descr(IP, int_name):
+    global interfaces
     command = f"show run interface {int_name} | inc description"
     ssh, jumpbox, connection = open_session(IP)
     if not connection:
-        return None
+        error_log(f"get_int_descr - Function Error: No connection is available for IP: {IP}!")
     try:
+        output_log(f"retrieving interface description for interface: {int_name}")
         stdin, stdout, stderr = ssh.exec_command(command)
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
         Inter_Desc = re.search(".*description.*", stdout)
-        return Inter_Desc[0]
+        Inter_Desc = Inter_Desc[0]
+        interfaces[int_name] = Inter_Desc
+        output_log(f"Description retrieval successful for interface: {int_name}")
+    except TypeError:
+        interfaces[int_name] = "No Description found"
     except paramiko.ssh_exception.SSHException:
-        error_log(f"Interface description Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
+        error_log(f"get_int_descr - Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
     except:
-        error_log(f"Interface description Function Error: An unknown error occured for IP: {IP}!")
-        return None, False
+        error_log(f"get_int_descr - Function Error: An unknown error occured for IP: {IP}, on Interface: {int_name}!")
     finally:
         ssh.close()
         jumpbox.close()
@@ -142,27 +152,47 @@ def get_inte_descr(IP, int_name):
 ##          Logging Functions
 #
 
-
-def error_log(message, i=0):
+def error_log(message, debug=0):
     dateTimeObj = time.datetime.now()
     datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
     error_file = open("Error Log.txt", "a")
     error_file.write(f"{datetime} - {message}")
     error_file.write("\n")
     error_file.close()
-    if i == 1:
+    if debug == 1:
         print(message)
 
-def output_log(message, i=0):
+def output_log(message, debug=0):
     dateTimeObj = time.datetime.now()
     datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
     output_file = open("Output Log.txt", "a")
     output_file.write(f"{datetime} - {message}")
     output_file.write("\n")
     output_file.close()
-    if i == 1:
+    if debug == 1:
         print(message)
 
 #
 ##
 #############################################################################################################################################
+
+def main():
+    global IP_Addr
+    global interfaces
+
+    start = timer.time()
+
+    try:
+        interface_names = get_interfaces(IP_Addr)
+
+        for int in interface_names:
+            get_int_descr(IP_Addr, int)
+
+    except:
+        error_log(f"Main function error: An unknown error occured")
+
+    finally:   
+        end = timer.time()
+        elapsed = (end - start) / 60
+        output_log(f"Total execution time: {elapsed:.3} minutes.", i=1)
+        output_log(f"Script Complete", i=1)

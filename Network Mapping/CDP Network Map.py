@@ -269,24 +269,24 @@ def find_IPs(IP):
         command = f"show cdp neighbors {name} detail"
         CDP_Details(IP, command, hostname)
 
-def error_log(message, i=0):
+def error_log(message, debug=0):
     dateTimeObj = time.datetime.now()
     datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
     error_file = open(f"{Sitecode} - Error Log.txt", "a")
     error_file.write(f"{datetime} - {message}")
     error_file.write("\n")
     error_file.close()
-    if i == 1:
+    if debug == 1:
         print(message)
 
-def output_log(message, i=0):
+def output_log(message, debug=0):
     dateTimeObj = time.datetime.now()
     datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
     output_file = open(f"{Sitecode} - Output Log.txt", "a")
     output_file.write(f"{datetime} - {message}")
     output_file.write("\n")
     output_file.close()
-    if i == 1:
+    if debug == 1:
         print(message)
 
 def main():
@@ -349,8 +349,8 @@ def main():
     finally:
         end = timer.time()
         elapsed = (end - start) / 60
-        output_log(f"Total execution time: {elapsed:.3} minutes.", i=1)
-        output_log(f"Script Complete for site: {Sitecode}", i=1)
+        output_log(f"Total execution time: {elapsed:.3} minutes.", debug=1)
+        output_log(f"Script Complete for site: {Sitecode}", debug=1)
         MessageBox(f"Script Complete for site: {Sitecode}", "Script Complete")
 
 if __name__ == "__main__":
