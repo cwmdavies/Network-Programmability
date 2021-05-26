@@ -122,13 +122,13 @@ def get_interfaces(IP):
         ssh.close()
         jumpbox.close()
 
-def get_int_descr(IP, int_name):
+def get_int_descr(int_name):
     global interfaces
     interfaces_dict = dict()
     command = f"show run interface {int_name} | inc description"
-    ssh, jumpbox, connection = open_session(IP)
+    ssh, jumpbox, connection = open_session(IP_Addr)
     if not connection:
-        error_log(f"get_int_descr - Function Error: No connection is available for IP: {IP}!")
+        error_log(f"get_int_descr - Function Error: No connection is available for IP: {IP_Addr}!")
     try:
         output_log(f"retrieving interface description for interface: {int_name}")
         stdin, stdout, stderr = ssh.exec_command(command)
@@ -138,15 +138,16 @@ def get_int_descr(IP, int_name):
         Inter_Desc = Inter_Desc[0]
         interfaces_dict["Interface"] = int_name
         interfaces_dict["Description"] = Inter_Desc
-        interfaces.append(interfaces_dict)
         output_log(f"Description retrieval successful for interface: {int_name}")
     except TypeError:
-        interfaces_dict[int_name] = "No Description found"
+        interfaces_dict["Interface"] = int_name
+        interfaces_dict["Description"] = "No Description found"
     except paramiko.ssh_exception.SSHException:
-        error_log(f"get_int_descr - Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
+        error_log(f"get_int_descr - Function Error: There is an error connecting or establishing SSH session to IP Address {IP_Addr}")
     except:
-        error_log(f"get_int_descr - Function Error: An unknown error occured for IP: {IP}, on Interface: {int_name}!")
+        error_log(f"get_int_descr - Function Error: An unknown error occured for IP: {IP_Addr}, on Interface: {int_name}!")
     finally:
+        interfaces.append(interfaces_dict)
         ssh.close()
         jumpbox.close()
 
@@ -182,7 +183,7 @@ def output_log(message, debug=0):
 def main():
     global IP_Addr
     global interfaces
-
+    
     start = timer.time()
 
     Int_Detail = excel_writer("Interfaces")
@@ -196,7 +197,7 @@ def main():
         interface_names = get_interfaces(IP_Addr)
 
         for int_name in interface_names:
-            get_int_descr(IP_Addr, int_name)
+            get_int_descr(int_name)
 
         index = 2
         for entries in interfaces:
