@@ -136,6 +136,8 @@ def get_int_descr(int_name):
         stdout = stdout.decode("utf-8")
         Inter_Desc = re.search(".*description.*", stdout)
         Inter_Desc = Inter_Desc[0]
+        Inter_Desc = Inter_Desc.strip()
+        Inter_Desc = Inter_Desc.strip("description")
         interfaces_dict["Interface"] = int_name
         interfaces_dict["Description"] = Inter_Desc
         output_log(f"Description retrieval successful for interface: {int_name}")

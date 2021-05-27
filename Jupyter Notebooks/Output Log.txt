@@ -1,0 +1,2 @@
+27/05/2021 15:12:42 - Trying to establish a connection to: 10.112.224.15
+27/05/2021 15:12:45 - Connection to IP: 10.112.224.15 established
