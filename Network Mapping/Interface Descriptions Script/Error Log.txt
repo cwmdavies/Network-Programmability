@@ -1,0 +1,2 @@
+28/05/2021 12:06:20 - open_session function error: IP Address 10.1.1.256 is not a valid Address. Please check and restart the script!
+28/05/2021 12:06:20 - Main function error: An unknown error occured

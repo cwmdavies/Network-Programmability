@@ -60,7 +60,18 @@ class excel_writer:
         ws.column_dimensions[f'{col}'].width = width
         workbook.save(filename=self.filename)
 
+def IP_Check(IP):
+    regex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
+    
+    if(re.search(regex, IP)):
+        return True
+    else:
+        return False
+
 def open_session(IP):
+    if IP_Check(IP) != True:
+        error_log(f"open_session function error: IP Address {IP} is not a valid Address. Please check and restart the script!", debug=1)
+        return None, False
     try:
         output_log(f"Trying to establish a connection to: {IP}")
         jumpbox=paramiko.SSHClient()

@@ -122,7 +122,17 @@ def MessageBox(text, title):
 
 ############################# End of Tkinter Code #############################
 
+def IP_Check(Ip):
+    regex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
+    
+    if(re.search(regex, Ip)):
+        return True
+    else:
+        return False
+
 def open_session(IP):
+    if IP_Check(IP) != True:
+        return None, False
     try:
         output_log(f"Open Session Function: Trying to connect to IP Address: {IP}")
         ssh = paramiko.SSHClient()

@@ -14,6 +14,7 @@ import datetime as time
 from getpass import getpass
 import pandas as pd
 import time as timer
+import re
 
 jumpserver_private_addr = '10.251.6.31'   # The internal IP Address for the Jump server
 local_IP_addr = '127.0.0.1' # IP Address of the machine you are connecting from
@@ -52,7 +53,18 @@ def output_log(message, debug=0):
 ##
 #############################################################################################################################################
 
+def IP_Check(IP):
+    regex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
+    
+    if(re.search(regex, IP)):
+        return True
+    else:
+        return False
+
 def open_session(IP):
+    if IP_Check(IP) != True:
+        error_log(f"open_session function error: IP Address {IP} is not a valid Address. Please check and restart the script!", debug=1)
+        return None, False
     try:
         output_log(f"Trying to establish a connection to: {IP}")
         jumpbox=paramiko.SSHClient()
