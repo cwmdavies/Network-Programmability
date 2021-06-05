@@ -14,25 +14,25 @@ import datetime as time
 from getpass import getpass
 import pandas as pd
 import time as timer
-import re
 import ipaddress
 
-jumpserver_private_addr = '10.251.6.31'   # The internal IP Address for the Jump server
-local_IP_addr = '127.0.0.1' # IP Address of the machine you are connecting from
+jump_server_address = '10.251.6.31'   # The internal IP Address for the Jump server
+local_IP_address = '127.0.0.1'  # IP Address of the machine you are connecting from
 username = input("Please enter your username: ")
 password = getpass("Please enter your password: ")
 IP_Address = input("Please enter an IP Address: ")
 
 commands = []
-df = pd.read_excel (r'Interfaces.xlsx')
+df = pd.read_excel(r'Interfaces.xlsx')
 
-#############################################################################################################################################
-##          Logging Functions
+######################################################################################################################
+#          Logging Functions
 #
 
+
 def error_log(message, debug=0):
-    dateTimeObj = time.datetime.now()
-    datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
+    date_time_object = time.datetime.now()
+    datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
     error_file = open("Error Log.txt", "a")
     error_file.write(f"{datetime} - {message}")
     error_file.write("\n")
@@ -40,9 +40,10 @@ def error_log(message, debug=0):
     if debug == 1:
         print(message)
 
+
 def output_log(message, debug=0):
-    dateTimeObj = time.datetime.now()
-    datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
+    date_time_object = time.datetime.now()
+    datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
     output_file = open("Output Log.txt", "a")
     output_file.write(f"{datetime} - {message}")
     output_file.write("\n")
@@ -51,50 +52,54 @@ def output_log(message, debug=0):
         print(message)
 
 #
-##
-#############################################################################################################################################
+#
+######################################################################################################################
 
-def IP_Check(IP):
+
+def ip_check(ip):
     try:
-        ipaddress.ip_address(IP)
+        ipaddress.ip_address(ip)
         return True
-    except:
+    except ValueError:
         return False
 
-def open_session(IP):
-    if IP_Check(IP) != True:
-        error_log(f"open_session function error: IP Address {IP} is not a valid Address. Please check and restart the script!", debug=1)
+
+def open_session(ip):
+    if not ip_check(ip):
+        error_log(f"open_session function error: "
+                  f"IP Address {ip} is not a valid Address. Please check and restart the script!", debug=1)
         return None, False
     try:
-        output_log(f"Trying to establish a connection to: {IP}")
-        jumpbox=paramiko.SSHClient()
-        jumpbox.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        jumpbox.connect(jumpserver_private_addr, username=username, password=password )
-        jumpbox_transport = jumpbox.get_transport()
-        src_addr = (local_IP_addr, 22)
-        dest_addr = (IP, 22)
-        jumpbox_channel = jumpbox_transport.open_channel("direct-tcpip", dest_addr, src_addr)
-        target=paramiko.SSHClient()
+        output_log(f"Trying to establish a connection to: {ip}")
+        jump_box = paramiko.SSHClient()
+        jump_box.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        jump_box.connect(jump_server_address, username=username, password=password)
+        jump_box_transport = jump_box.get_transport()
+        src_address = (local_IP_address, 22)
+        destination_address = (ip, 22)
+        jump_box_channel = jump_box_transport.open_channel("direct-tcpip", destination_address, src_address)
+        target = paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        target.connect(dest_addr, username=username, password=password, sock=jumpbox_channel)
-        output_log(f"Connection to IP: {IP} established")
-        return target, jumpbox, True
+        target.connect(destination_address, username=username, password=password, sock=jump_box_channel)
+        output_log(f"Connection to IP: {ip} established")
+        return target, jump_box, True
     except paramiko.ssh_exception.AuthenticationException:
-        error_log(f"Authentication to IP: {IP} failed! Please check your IP, username and password.")
+        error_log(f"Authentication to IP: {ip} failed! Please check your IP, username and password.")
         return None, None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
-        error_log(f"Unable to connect to IP: {IP}!")
+        error_log(f"Unable to connect to IP: {ip}!")
         return None, None, False
     except (ConnectionError, TimeoutError):
-        error_log(f"Timeout error occured for IP: {IP}!")
+        error_log(f"Timeout error occurred for IP: {ip}!")
         return None, None, False
     except:
-        error_log(f"Open Session Error: An unknown error occured for IP: {IP}!")
+        error_log(f"Open Session Error: An unknown error occurred for IP: {ip}!")
         return None, None, False
 
-def int_write(IP):
+
+def int_write(ip):
     global commands
-    ssh, jumpbox, connection = open_session(IP)
+    ssh, jump_box, connection = open_session(ip)
     if not connection:
         return None
     try:
@@ -117,10 +122,12 @@ def int_write(IP):
         stdin.close()
         output_log(f"int_write function: Finished writing interface descriptions.")
     except:
-        error_log(f"Int_write function Error: An unknown error occured!")
+        error_log(f"Int_write function Error: An unknown error occurred!")
     finally:
         ssh.close()
-        jumpbox.close()
+        jump_box.close()
+
+
 def main():
     start = timer.time()
     try:
@@ -132,6 +139,7 @@ def main():
         elapsed = (end - start) / 60
         output_log(f"Total execution time: {elapsed:.3} minutes.", debug=1)
         output_log(f"Script Complete", debug=1)
+
 
 if __name__ == "__main__":
     main()
