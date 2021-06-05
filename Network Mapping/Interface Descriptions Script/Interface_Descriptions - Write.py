@@ -131,7 +131,7 @@ def main():
     try:
         int_write(IP_Address)
     except:
-        error_log(f"Main function error: An unknown error occured")
+        error_log(f"Main function error: An unknown error occurred")
     finally:   
         end = timer.time()
         elapsed = (end - start) / 60
