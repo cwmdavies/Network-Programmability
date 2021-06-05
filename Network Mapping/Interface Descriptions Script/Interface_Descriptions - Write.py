@@ -92,8 +92,9 @@ def open_session(ip):
     except (ConnectionError, TimeoutError):
         error_log(f"Timeout error occurred for IP: {ip}!")
         return None, None, False
-    except:
+    except Exception as err:
         error_log(f"Open Session Error: An unknown error occurred for IP: {ip}!")
+        error_log(f"\t Error: {err}")
         return None, None, False
 
 
@@ -106,7 +107,6 @@ def int_write(ip):
         output_log(f"int_write function: Preparing to writing interface descriptions.")
         channel = ssh.invoke_shell()
         stdin = channel.makefile("wb")
-        output = channel.makefile("rb")
         commands.append("'''")
         commands.append("conf t")
         for num in range(len(df)):
@@ -119,8 +119,9 @@ def int_write(ip):
         stdin.write(str.encode(commands))
         stdin.close()
         output_log(f"int_write function: Finished writing interface descriptions.")
-    except:
+    except Exception as err:
         error_log(f"Int_write function Error: An unknown error occurred!")
+        error_log(f"\t Error: {err}")
     finally:
         ssh.close()
         jump_box.close()
@@ -130,9 +131,10 @@ def main():
     start = timer.time()
     try:
         int_write(IP_Address)
-    except:
+    except Exception as err:
         error_log(f"Main function error: An unknown error occurred")
-    finally:   
+        error_log(f"\t Error: {err}")
+    finally:
         end = timer.time()
         elapsed = (end - start) / 60
         output_log(f"Total execution time: {elapsed:.3} minutes.", debug=1)

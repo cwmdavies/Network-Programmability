@@ -103,8 +103,9 @@ def open_session(ip):
     except (ConnectionError, TimeoutError):
         error_log(f"Timeout error occurred for IP: {ip}!")
         return None, None, False
-    except:
+    except Exception as err:
         error_log(f"Open Session Error: An unknown error occurred for IP: {ip}!")
+        error_log(f"\t Error: {err}")
         return None, None, False
 
 
@@ -136,8 +137,9 @@ def get_interfaces(ip):
     except (ConnectionError, TimeoutError):
         error_log(f"Interfaces function Error: Timeout error occurred for IP: {ip}!")
         return None
-    except:
+    except Exception as err:
         error_log(f"Interfaces function Error: An unknown error occurred for IP: {ip}!")
+        error_log(f"\t Error: {err}")
         return None
     finally:
         ssh.close()
@@ -169,9 +171,10 @@ def get_int_description(int_name):
     except paramiko.ssh_exception.SSHException:
         error_log(f"get_int_description - Function Error: "
                   f"There is an error connecting or establishing SSH session to IP Address {IP_Address}")
-    except:
+    except Exception as err:
         error_log(f"get_int_description - Function Error: An unknown error occurred for IP: {IP_Address}, "
                   f"on Interface: {int_name}!")
+        error_log(f"\t Error: {err}")
     finally:
         interfaces.append(interfaces_dict)
         ssh.close()
@@ -232,8 +235,9 @@ def main():
             int_detail.write("Interface Descriptions", "A", f"{index}", entries["Interface"],)
             int_detail.write("Interface Descriptions", "B", f"{index}", entries["Description"],)
             index += 1
-    except:
+    except Exception as err:
         error_log(f"Main function error: An unknown error occurred")
+        error_log(f"\t Error: {err}")
 
     finally:   
         end = timer.time()
