@@ -18,8 +18,8 @@ import time as timer
 from getpass import getpass
 import ipaddress
 
-jumpserver_private_addr = '10.251.6.31'   # The internal IP Address for the Jump server
-local_IP_addr = '127.0.0.1' # IP Address of the machine you are connecting from
+jump_server_address = '10.251.6.31'   # The internal IP Address for the Jump server
+local_IP_addr = '127.0.0.1'  # IP Address of the machine you are connecting from
 username = input("Please enter your username: ")
 password = getpass("Please enter your password: ")
 IP_Addr = input("Please enter an IP Address: ")
@@ -71,7 +71,7 @@ def ip_check(ip):
     try:
         ipaddress.ip_address(ip)
         return True
-    except:
+    except ValueError:
         return False
 
 
@@ -82,18 +82,18 @@ def open_session(ip):
         return None, False
     try:
         output_log(f"Trying to establish a connection to: {ip}")
-        jumpbox = paramiko.SSHClient()
-        jumpbox.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        jumpbox.connect(jumpserver_private_addr, username=username, password=password )
-        jumpbox_transport = jumpbox.get_transport()
-        src_addr = (local_IP_addr, 22)
-        dest_addr = (ip, 22)
-        jumpbox_channel = jumpbox_transport.open_channel("direct-tcpip", dest_addr, src_addr)
+        jump_box = paramiko.SSHClient()
+        jump_box.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        jump_box.connect(jump_server_address, username=username, password=password)
+        jump_box_transport = jump_box.get_transport()
+        src_address = (local_IP_addr, 22)
+        dest_address = (ip, 22)
+        jumpbox_channel = jump_box_transport.open_channel("direct-tcpip", dest_address, src_address)
         target = paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        target.connect(dest_addr, username=username, password=password, sock=jumpbox_channel)
+        target.connect(dest_address, username=username, password=password, sock=jumpbox_channel)
         output_log(f"Connection to IP: {ip} established")
-        return target, jumpbox, True
+        return target, jump_box, True
     except paramiko.ssh_exception.AuthenticationException:
         error_log(f"Authentication to IP: {ip} failed! Please check your IP, username and password.")
         return None, None, False
@@ -144,7 +144,7 @@ def get_interfaces(ip):
         jumpbox.close()
 
 
-def get_int_descr(int_name):
+def get_int_description(int_name):
     global interfaces
     interfaces_dict = dict()
     command = f"show run interface {int_name} | inc description"
@@ -153,24 +153,25 @@ def get_int_descr(int_name):
         error_log(f"get_int_descr - Function Error: No connection is available for IP: {IP_Addr}!")
     try:
         output_log(f"retrieving interface description for interface: {int_name}")
-        stdin, stdout, stderr = ssh.exec_command(command)
+        _, stdout, _ = ssh.exec_command(command)
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
-        Inter_Desc = re.search(".*description.*", stdout)
-        Inter_Desc = Inter_Desc[0]
-        Inter_Desc = Inter_Desc.strip()
-        Inter_Desc = Inter_Desc.strip("description")
+        int_description = re.search(".*description.*", stdout)
+        int_description = int_description[0]
+        int_description = int_description.strip()
+        int_description = int_description.strip("description")
         interfaces_dict["Interface"] = int_name
-        interfaces_dict["Description"] = Inter_Desc
+        interfaces_dict["Description"] = int_description
         output_log(f"Description retrieval successful for interface: {int_name}")
     except TypeError:
         interfaces_dict["Interface"] = int_name
         interfaces_dict["Description"] = "No Description found"
     except paramiko.ssh_exception.SSHException:
-        error_log(f"get_int_descr - Function Error: "
+        error_log(f"get_int_description - Function Error: "
                   f"There is an error connecting or establishing SSH session to IP Address {IP_Addr}")
     except:
-        error_log(f"get_int_descr - Function Error: An unknown error occured for IP: {IP_Addr}, on Interface: {int_name}!")
+        error_log(f"get_int_description - Function Error: An unknown error occurred for IP: {IP_Addr}, "
+                  f"on Interface: {int_name}!")
     finally:
         interfaces.append(interfaces_dict)
         ssh.close()
@@ -224,12 +225,12 @@ def main():
         interface_names = get_interfaces(IP_Addr)
 
         for int_name in interface_names:
-            get_int_descr(int_name)
+            get_int_description(int_name)
 
         index = 2
         for entries in interfaces:
-            int_detail.write("Interface Descriptions", "A", f"{index}",entries["Interface"],)
-            int_detail.write("Interface Descriptions", "B", f"{index}",entries["Description"],)
+            int_detail.write("Interface Descriptions", "A", f"{index}", entries["Interface"],)
+            int_detail.write("Interface Descriptions", "B", f"{index}", entries["Description"],)
             index += 1
     except:
         error_log(f"Main function error: An unknown error occurred")
