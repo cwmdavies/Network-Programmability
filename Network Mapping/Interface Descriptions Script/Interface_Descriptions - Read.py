@@ -19,10 +19,10 @@ from getpass import getpass
 import ipaddress
 
 jump_server_address = '10.251.6.31'   # The internal IP Address for the Jump server
-local_IP_addr = '127.0.0.1'  # IP Address of the machine you are connecting from
+local_IP_address = '127.0.0.1'  # IP Address of the machine you are connecting from
 username = input("Please enter your username: ")
 password = getpass("Please enter your password: ")
-IP_Addr = input("Please enter an IP Address: ")
+IP_Address = input("Please enter an IP Address: ")
 
 interfaces = list()
 
@@ -86,12 +86,12 @@ def open_session(ip):
         jump_box.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         jump_box.connect(jump_server_address, username=username, password=password)
         jump_box_transport = jump_box.get_transport()
-        src_address = (local_IP_addr, 22)
-        dest_address = (ip, 22)
-        jumpbox_channel = jump_box_transport.open_channel("direct-tcpip", dest_address, src_address)
+        src_address = (local_IP_address, 22)
+        destination_address = (ip, 22)
+        jump_box_channel = jump_box_transport.open_channel("direct-tcpip", destination_address, src_address)
         target = paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        target.connect(dest_address, username=username, password=password, sock=jumpbox_channel)
+        target.connect(destination_address, username=username, password=password, sock=jump_box_channel)
         output_log(f"Connection to IP: {ip} established")
         return target, jump_box, True
     except paramiko.ssh_exception.AuthenticationException:
@@ -148,9 +148,9 @@ def get_int_description(int_name):
     global interfaces
     interfaces_dict = dict()
     command = f"show run interface {int_name} | inc description"
-    ssh, jumpbox, connection = open_session(IP_Addr)
+    ssh, jumpbox, connection = open_session(IP_Address)
     if not connection:
-        error_log(f"get_int_descr - Function Error: No connection is available for IP: {IP_Addr}!")
+        error_log(f"get_int_descr - Function Error: No connection is available for IP: {IP_Address}!")
     try:
         output_log(f"retrieving interface description for interface: {int_name}")
         _, stdout, _ = ssh.exec_command(command)
@@ -168,9 +168,9 @@ def get_int_description(int_name):
         interfaces_dict["Description"] = "No Description found"
     except paramiko.ssh_exception.SSHException:
         error_log(f"get_int_description - Function Error: "
-                  f"There is an error connecting or establishing SSH session to IP Address {IP_Addr}")
+                  f"There is an error connecting or establishing SSH session to IP Address {IP_Address}")
     except:
-        error_log(f"get_int_description - Function Error: An unknown error occurred for IP: {IP_Addr}, "
+        error_log(f"get_int_description - Function Error: An unknown error occurred for IP: {IP_Address}, "
                   f"on Interface: {int_name}!")
     finally:
         interfaces.append(interfaces_dict)
@@ -209,7 +209,7 @@ def output_log(message, debug=0):
 
 
 def main():
-    global IP_Addr
+    global IP_Address
     global interfaces
     
     start = timer.time()
@@ -222,7 +222,7 @@ def main():
     int_detail.filter_cols("Interface Descriptions", "B", "60")
 
     try:
-        interface_names = get_interfaces(IP_Addr)
+        interface_names = get_interfaces(IP_Address)
 
         for int_name in interface_names:
             get_int_description(int_name)

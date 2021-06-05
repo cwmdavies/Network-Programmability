@@ -21,7 +21,7 @@ jumpserver_private_addr = '10.251.6.31'   # The internal IP Address for the Jump
 local_IP_addr = '127.0.0.1' # IP Address of the machine you are connecting from
 username = input("Please enter your username: ")
 password = getpass("Please enter your password: ")
-IP_Addr = input("Please enter an IP Address: ")
+IP_Address = input("Please enter an IP Address: ")
 
 commands = []
 df = pd.read_excel (r'Interfaces.xlsx')
@@ -124,7 +124,7 @@ def int_write(IP):
 def main():
     start = timer.time()
     try:
-        int_write(IP_Addr)
+        int_write(IP_Address)
     except:
         error_log(f"Main function error: An unknown error occured")
     finally:   
