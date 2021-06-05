@@ -117,8 +117,6 @@ def int_write(ip):
         commands.append("'''")
         commands = "\n".join(commands)
         stdin.write(str.encode(commands))
-        output = output.read()
-        output = output.decode("utf-8")
         stdin.close()
         output_log(f"int_write function: Finished writing interface descriptions.")
     except:
