@@ -15,6 +15,7 @@ from getpass import getpass
 import pandas as pd
 import time as timer
 import re
+import ipaddress
 
 jumpserver_private_addr = '10.251.6.31'   # The internal IP Address for the Jump server
 local_IP_addr = '127.0.0.1' # IP Address of the machine you are connecting from
@@ -54,11 +55,10 @@ def output_log(message, debug=0):
 #############################################################################################################################################
 
 def IP_Check(IP):
-    regex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
-    
-    if(re.search(regex, IP)):
+    try:
+        ipaddress.ip_address(IP)
         return True
-    else:
+    except:
         return False
 
 def open_session(IP):
