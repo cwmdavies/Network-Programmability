@@ -110,12 +110,12 @@ def open_session(ip):
 
 def get_interfaces(ip):
     interface_names = list()
-    ssh, jumpbox, connection = open_session(ip)
+    ssh, jump_box, connection = open_session(ip)
     if not connection:
         return None
     try:
         output_log(f"retrieving list of interfaces from IP Address: {ip}")
-        stdin, stdout, stderr = ssh.exec_command("show ip interface brief")
+        _, stdout, _ = ssh.exec_command("show ip interface brief")
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
         regex = r"^(\b(Ten|Gig|Loo|Vla|Fas|Twe|Ten|Fo).{20})"
@@ -141,16 +141,16 @@ def get_interfaces(ip):
         return None
     finally:
         ssh.close()
-        jumpbox.close()
+        jump_box.close()
 
 
 def get_int_description(int_name):
     global interfaces
     interfaces_dict = dict()
     command = f"show run interface {int_name} | inc description"
-    ssh, jumpbox, connection = open_session(IP_Address)
+    ssh, jump_box, connection = open_session(IP_Address)
     if not connection:
-        error_log(f"get_int_descr - Function Error: No connection is available for IP: {IP_Address}!")
+        error_log(f"get_int_description - Function Error: No connection is available for IP: {IP_Address}!")
     try:
         output_log(f"retrieving interface description for interface: {int_name}")
         _, stdout, _ = ssh.exec_command(command)
@@ -175,7 +175,7 @@ def get_int_description(int_name):
     finally:
         interfaces.append(interfaces_dict)
         ssh.close()
-        jumpbox.close()
+        jump_box.close()
 
 
 #######################################################################################################################
@@ -183,8 +183,8 @@ def get_int_description(int_name):
 #
 
 def error_log(message, debug=0):
-    datetimeobj = time.datetime.now()
-    datetime = datetimeobj.strftime("%d/%m/%Y %H:%M:%S")
+    date_time_object = time.datetime.now()
+    datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
     error_file = open("Error Log.txt", "a")
     error_file.write(f"{datetime} - {message}")
     error_file.write("\n")
@@ -194,8 +194,8 @@ def error_log(message, debug=0):
 
 
 def output_log(message, debug=0):
-    datetimeobj = time.datetime.now()
-    datetime = datetimeobj.strftime("%d/%m/%Y %H:%M:%S")
+    date_time_object = time.datetime.now()
+    datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
     output_file = open("Output Log.txt", "a")
     output_file.write(f"{datetime} - {message}")
     output_file.write("\n")
