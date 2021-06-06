@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Network-Programmability.iml" filepath="$PROJECT_DIR$/.idea/Network-Programmability.iml" />
+      <module fileurl="file://$USER_HOME$/PycharmProjects/NetworkProgrammability/.idea/NetworkProgrammability.iml" filepath="$USER_HOME$/PycharmProjects/NetworkProgrammability/.idea/NetworkProgrammability.iml" />
     </modules>
   </component>
 </project>

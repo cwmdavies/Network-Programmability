@@ -45,8 +45,7 @@ class ExcelWriter:
         workbook = load_workbook(filename=self.filename)
         for value in col_name:
             if value not in workbook.sheetnames:
-                col_name = workbook.create_sheet(value, self.i)
-                self.i += 1
+                workbook.create_sheet(value)
             else:
                 output_log(f"{value} already exists in {self.name}. Ignoring column creation!")
         if "Sheet" in workbook.sheetnames:

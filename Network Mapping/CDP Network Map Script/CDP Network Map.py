@@ -18,7 +18,8 @@ import tkinter.messagebox
 IP_list = []
 CDP_Info_List = []
 
-class excel_writer:
+
+class ExcelWriter:
     def __init__(self, name):
         self.i = 0
         self.name = name
@@ -27,26 +28,29 @@ class excel_writer:
             os.remove(f"{self.filename}")
         workbook = Workbook()
         workbook.save(filename=self.filename)
+
     def get_sheets(self):
         workbook = load_workbook(filename=self.filename)
         return workbook.sheetnames
+
     def add_sheets(self, *col_name):
         workbook = load_workbook(filename=self.filename)
         for value in col_name:
             if value not in workbook.sheetnames:
-                col_name = workbook.create_sheet(value, self.i)
-                self.i += 1
+                workbook.create_sheet(value)
             else:
                 output_log(f"{value} already exists in {self.name}. Ignoring column creation!")
         if "Sheet" in workbook.sheetnames:
             del workbook["Sheet"]
         workbook.save(filename=self.filename)
+
     def write(self, sheet, key, index, value):
         workbook = load_workbook(filename=self.filename)
         ws = workbook[f"{sheet}"]
         ws[f"{key}{index}"] = value
         workbook.save(filename=self.filename)
-    def filter_Cols(self, sheet, col, width):
+
+    def filter_cols(self, sheet, col, width):
         workbook = load_workbook(filename=self.filename)
         ws = workbook[f"{sheet}"]
         ws.auto_filter.ref = ws.dimensions
@@ -321,7 +325,7 @@ def main():
         pool.close()
         pool.join()
 
-        CDP_Detail = excel_writer(Sitecode)
+        CDP_Detail = ExcelWriter(Sitecode)
         CDP_Detail.add_sheets("CDP_Nei_Info",)
         CDP_Detail.write("CDP_Nei_Info","A","1","Local Hostname",)
         CDP_Detail.write("CDP_Nei_Info","B","1","Local IP Address",)
@@ -331,14 +335,14 @@ def main():
         CDP_Detail.write("CDP_Nei_Info","F","1","Remote IP Address",)
         CDP_Detail.write("CDP_Nei_Info","G","1","Platform",)
         CDP_Detail.write("CDP_Nei_Info","H","1","Native VLAN",)
-        CDP_Detail.filter_Cols("CDP_Nei_Info","A","30")
-        CDP_Detail.filter_Cols("CDP_Nei_Info","B","25")
-        CDP_Detail.filter_Cols("CDP_Nei_Info","C","25")
-        CDP_Detail.filter_Cols("CDP_Nei_Info","D","25")
-        CDP_Detail.filter_Cols("CDP_Nei_Info","E","45")
-        CDP_Detail.filter_Cols("CDP_Nei_Info","F","25")
-        CDP_Detail.filter_Cols("CDP_Nei_Info","G","25")
-        CDP_Detail.filter_Cols("CDP_Nei_Info","H","25")
+        CDP_Detail.filter_cols("CDP_Nei_Info", "A", "30")
+        CDP_Detail.filter_cols("CDP_Nei_Info", "B", "25")
+        CDP_Detail.filter_cols("CDP_Nei_Info", "C", "25")
+        CDP_Detail.filter_cols("CDP_Nei_Info", "D", "25")
+        CDP_Detail.filter_cols("CDP_Nei_Info", "E", "45")
+        CDP_Detail.filter_cols("CDP_Nei_Info", "F", "25")
+        CDP_Detail.filter_cols("CDP_Nei_Info", "G", "25")
+        CDP_Detail.filter_cols("CDP_Nei_Info", "H", "25")
 
         index = 2
         for entries in CDP_Info_List:
