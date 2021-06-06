@@ -18,11 +18,11 @@ import time as timer
 from getpass import getpass
 import ipaddress
 
-jump_server_address = '10.251.6.31'   # The internal IP Address for the Jump server
-local_IP_address = '127.0.0.1'  # IP Address of the machine you are connecting from
+jump_server_address = '10.251.6.31'   # The internal ip Address for the Jump server
+local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
 username = input("Please enter your username: ")
 password = getpass("Please enter your password: ")
-IP_Address = input("Please enter an IP Address: ")
+IP_Address = input("Please enter an ip Address: ")
 
 interfaces = list()
 
@@ -77,7 +77,7 @@ def ip_check(ip):
 def open_session(ip):
     if not ip_check(ip):
         error_log(f"open_session function error: "
-                  f"IP Address {ip} is not a valid Address. Please check and restart the script!", debug=1)
+                  f"ip Address {ip} is not a valid Address. Please check and restart the script!", debug=1)
         return None, False
     try:
         output_log(f"Trying to establish a connection to: {ip}")
@@ -91,19 +91,19 @@ def open_session(ip):
         target = paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         target.connect(destination_address, username=username, password=password, sock=jump_box_channel)
-        output_log(f"Connection to IP: {ip} established")
+        output_log(f"Connection to ip: {ip} established")
         return target, jump_box, True
     except paramiko.ssh_exception.AuthenticationException:
-        error_log(f"Authentication to IP: {ip} failed! Please check your IP, username and password.")
+        error_log(f"Authentication to ip: {ip} failed! Please check your ip, username and password.")
         return None, None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
-        error_log(f"Unable to connect to IP: {ip}!")
+        error_log(f"Unable to connect to ip: {ip}!")
         return None, None, False
     except (ConnectionError, TimeoutError):
-        error_log(f"Timeout error occurred for IP: {ip}!")
+        error_log(f"Timeout error occurred for ip: {ip}!")
         return None, None, False
     except Exception as err:
-        error_log(f"Open Session Error: An unknown error occurred for IP: {ip}!")
+        error_log(f"Open Session Error: An unknown error occurred for ip: {ip}!")
         error_log(f"\t Error: {err}")
         return None, None, False
 
@@ -114,7 +114,7 @@ def get_interfaces(ip):
     if not connection:
         return None
     try:
-        output_log(f"retrieving list of interfaces from IP Address: {ip}")
+        output_log(f"retrieving list of interfaces from ip Address: {ip}")
         _, stdout, _ = ssh.exec_command("show ip interface brief")
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
@@ -124,20 +124,20 @@ def get_interfaces(ip):
             temp_interface_name = match.group(1)
             temp_interface_name = temp_interface_name.strip()
             interface_names.append(temp_interface_name)
-        output_log(f"List retrieval successful for IP Address: {ip}")
+        output_log(f"List retrieval successful for ip Address: {ip}")
         return interface_names
     except paramiko.ssh_exception.AuthenticationException:
-        error_log(f"Interfaces function Error: Authentication to IP: "
-                  f"{ip} failed! Please check your IP, username and password.")
+        error_log(f"Interfaces function Error: Authentication to ip: "
+                  f"{ip} failed! Please check your ip, username and password.")
         return None
     except paramiko.ssh_exception.NoValidConnectionsError:
-        error_log(f"Interfaces function Error: Unable to connect to IP: {ip}!")
+        error_log(f"Interfaces function Error: Unable to connect to ip: {ip}!")
         return None
     except (ConnectionError, TimeoutError):
-        error_log(f"Interfaces function Error: Timeout error occurred for IP: {ip}!")
+        error_log(f"Interfaces function Error: Timeout error occurred for ip: {ip}!")
         return None
     except Exception as err:
-        error_log(f"Interfaces function Error: An unknown error occurred for IP: {ip}!")
+        error_log(f"Interfaces function Error: An unknown error occurred for ip: {ip}!")
         error_log(f"\t Error: {err}")
         return None
     finally:
@@ -151,7 +151,7 @@ def get_int_description(int_name):
     command = f"show run interface {int_name} | inc description"
     ssh, jump_box, connection = open_session(IP_Address)
     if not connection:
-        error_log(f"get_int_description - Function Error: No connection is available for IP: {IP_Address}!")
+        error_log(f"get_int_description - Function Error: No connection is available for ip: {IP_Address}!")
     try:
         output_log(f"retrieving interface description for interface: {int_name}")
         _, stdout, _ = ssh.exec_command(command)
@@ -169,9 +169,9 @@ def get_int_description(int_name):
         interfaces_dict["Description"] = "No Description found"
     except paramiko.ssh_exception.SSHException:
         error_log(f"get_int_description - Function Error: "
-                  f"There is an error connecting or establishing SSH session to IP Address {IP_Address}")
+                  f"There is an error connecting or establishing SSH session to ip Address {IP_Address}")
     except Exception as err:
-        error_log(f"get_int_description - Function Error: An unknown error occurred for IP: {IP_Address}, "
+        error_log(f"get_int_description - Function Error: An unknown error occurred for ip: {IP_Address}, "
                   f"on Interface: {int_name}!")
         error_log(f"\t Error: {err}")
     finally:

@@ -16,11 +16,11 @@ import pandas as pd
 import time as timer
 import ipaddress
 
-jump_server_address = '10.251.6.31'   # The internal IP Address for the Jump server
-local_IP_address = '127.0.0.1'  # IP Address of the machine you are connecting from
+jump_server_address = '10.251.6.31'   # The internal ip Address for the Jump server
+local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
 username = input("Please enter your username: ")
 password = getpass("Please enter your password: ")
-IP_Address = input("Please enter an IP Address: ")
+IP_Address = input("Please enter an ip Address: ")
 
 commands = []
 df = pd.read_excel(r'Interfaces.xlsx')
@@ -67,7 +67,7 @@ def ip_check(ip):
 def open_session(ip):
     if not ip_check(ip):
         error_log(f"open_session function error: "
-                  f"IP Address {ip} is not a valid Address. Please check and restart the script!", debug=1)
+                  f"ip Address {ip} is not a valid Address. Please check and restart the script!", debug=1)
         return None, False
     try:
         output_log(f"Trying to establish a connection to: {ip}")
@@ -81,19 +81,19 @@ def open_session(ip):
         target = paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         target.connect(destination_address, username=username, password=password, sock=jump_box_channel)
-        output_log(f"Connection to IP: {ip} established")
+        output_log(f"Connection to ip: {ip} established")
         return target, jump_box, True
     except paramiko.ssh_exception.AuthenticationException:
-        error_log(f"Authentication to IP: {ip} failed! Please check your IP, username and password.")
+        error_log(f"Authentication to ip: {ip} failed! Please check your ip, username and password.")
         return None, None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
-        error_log(f"Unable to connect to IP: {ip}!")
+        error_log(f"Unable to connect to ip: {ip}!")
         return None, None, False
     except (ConnectionError, TimeoutError):
-        error_log(f"Timeout error occurred for IP: {ip}!")
+        error_log(f"Timeout error occurred for ip: {ip}!")
         return None, None, False
     except Exception as err:
-        error_log(f"Open Session Error: An unknown error occurred for IP: {ip}!")
+        error_log(f"Open Session Error: An unknown error occurred for ip: {ip}!")
         error_log(f"\t Error: {err}")
         return None, None, False
 

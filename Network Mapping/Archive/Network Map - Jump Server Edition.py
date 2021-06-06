@@ -16,12 +16,12 @@ from openpyxl import load_workbook, Workbook
 IP_list = []
 CDP_Info_List = []
 
-jumpserver_private_addr = '10.251.6.31'   # The internal IP Address for the Jump server
-local_IP_addr = '127.0.0.1' # IP Address of the machine you are connecting from
+jumpserver_private_addr = '10.251.6.31'   # The internal ip Address for the Jump server
+local_IP_addr = '127.0.0.1' # ip Address of the machine you are connecting from
 
 username = input("Enter your username: ")
 password = getpass("Enter your password: ")
-IPAddr = input("Enter an IP Address: ")
+IPAddr = input("Enter an ip Address: ")
 port = "22"
 Sitecode = input("Enter the site code: ")
 
@@ -76,19 +76,19 @@ def open_session(IP):
         target=paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         target.connect(dest_addr, username=username, password=password, sock=jumpbox_channel)
-        output_log(f"Connection to IP: {IP} established")
+        output_log(f"Connection to ip: {IP} established")
         return target, jumpbox, True
     except paramiko.ssh_exception.AuthenticationException:
-        error_log(f"Authentication to IP: {IP} failed! Please check your IP, username and password.")
+        error_log(f"Authentication to ip: {IP} failed! Please check your ip, username and password.")
         return None, None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
-        error_log(f"Unable to connect to IP: {IP}!")
+        error_log(f"Unable to connect to ip: {IP}!")
         return None, None, False
     except (ConnectionError, TimeoutError):
-        error_log(f"Timeout error occured for IP: {IP}!")
+        error_log(f"Timeout error occured for ip: {IP}!")
         return None, None, False
     except:
-        error_log(f"Open Session Error: An unknown error occured for IP: {IP}!")
+        error_log(f"Open Session Error: An unknown error occured for ip: {IP}!")
         return None, None, False
 
 def extract_cdp_neighbors(IP):
@@ -99,7 +99,7 @@ def extract_cdp_neighbors(IP):
     if not connection:
         return None
     try:
-        output_log(f"Function Extract CDP Neighbors: Extracting Neighbors: IP Address: {IP}")
+        output_log(f"Function Extract CDP Neighbors: Extracting Neighbors: ip Address: {IP}")
         _, output, _ = ssh.exec_command(command)
         output = output.read()
         output = output.decode("utf-8")
@@ -108,13 +108,13 @@ def extract_cdp_neighbors(IP):
             temp_interface_name = match.group(1)
             temp_interface_name = temp_interface_name.strip()
             interface_names.append(temp_interface_name)
-        output_log(f"Function Extract CDP Neighbors: Extraction Complete: IP Address: {IP}")
+        output_log(f"Function Extract CDP Neighbors: Extraction Complete: ip Address: {IP}")
         return interface_names
     except paramiko.ssh_exception.SSHException:
-        error_log(f"Extract CDP Neighbor Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
+        error_log(f"Extract CDP Neighbor Function Error: There is an error connecting or establishing SSH session to ip Address {IP}")
         return None, False
     except:
-        error_log(f"extract cdp neighbors Error: An unknown error occured for IP: {IP}!")
+        error_log(f"extract cdp neighbors Error: An unknown error occured for ip: {IP}!")
         return None, False
     finally:
         ssh.close()
@@ -126,7 +126,7 @@ def CDP_Details(IP, commands):
     if not connection:
         return None
     try:
-        output_log(f"Function CDP Detail: Extracting Neighbor Details: IP Address: {IP}")
+        output_log(f"Function CDP Detail: Extracting Neighbor Details: ip Address: {IP}")
         stdin, stdout, stderr = ssh.exec_command(commands)
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
@@ -134,7 +134,7 @@ def CDP_Details(IP, commands):
         RemoteHost = r"(?=[\n\r].*Device ID:[\s]*([^\n\r]*))"
         Platform = r"(?=[\n\r].*Platform:[\s]*([^\n\r]*))"
         Interface = r"(?=[\n\r].*Interface:[\s]*([^\n\r]*))"
-        RIPAddr = r"(?=[\n\r].*IP address:[\s]*([^\n\r]*))"
+        RIPAddr = r"(?=[\n\r].*ip address:[\s]*([^\n\r]*))"
         RemoteInt = r"(?=[\n\r].*Port ID.*: [\s]*([^\n\r]*))"
         Native = r"(?=[\n\r].*Native VLAN:[\s]*([^\n\r]*))"
 
@@ -163,7 +163,7 @@ def CDP_Details(IP, commands):
         for line in RIPAddr_match:
             RIPAddr = line[1].split()
             RIPAddr = RIPAddr[0]
-            CDP_Info["Remote IP Address"] = RIPAddr
+            CDP_Info["Remote ip Address"] = RIPAddr
         for line in RemoteInt_match:
             RemoteInt = line[1].split()
             RemoteInt = RemoteInt[0]
@@ -175,11 +175,11 @@ def CDP_Details(IP, commands):
         if RIPAddr not in IP_list:
             IP_list.append(RIPAddr)
         CDP_Info_List.append(CDP_Info)
-        output_log(f"Function CDP Detail: Extraction Complete: IP Address: {IP}")
+        output_log(f"Function CDP Detail: Extraction Complete: ip Address: {IP}")
     except paramiko.ssh_exception.SSHException:
-        error_log(f"CDP Info Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
+        error_log(f"CDP Info Function Error: There is an error connecting or establishing SSH session to ip Address {IP}")
     except:
-        error_log(f"CDP Details Error: An unknown error occured for IP: {IP}!")
+        error_log(f"CDP Details Error: An unknown error occured for ip: {IP}!")
         return None, False
     finally:
         ssh.close()
@@ -228,11 +228,11 @@ def main():
 
         CDP_Detail = excel_writer(Sitecode)
         CDP_Detail.add_sheets("CDP_Nei_Info",)
-        CDP_Detail.write("CDP_Nei_Info","A","1","Local IP Address",)
+        CDP_Detail.write("CDP_Nei_Info","A","1","Local ip Address",)
         CDP_Detail.write("CDP_Nei_Info","B","1","Local Interface",)
         CDP_Detail.write("CDP_Nei_Info","C","1","Remote Interface",)
         CDP_Detail.write("CDP_Nei_Info","D","1","Remote Host",)
-        CDP_Detail.write("CDP_Nei_Info","E","1","Remote IP Address",)
+        CDP_Detail.write("CDP_Nei_Info","E","1","Remote ip Address",)
         CDP_Detail.write("CDP_Nei_Info","F","1","Platform",)
         CDP_Detail.write("CDP_Nei_Info","G","1","Native VLAN",)
         CDP_Detail.filter_Cols("CDP_Nei_Info","A","25")
@@ -249,7 +249,7 @@ def main():
             CDP_Detail.write("CDP_Nei_Info","B",f"{index}",entries["Local Interface"],)
             CDP_Detail.write("CDP_Nei_Info","C",f"{index}",entries["Remote Interface"],)
             CDP_Detail.write("CDP_Nei_Info","D",f"{index}",entries["RemoteHost"],)
-            CDP_Detail.write("CDP_Nei_Info","E",f"{index}",entries["Remote IP Address"],)
+            CDP_Detail.write("CDP_Nei_Info","E",f"{index}",entries["Remote ip Address"],)
             CDP_Detail.write("CDP_Nei_Info","F",f"{index}",entries["Platform"],)
             if "Native VLAN" in entries:
                 CDP_Detail.write("CDP_Nei_Info","G",f"{index}",entries["Native VLAN"],)
