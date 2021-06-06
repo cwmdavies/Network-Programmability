@@ -18,6 +18,7 @@ import ipaddress
 
 IP_list = []
 CDP_Info_List = []
+debug = 0
 
 
 class ExcelWriter:
@@ -312,7 +313,7 @@ def find_ips(ip):
 #          Logging Functions
 #
 
-def error_log(message, debug=0):
+def error_log(message,):
     date_time_object = time.datetime.now()
     datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
     error_file = open("Error Log.txt", "a")
@@ -323,7 +324,7 @@ def error_log(message, debug=0):
         print(message)
 
 
-def output_log(message, debug=0):
+def output_log(message,):
     date_time_object = time.datetime.now()
     datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
     output_file = open("Output Log.txt", "a")
@@ -348,7 +349,7 @@ def main():
     i = 0
 
     try:
-        output_log(f"Script started for site: {Sitecode}", debug=1)
+        output_log(f"Script started for site: {Sitecode}",)
         print("You will be notified when the script finishes - "
               "This may take a while depending on the size of the network!")
         
@@ -400,8 +401,8 @@ def main():
     finally:
         end = timer.time()
         elapsed = (end - start) / 60
-        output_log(f"Total execution time: {elapsed:.3} minutes.", debug=1)
-        output_log(f"Script Complete for site: {Sitecode}", debug=1)
+        output_log(f"Total execution time: {elapsed:.3} minutes.",)
+        output_log(f"Script Complete for site: {Sitecode}",)
         messagebox(f"Script Complete for site: {Sitecode}", "Script Complete")
 
 

@@ -23,7 +23,7 @@ local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting f
 username = input("Please enter your username: ")
 password = getpass("Please enter your password: ")
 IP_Address = input("Please enter an ip Address: ")
-
+debug = 0
 interfaces = list()
 
 
@@ -77,7 +77,7 @@ def ip_check(ip):
 def open_session(ip):
     if not ip_check(ip):
         error_log(f"open_session function error: "
-                  f"ip Address {ip} is not a valid Address. Please check and restart the script!", debug=1)
+                  f"ip Address {ip} is not a valid Address. Please check and restart the script!",)
         return None, False
     try:
         output_log(f"Trying to establish a connection to: {ip}")
@@ -184,7 +184,7 @@ def get_int_description(int_name):
 #          Logging Functions
 #
 
-def error_log(message, debug=0):
+def error_log(message,):
     date_time_object = time.datetime.now()
     datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
     error_file = open("Error Log.txt", "a")
@@ -195,7 +195,7 @@ def error_log(message, debug=0):
         print(message)
 
 
-def output_log(message, debug=0):
+def output_log(message,):
     date_time_object = time.datetime.now()
     datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
     output_file = open("Output Log.txt", "a")
@@ -241,8 +241,8 @@ def main():
     finally:   
         end = timer.time()
         elapsed = (end - start) / 60
-        output_log(f"Total execution time: {elapsed:.3} minutes.", debug=1)
-        output_log(f"Script Complete", debug=1)
+        output_log(f"Total execution time: {elapsed:.3} minutes.",)
+        output_log(f"Script Complete",)
 
 
 if __name__ == "__main__":
