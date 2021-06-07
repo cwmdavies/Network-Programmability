@@ -5,7 +5,7 @@
 ###############################################
 #
 #   A simple script that parses the output of
-#   an excel spreadsheet for interface names 
+#   an excel spreadsheet for interface names
 #   and descriptions and writes them to a switch
 #   of your choice.
 
@@ -15,6 +15,8 @@ from getpass import getpass
 import pandas as pd
 import time as timer
 import ipaddress
+
+debug = 0
 
 jump_server_address = '10.251.6.31'   # The internal ip Address for the Jump server
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
@@ -30,7 +32,7 @@ df = pd.read_excel(r'Interfaces.xlsx')
 #
 
 
-def error_log(message, debug=0):
+def error_log(message):
     date_time_object = time.datetime.now()
     datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
     error_file = open("Error Log.txt", "a")
@@ -41,7 +43,7 @@ def error_log(message, debug=0):
         print(message)
 
 
-def output_log(message, debug=0):
+def output_log(message):
     date_time_object = time.datetime.now()
     datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
     output_file = open("Output Log.txt", "a")
@@ -67,7 +69,7 @@ def ip_check(ip):
 def open_session(ip):
     if not ip_check(ip):
         error_log(f"open_session function error: "
-                  f"ip Address {ip} is not a valid Address. Please check and restart the script!", debug=1)
+                  f"ip Address {ip} is not a valid Address. Please check and restart the script!",)
         return None, False
     try:
         output_log(f"Trying to establish a connection to: {ip}")
@@ -107,6 +109,7 @@ def int_write(ip):
         output_log(f"int_write function: Preparing to writing interface descriptions.")
         channel = ssh.invoke_shell()
         stdin = channel.makefile("wb")
+        output = channel.makefile("rb")
         commands.append("'''")
         commands.append("conf t")
         for num in range(len(df)):
@@ -117,6 +120,9 @@ def int_write(ip):
         commands.append("'''")
         commands = "\n".join(commands)
         stdin.write(str.encode(commands))
+        output = output.read()
+        output = output.decode("utf-8")
+        output_log(f"Output:\n\t{output}")
         stdin.close()
         output_log(f"int_write function: Finished writing interface descriptions.")
     except Exception as err:
@@ -129,16 +135,11 @@ def int_write(ip):
 
 def main():
     start = timer.time()
-    try:
-        int_write(IP_Address)
-    except Exception as err:
-        error_log(f"Main function error: An unknown error occurred")
-        error_log(f"\t Error: {err}")
-    finally:
-        end = timer.time()
-        elapsed = (end - start) / 60
-        output_log(f"Total execution time: {elapsed:.3} minutes.", debug=1)
-        output_log(f"Script Complete", debug=1)
+    int_write(IP_Address)
+    end = timer.time()
+    elapsed = (end - start) / 60
+    output_log(f"Total execution time: {elapsed:.3} minutes.",)
+    output_log(f"Script Complete",)
 
 
 if __name__ == "__main__":

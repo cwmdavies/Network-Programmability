@@ -1,0 +1,26 @@
+07/06/2021 10:22:27 - Trying to establish a connection to: 10.112.224.15
+07/06/2021 10:22:30 - Connection to ip: 10.112.224.15 established
+07/06/2021 10:22:30 - Total execution time: 0.0608 minutes.
+07/06/2021 10:22:30 - Script Complete
+07/06/2021 10:29:15 - Trying to establish a connection to: 10.112.224.15
+07/06/2021 10:29:18 - Connection to ip: 10.112.224.15 established
+07/06/2021 10:29:29 - Trying to establish a connection to: 10.112.224.15
+07/06/2021 10:29:32 - Connection to ip: 10.112.224.15 established
+07/06/2021 10:29:32 - Total execution time: 0.0597 minutes.
+07/06/2021 10:29:32 - Script Complete
+07/06/2021 10:29:51 - Trying to establish a connection to: 10.112.224.15
+07/06/2021 10:29:54 - Connection to ip: 10.112.224.15 established
+07/06/2021 10:31:11 - Trying to establish a connection to: 10.112.224.15
+07/06/2021 10:31:15 - Connection to ip: 10.112.224.15 established
+07/06/2021 10:32:17 - Trying to establish a connection to: 10.112.224.15
+07/06/2021 10:32:20 - Connection to ip: 10.112.224.15 established
+07/06/2021 10:33:50 - Trying to establish a connection to: 10.112.224.15
+07/06/2021 10:33:53 - Connection to ip: 10.112.224.15 established
+07/06/2021 10:34:59 - Trying to establish a connection to: 10.112.224.15
+07/06/2021 10:35:03 - Connection to ip: 10.112.224.15 established
+07/06/2021 10:36:49 - Trying to establish a connection to: 10.112.224.15
+07/06/2021 10:36:53 - Connection to ip: 10.112.224.15 established
+07/06/2021 10:43:38 - Trying to establish a connection to: 10.112.224.15
+07/06/2021 10:43:41 - Connection to ip: 10.112.224.15 established
+07/06/2021 10:44:33 - Trying to establish a connection to: 10.112.224.15
+07/06/2021 10:44:36 - Connection to ip: 10.112.224.15 established
