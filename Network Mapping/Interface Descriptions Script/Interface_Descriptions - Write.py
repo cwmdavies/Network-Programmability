@@ -1,5 +1,5 @@
 ###############################################
-#             Under Contruction               #
+#             Under Construction               #
 #               Testing Phase                 #
 #                                             #
 ###############################################
@@ -14,24 +14,25 @@ import datetime as time
 from getpass import getpass
 import pandas as pd
 import time as timer
-import re
+import ipaddress
 
-jumpserver_private_addr = '10.251.6.31'   # The internal IP Address for the Jump server
-local_IP_addr = '127.0.0.1' # IP Address of the machine you are connecting from
+jump_server_address = '10.251.6.31'   # The internal ip Address for the Jump server
+local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
 username = input("Please enter your username: ")
 password = getpass("Please enter your password: ")
-IP_Addr = input("Please enter an IP Address: ")
+IP_Address = input("Please enter an ip Address: ")
 
 commands = []
-df = pd.read_excel (r'Interfaces.xlsx')
+df = pd.read_excel(r'Interfaces.xlsx')
 
-#############################################################################################################################################
-##          Logging Functions
+######################################################################################################################
+#          Logging Functions
 #
 
+
 def error_log(message, debug=0):
-    dateTimeObj = time.datetime.now()
-    datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
+    date_time_object = time.datetime.now()
+    datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
     error_file = open("Error Log.txt", "a")
     error_file.write(f"{datetime} - {message}")
     error_file.write("\n")
@@ -39,9 +40,10 @@ def error_log(message, debug=0):
     if debug == 1:
         print(message)
 
+
 def output_log(message, debug=0):
-    dateTimeObj = time.datetime.now()
-    datetime = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S")
+    date_time_object = time.datetime.now()
+    datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
     output_file = open("Output Log.txt", "a")
     output_file.write(f"{datetime} - {message}")
     output_file.write("\n")
@@ -50,58 +52,61 @@ def output_log(message, debug=0):
         print(message)
 
 #
-##
-#############################################################################################################################################
+#
+######################################################################################################################
 
-def IP_Check(IP):
-    regex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
-    
-    if(re.search(regex, IP)):
+
+def ip_check(ip):
+    try:
+        ipaddress.ip_address(ip)
         return True
-    else:
+    except ValueError:
         return False
 
-def open_session(IP):
-    if IP_Check(IP) != True:
-        error_log(f"open_session function error: IP Address {IP} is not a valid Address. Please check and restart the script!", debug=1)
+
+def open_session(ip):
+    if not ip_check(ip):
+        error_log(f"open_session function error: "
+                  f"ip Address {ip} is not a valid Address. Please check and restart the script!", debug=1)
         return None, False
     try:
-        output_log(f"Trying to establish a connection to: {IP}")
-        jumpbox=paramiko.SSHClient()
-        jumpbox.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        jumpbox.connect(jumpserver_private_addr, username=username, password=password )
-        jumpbox_transport = jumpbox.get_transport()
-        src_addr = (local_IP_addr, 22)
-        dest_addr = (IP, 22)
-        jumpbox_channel = jumpbox_transport.open_channel("direct-tcpip", dest_addr, src_addr)
-        target=paramiko.SSHClient()
+        output_log(f"Trying to establish a connection to: {ip}")
+        jump_box = paramiko.SSHClient()
+        jump_box.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        jump_box.connect(jump_server_address, username=username, password=password)
+        jump_box_transport = jump_box.get_transport()
+        src_address = (local_IP_address, 22)
+        destination_address = (ip, 22)
+        jump_box_channel = jump_box_transport.open_channel("direct-tcpip", destination_address, src_address)
+        target = paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        target.connect(dest_addr, username=username, password=password, sock=jumpbox_channel)
-        output_log(f"Connection to IP: {IP} established")
-        return target, jumpbox, True
+        target.connect(destination_address, username=username, password=password, sock=jump_box_channel)
+        output_log(f"Connection to ip: {ip} established")
+        return target, jump_box, True
     except paramiko.ssh_exception.AuthenticationException:
-        error_log(f"Authentication to IP: {IP} failed! Please check your IP, username and password.")
+        error_log(f"Authentication to ip: {ip} failed! Please check your ip, username and password.")
         return None, None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
-        error_log(f"Unable to connect to IP: {IP}!")
+        error_log(f"Unable to connect to ip: {ip}!")
         return None, None, False
     except (ConnectionError, TimeoutError):
-        error_log(f"Timeout error occured for IP: {IP}!")
+        error_log(f"Timeout error occurred for ip: {ip}!")
         return None, None, False
-    except:
-        error_log(f"Open Session Error: An unknown error occured for IP: {IP}!")
+    except Exception as err:
+        error_log(f"Open Session Error: An unknown error occurred for ip: {ip}!")
+        error_log(f"\t Error: {err}")
         return None, None, False
 
-def int_write(IP):
+
+def int_write(ip):
     global commands
-    ssh, jumpbox, connection = open_session(IP)
+    ssh, jump_box, connection = open_session(ip)
     if not connection:
         return None
     try:
         output_log(f"int_write function: Preparing to writing interface descriptions.")
         channel = ssh.invoke_shell()
         stdin = channel.makefile("wb")
-        output = channel.makefile("rb")
         commands.append("'''")
         commands.append("conf t")
         for num in range(len(df)):
@@ -112,26 +117,29 @@ def int_write(IP):
         commands.append("'''")
         commands = "\n".join(commands)
         stdin.write(str.encode(commands))
-        output = output.read()
-        output = output.decode("utf-8")
         stdin.close()
         output_log(f"int_write function: Finished writing interface descriptions.")
-    except:
-        error_log(f"Int_write function Error: An unknown error occured!")
+    except Exception as err:
+        error_log(f"Int_write function Error: An unknown error occurred!")
+        error_log(f"\t Error: {err}")
     finally:
         ssh.close()
-        jumpbox.close()
+        jump_box.close()
+
+
 def main():
     start = timer.time()
     try:
-        int_write(IP_Addr)
-    except:
-        error_log(f"Main function error: An unknown error occured")
-    finally:   
+        int_write(IP_Address)
+    except Exception as err:
+        error_log(f"Main function error: An unknown error occurred")
+        error_log(f"\t Error: {err}")
+    finally:
         end = timer.time()
         elapsed = (end - start) / 60
         output_log(f"Total execution time: {elapsed:.3} minutes.", debug=1)
         output_log(f"Script Complete", debug=1)
+
 
 if __name__ == "__main__":
     main()

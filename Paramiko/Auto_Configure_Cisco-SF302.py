@@ -6,7 +6,7 @@ import datetime
 
 now = datetime.datetime.now()
 
-ip = input("Enter the IP Address: ")
+ip = input("Enter the ip Address: ")
 username = input("Enter the Username: ")
 password = getpass(prompt='Enter the Password: ')
 
@@ -20,7 +20,7 @@ except (paramiko.ssh_exception.NoValidConnectionsError):
     ctypes.windll.user32.MessageBoxW(0, 'SSH Is not Enabled for this Device.\nPlease enable SSH and try again', 'Error', 0)
     exit()
 except (TimeoutError):
-    ctypes.windll.user32.MessageBoxW(0, 'Connection Failed!.\nPlease check that the device is up and the IP address is correct.', 'Error', 0)
+    ctypes.windll.user32.MessageBoxW(0, 'Connection Failed!.\nPlease check that the device is up and the ip address is correct.', 'Error', 0)
     exit()
 except (paramiko.ssh_exception.AuthenticationException):
     ctypes.windll.user32.MessageBoxW(0, 'Authentication Failed!.\nPlease check that the credentials are correct and try again.', 'Error', 0)
@@ -46,7 +46,7 @@ file=open("output.txt", "w")
 
 print("#############################################################", file=open("output.txt", "a"))
 print("#                                                           #", file=open("output.txt", "a"))
-print("#                THIS IS THE HOST IP ADDRESS                #", file=open("output.txt", "a"))
+print("#                THIS IS THE HOST ip ADDRESS                #", file=open("output.txt", "a"))
 print("#                      ", ip, "                       #", file=open("output.txt", "a"))
 print("#                   ", now.strftime("%d-%m-%y  %H:%M:%S"), "                    #", file=open("output.txt", "a"))
 print("#############################################################", file=open("output.txt", "a"))

@@ -84,13 +84,13 @@ def open_session(IP):
         ssh.connect(hostname=IP, port=port, username=username, password=password)
         return ssh, True
     except paramiko.ssh_exception.AuthenticationException:
-        error_log(f"Authentication to IP: {IP} failed! Please check your IP, username and password.")
+        error_log(f"Authentication to ip: {IP} failed! Please check your ip, username and password.")
         return None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
-        error_log(f"Unable to connect to IP: {IP}!")
+        error_log(f"Unable to connect to ip: {IP}!")
         return None, False
     except (ConnectionError, TimeoutError):
-        error_log(f"Timeout error occured for IP: {IP}!")
+        error_log(f"Timeout error occured for ip: {IP}!")
         return None, False
 
 def extract_cdp_neighbors(IP):
@@ -111,7 +111,7 @@ def extract_cdp_neighbors(IP):
             interface_names.append(temp_interface_name)
         return interface_names
     except paramiko.ssh_exception.SSHException:
-        error_log(f"Extract CDP Neighbor Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
+        error_log(f"Extract CDP Neighbor Function Error: There is an error connecting or establishing SSH session to ip Address {IP}")
         return None
     finally:
         ssh.close()
@@ -119,7 +119,7 @@ def extract_cdp_neighbors(IP):
 def neighbor_detail(IP, commands):
     formatted_commands = []
     global IP_list
-    regex = r"(?=[\n\r].*IP address:[\s]*([^\n\r]*))"
+    regex = r"(?=[\n\r].*ip address:[\s]*([^\n\r]*))"
     ssh, connection = open_session(IP)
     if not connection:
         return None
@@ -144,7 +144,7 @@ def neighbor_detail(IP, commands):
                 if found_IP not in IP_list:
                     IP_list.append(found_IP)
     except paramiko.ssh_exception.SSHException:
-        error_log(f"Neighbor Detail Function Error: There is an error connecting or establishing SSH session to IP Address {IP}")
+        error_log(f"Neighbor Detail Function Error: There is an error connecting or establishing SSH session to ip Address {IP}")
     finally:
         ssh.close()
 
@@ -154,7 +154,7 @@ def find_IPs(IP):
     if not interface_names:
         return -1
     for name in interface_names:
-        commands.append(f"show cdp neighbors {name} detail | include IP")
+        commands.append(f"show cdp neighbors {name} detail | include ip")
     commands.append("exit")
     neighbor_detail(IP, commands)
 
@@ -162,7 +162,7 @@ def get_hostname_and_domain_name(IP):
     hostname = None
     domain_name = default_domain_name
     regex_hostname = r"^\bhostname[\s\r]+(.*)$"
-    regex_domain_name = r"^IP[\s\r]domain-name[\s\r]+(.*)$"
+    regex_domain_name = r"^ip[\s\r]domain-name[\s\r]+(.*)$"
     ssh, connection = open_session(IP)
     if not connection:
         return "-1", default_domain_name
@@ -192,13 +192,13 @@ def get_hostname_and_domain_name(IP):
         stdin.close()
         return hostname, domain_name
     except paramiko.ssh_exception.SSHException:
-        error_log(f"There is an error connecting or establishing SSH session to IP Address {IP}")
+        error_log(f"There is an error connecting or establishing SSH session to ip Address {IP}")
     finally:
         ssh.close()
 
 def match_name_with_IP_address(IP, hostname, domain_name):
     temp_data = []
-    command = "show IP interface brief | exclude unassigned"
+    command = "show ip interface brief | exclude unassigned"
     regex = r"(^[GTVLF].{22})+(.{16})"
     ssh, connection = open_session(IP)
     if not connection:
@@ -224,7 +224,7 @@ def match_name_with_IP_address(IP, hostname, domain_name):
             temp_data.append(name)
         return temp_data
     except paramiko.ssh_exception.SSHException:
-        error_log(f"There is an error connecting or establishing SSH session to IP Address {IP}")
+        error_log(f"There is an error connecting or establishing SSH session to ip Address {IP}")
     finally:
         ssh.close()
 
@@ -234,7 +234,7 @@ def write_file(IP):
     if hostname == "-1":
         return -1
     elif not hostname:
-        error_log(f"Hostname for IP Address: {IP} couldn't be found!")
+        error_log(f"Hostname for ip Address: {IP} couldn't be found!")
         return -2
     elif hostname not in hostname_list:
         hostname_list.append(hostname)
@@ -254,14 +254,14 @@ def main():
     
     CDP_Recursion = __excel(Sitename)
     CDP_Recursion.add_sheets("Found IPs","FQDN","Interfaces",)
-    CDP_Recursion.write("Found IPs","A","1","IP Address",)
+    CDP_Recursion.write("Found IPs","A","1","ip Address",)
     CDP_Recursion.write("FQDN","A","1","Fully Qualified Domain Name",)
     CDP_Recursion.write("Interfaces","A","1","Interface",)
-    CDP_Recursion.write("Interfaces","B","1","IP Address",)
+    CDP_Recursion.write("Interfaces","B","1","ip Address",)
     CDP_Recursion.write("Interfaces","C","1","Hostname",)
     CDP_Recursion.write("Interfaces","D","1","Domain Name",)
 
-    with open("IP.txt") as f:
+    with open("ip.txt") as f:
         IP = f.readline()
     IP_list.append(IP)
 
