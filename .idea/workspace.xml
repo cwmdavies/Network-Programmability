@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Testing Logger code">
-      <change afterPath="$PROJECT_DIR$/Jupyter Notebooks/debug.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/jupyter.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Jupyter Notebooks/jupyter.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logging/logging_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logging/logging_code.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623068000726</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Testing Logger code">
+      <created>1623322306958</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1623322306958</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
