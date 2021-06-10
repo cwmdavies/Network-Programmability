@@ -1,0 +1,15 @@
+[2021-06-10 11:46:16,676] DEBUG    __main__     This is a debug message
+[2021-06-10 11:46:16,676] INFO     __main__     This is an info message
+[2021-06-10 11:46:16,676] WARNING  __main__     This is a warning message
+[2021-06-10 11:46:16,676] ERROR    __main__     This is an error message
+[2021-06-10 11:46:16,676] CRITICAL __main__     This is a critical message
+[2021-06-10 11:49:45,509] DEBUG    __main__     This is a debug message
+[2021-06-10 11:49:45,509] INFO     __main__     This is an info message
+[2021-06-10 11:49:45,509] WARNING  __main__     This is a warning message
+[2021-06-10 11:49:45,509] ERROR    __main__     This is an error message
+[2021-06-10 11:49:45,509] CRITICAL __main__     This is a critical message
+[2021-06-10 11:49:53,267] DEBUG    __main__     This is a debug message
+[2021-06-10 11:49:53,273] INFO     __main__     This is an info message
+[2021-06-10 11:49:53,276] WARNING  __main__     This is a warning message
+[2021-06-10 11:49:53,278] ERROR    __main__     This is an error message
+[2021-06-10 11:49:53,279] CRITICAL __main__     This is a critical message
