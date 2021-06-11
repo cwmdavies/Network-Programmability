@@ -13,7 +13,7 @@ import napalm
 from openpyxl import load_workbook, Workbook
 import datetime as time
 import os
-import getpass
+from getpass import getpass
 import ipaddress
 
 debug = 1
@@ -101,7 +101,7 @@ def output_log(message,):
 
 def main():
     driver_ios = napalm.get_network_driver("ios")    
-    device = driver_ios(hostname = IP_Address, username = username, password = password)
+    device = driver_ios(hostname=IP_Address, username=username, password=password)
     device.open()
     device_interfaces = device.get_interfaces()
     device.close()
