@@ -1,0 +1,5 @@
+11/06/2021 16:50:06 - Trying to establish a connection to: 10.145.61.10
+11/06/2021 16:50:20 - Trying to establish a connection to: 10.145.61.10
+11/06/2021 16:50:23 - Connection to ip: 10.145.61.10 established
+11/06/2021 17:24:07 - Trying to establish a connection to: 10.145.61.10
+11/06/2021 17:24:10 - Connection to ip: 10.145.61.10 established

@@ -114,12 +114,12 @@ def main():
     int_detail.write("Interface configuration", "D", "1", "Description",)
     int_detail.write("Interface configuration", "E", "1", "MTU",)
     int_detail.write("Interface configuration", "F", "1", "Speed",)
-    int_detail.filter_cols("Interface configuration", "A", "40")
-    int_detail.filter_cols("Interface configuration", "B", "40")
-    int_detail.filter_cols("Interface configuration", "C", "40")
-    int_detail.filter_cols("Interface configuration", "D", "40")
-    int_detail.filter_cols("Interface configuration", "E", "40")
-    int_detail.filter_cols("Interface configuration", "F", "40")
+    int_detail.filter_cols("Interface configuration", "A", "30")
+    int_detail.filter_cols("Interface configuration", "B", "15")
+    int_detail.filter_cols("Interface configuration", "C", "15")
+    int_detail.filter_cols("Interface configuration", "D", "50")
+    int_detail.filter_cols("Interface configuration", "E", "10")
+    int_detail.filter_cols("Interface configuration", "F", "10")
 
     index = 2
     for interfaces in device_interfaces:
