@@ -3,10 +3,6 @@ from tkinter import ttk
 import tkinter.messagebox
 
 
-##########################################################
-# Start of Tkinter Code
-
-
 # root window
 root = tk.Tk()
 root.eval('tk::PlaceWindow . center')
@@ -79,6 +75,3 @@ def messagebox(text, title):
     message.withdraw()
     tkinter.messagebox.showinfo(title, text)
     message.destroy()
-
-# End of Tkinter Code
-##########################################################
