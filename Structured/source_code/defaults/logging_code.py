@@ -1,5 +1,6 @@
 import logging
 import sys
+from .gui import Debugging
 
 # Log file location
 logfile = 'debug.log'
@@ -8,17 +9,30 @@ log_format = (
     '[%(asctime)s] %(levelname)-8s %(name)-12s %(message)s')
 
 # Define basic configuration
-logging.basicConfig(
-    # Define logging level
-    level=logging.DEBUG,
-    # Declare the object we created to format the log messages
-    format=log_format,
-    # Declare handlers
-    handlers=[
-        logging.FileHandler(logfile),
-        logging.StreamHandler(sys.stdout),
-    ]
-)
+if Debugging == 0:
+    logging.basicConfig(
+        # Define logging level
+        level=logging.INFO,
+        # Declare the object we created to format the log messages
+        format=log_format,
+        # Declare handlers
+        handlers=[
+            logging.FileHandler(logfile),
+            logging.StreamHandler(sys.stdout),
+        ]
+    )
+elif Debugging == 1:
+    logging.basicConfig(
+        # Define logging level
+        level=logging.DEBUG,
+        # Declare the object we created to format the log messages
+        format=log_format,
+        # Declare handlers
+        handlers=[
+            logging.FileHandler(logfile),
+            logging.StreamHandler(sys.stdout),
+        ]
+    )
 
 # Define your own logger name
 log = logging.getLogger(__name__)

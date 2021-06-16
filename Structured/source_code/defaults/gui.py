@@ -6,7 +6,7 @@ import tkinter.messagebox
 # root window
 root = tk.Tk()
 root.eval('tk::PlaceWindow . center')
-root.geometry("300x250")
+root.geometry("300x300")
 root.resizable(False, False)
 root.title('Site Details')
 
@@ -16,7 +16,7 @@ Username_var = tk.StringVar()
 password_var = tk.StringVar()
 IP_Address_var = tk.StringVar()
 Site_code_var = tk.StringVar()
-
+Debugging_var = tk.IntVar()
 
 # Site details frame
 Site_details = ttk.Frame(root)
@@ -26,8 +26,6 @@ Site_details.pack(padx=10, pady=10, fill='x', expand=True)
 # Username
 Username_label = ttk.Label(Site_details, text="Username:")
 Username_label.pack(fill='x', expand=True)
-
-
 Username_entry = ttk.Entry(Site_details, textvariable=Username_var)
 Username_entry.pack(fill='x', expand=True)
 Username_entry.focus()
@@ -53,6 +51,11 @@ Site_code_label.pack(fill='x', expand=True)
 Site_code_entry = ttk.Entry(Site_details, textvariable=Site_code_var)
 Site_code_entry.pack(fill='x', expand=True)
 
+# Debugging
+Debugging_label = ttk.Label(Site_details, text="Debugging (0 = OFF, 1 = ON):")
+Debugging_label.pack(fill='x', expand=True)
+Debugging_entry = ttk.Entry(Site_details, textvariable=Debugging_var)
+Debugging_entry.pack(fill='x', expand=True)
 
 # Submit button
 Submit_button = ttk.Button(Site_details, text="Submit", command=root.destroy)
@@ -67,6 +70,7 @@ username = Username_var.get()
 password = password_var.get()
 IP_Address = IP_Address_var.get()
 Sitecode = Site_code_var.get()
+Debugging = Debugging_var.get()
 
 
 def messagebox(text, title):
