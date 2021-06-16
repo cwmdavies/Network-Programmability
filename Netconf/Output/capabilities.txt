@@ -1,6 +1,0 @@
-urn:ietf:params:netconf:capability:url:1.0
-urn:cisco:params:netconf:capability:pi-data-model:1.0
-urn:ietf:params:netconf:base:1.0
-urn:ietf:params:netconf:capability:startup:1.0
-urn:cisco:params:netconf:capability:notification:1.0
-urn:ietf:params:netconf:capability:writeable-running:1.0
