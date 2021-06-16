@@ -9,18 +9,18 @@
 #   command and writes it in a neat format
 #   to an excel spreadsheet.
 
-from source_code import *
+import source_code
 import napalm
 
 
 def main():
     driver_ios = napalm.get_network_driver("ios")
-    device = driver_ios(hostname=IP_Address, username=username, password=password)
+    device = driver_ios(hostname=source_code.IP_Address, username=source_code.username, password=source_code.password)
     device.open()
     device_interfaces = device.get_interfaces()
     device.close()
 
-    int_detail = ExcelWriter("Interfaces")
+    int_detail = source_code.ExcelWriter("Interfaces")
     int_detail.add_sheets("Interface configuration",)
     int_detail.write("Interface configuration", "A", "1", "Interface",)
     int_detail.write("Interface configuration", "B", "1", "is_enabled",)

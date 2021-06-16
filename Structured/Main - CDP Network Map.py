@@ -4,32 +4,32 @@
 #                                             #
 ###############################################
 
-from source_code import *
+import source_code
 import time as timer
 from multiprocessing.pool import ThreadPool
 
 
 def main():
     start = timer.time()
-    IP_list.append(IP_Address)
+    source_code.IP_list.append(source_code.IP_Address)
     pool = ThreadPool(30)
     i = 0
 
     try:
-        log.info(f"Script started for site: {Sitecode}",)
+        source_code.log.info(f"Script started for site: {source_code.Sitecode}",)
         print("You will be notified when the script finishes - "
               "This may take a while depending on the size of the network!")
         
-        while i < len(IP_list):
-            limit = i + min(30, (len(IP_list) - i))
-            hostnames = IP_list[i:limit]
-            pool.map(find_ips, hostnames)
+        while i < len(source_code.IP_list):
+            limit = i + min(30, (len(source_code.IP_list) - i))
+            hostnames = source_code.IP_list[i:limit]
+            pool.map(source_code.find_ips, hostnames)
             i = limit
 
         pool.close()
         pool.join()
 
-        cdp_detail = ExcelWriter(Sitecode)
+        cdp_detail = source_code.ExcelWriter(source_code.Sitecode)
         cdp_detail.add_sheets("CDP_Nei_Info",)
         cdp_detail.write("CDP_Nei_Info", "A", "1", "Local Hostname",)
         cdp_detail.write("CDP_Nei_Info", "B", "1", "Local ip Address",)
@@ -49,7 +49,7 @@ def main():
         cdp_detail.filter_cols("CDP_Nei_Info", "H", "25")
 
         index = 2
-        for entries in CDP_Info_List:
+        for entries in source_code.CDP_Info_List:
             cdp_detail.write("CDP_Nei_Info", "A", f"{index}", entries["Local Hostname"],)
             cdp_detail.write("CDP_Nei_Info", "B", f"{index}", entries["Local ip Address"],)
             cdp_detail.write("CDP_Nei_Info", "C", f"{index}", entries["Local Interface"],)
@@ -63,14 +63,14 @@ def main():
                 cdp_detail.write("CDP_Nei_Info", "H", f"{index}", "Not Found",)
             index += 1
     except Exception as err:
-        log.error("Main Function Error: An unknown error occurred!")
-        log.error(f"\t Error: {err}")
+        source_code.log.error("Main Function Error: An unknown error occurred!")
+        source_code.log.error(f"\t Error: {err}")
     finally:
         end = timer.time()
         elapsed = (end - start) / 60
-        log.error(f"Total execution time: {elapsed:.3} minutes.",)
-        log.error(f"Script Complete for site: {Sitecode}",)
-        messagebox(f"Script Complete for site: {Sitecode}", "Script Complete")
+        source_code.log.error(f"Total execution time: {elapsed:.3} minutes.",)
+        source_code. log.error(f"Script Complete for site: {source_code.Sitecode}",)
+        source_code.messagebox(f"Script Complete for site: {source_code.Sitecode}", "Script Complete")
 
 
 if __name__ == "__main__":

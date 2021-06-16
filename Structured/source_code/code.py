@@ -1,99 +1,13 @@
-from session_defaults import *
 from openpyxl import load_workbook, Workbook
 import os
-import ipaddress
-import tkinter as tk
-from tkinter import ttk
-import tkinter.messagebox
 import pandas as pd
-import paramiko
 import re
-
+from .defaults import *
 
 df = pd.read_excel(r'Interfaces.xlsx')
 IP_list = []
 CDP_Info_List = []
 interfaces = []
-
-##########################################################
-# Start of Tkinter Code
-
-
-# root window
-root = tk.Tk()
-root.eval('tk::PlaceWindow . center')
-root.geometry("300x250")
-root.resizable(False, False)
-root.title('Site Details')
-
-
-# store entries
-Username_var = tk.StringVar()
-password_var = tk.StringVar()
-IP_Address_var = tk.StringVar()
-Site_code_var = tk.StringVar()
-
-
-# Site details frame
-Site_details = ttk.Frame(root)
-Site_details.pack(padx=10, pady=10, fill='x', expand=True)
-
-
-# Username
-Username_label = ttk.Label(Site_details, text="Username:")
-Username_label.pack(fill='x', expand=True)
-
-
-Username_entry = ttk.Entry(Site_details, textvariable=Username_var)
-Username_entry.pack(fill='x', expand=True)
-Username_entry.focus()
-
-
-# Password
-password_label = ttk.Label(Site_details, text="Password:")
-password_label.pack(fill='x', expand=True)
-password_entry = ttk.Entry(Site_details, textvariable=password_var, show="*")
-password_entry.pack(fill='x', expand=True)
-
-
-# ip Address
-IP_Address_label = ttk.Label(Site_details, text="IP Address:")
-IP_Address_label.pack(fill='x', expand=True)
-IP_Address_entry = ttk.Entry(Site_details, textvariable=IP_Address_var)
-IP_Address_entry.pack(fill='x', expand=True)
-
-
-# Site Code
-Site_code_label = ttk.Label(Site_details, text="Site code:")
-Site_code_label.pack(fill='x', expand=True)
-Site_code_entry = ttk.Entry(Site_details, textvariable=Site_code_var)
-Site_code_entry.pack(fill='x', expand=True)
-
-
-# Submit button
-Submit_button = ttk.Button(Site_details, text="Submit", command=root.destroy)
-Submit_button.pack(fill='x', expand=True, pady=10)
-
-
-root.attributes('-topmost', True)
-root.mainloop()
-
-
-username = Username_var.get()
-password = password_var.get()
-IP_Address = IP_Address_var.get()
-Sitecode = Site_code_var.get()
-
-
-def messagebox(text, title):
-    message = tkinter.Tk()
-    message.attributes('-topmost', True)
-    message.withdraw()
-    tkinter.messagebox.showinfo(title, text)
-    message.destroy()
-
-# End of Tkinter Code
-##########################################################
 
 
 class ExcelWriter:
@@ -133,40 +47,6 @@ class ExcelWriter:
         ws.auto_filter.ref = ws.dimensions
         ws.column_dimensions[f'{col}'].width = width
         workbook.save(filename=self.filename)
-
-
-def ip_check(ip):
-    try:
-        ipaddress.ip_address(ip)
-        return True
-    except ValueError:
-        return False
-
-
-def open_session(ip):
-    if not ip_check(ip):
-        return None, False
-    try:
-        log.info(f"Open Session Function: Trying to connect to ip Address: {ip}")
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh.connect(hostname=ip, port=22, username=username, password=password)
-        log.info(f"Open Session Function: Connected to ip Address: {ip}")
-        return ssh, True
-    except paramiko.ssh_exception.AuthenticationException:
-        log.error(f"Open Session Function:"
-                  f"Authentication to ip Address: {ip} failed! Please check your ip, username and password.")
-        return None, False
-    except paramiko.ssh_exception.NoValidConnectionsError:
-        log.error(f"Open Session Function Error: Unable to connect to ip Address: {ip}!")
-        return None, False
-    except (ConnectionError, TimeoutError):
-        log.error(f"Open Session Function Error: Timeout error occurred for ip Address: {ip}!")
-        return None, False
-    except Exception as err:
-        log.error(f"Open Session Function Error: Unknown error occurred for ip Address: {ip}!")
-        log.error(f"\t Error: {err}")
-        return None, False
 
 
 def extract_cdp_neighbors(ip):
@@ -306,7 +186,7 @@ def find_ips(ip):
 
 def get_interfaces(ip):
     interface_names = list()
-    ssh, jump_box, connection = open_session(ip)
+    ssh, jump_box, connection = jump_session(ip)
     if not connection:
         return None
     try:
@@ -345,7 +225,7 @@ def get_int_description(int_name):
     global interfaces
     interfaces_dict = dict()
     command = f"show run interface {int_name} | inc description"
-    ssh, jump_box, connection = open_session(IP_Address)
+    ssh, jump_box, connection = jump_session(IP_Address)
     if not connection:
         log.error(f"get_int_description - Function Error: No connection is available for ip: {IP_Address}!")
     try:
@@ -378,7 +258,7 @@ def get_int_description(int_name):
 
 def int_write(ip):
     commands = []
-    ssh, jump_box, connection = open_session(ip)
+    ssh, jump_box, connection = jump_session(ip)
     if not connection:
         return None
     try:

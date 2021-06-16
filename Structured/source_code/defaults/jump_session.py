@@ -16,7 +16,7 @@ def ip_check(ip):
         return False
 
 
-def open_session(ip):
+def jump_session(ip):
     if not ip_check(ip):
         log.error(f"open_session function error: "
                   f"ip Address {ip} is not a valid Address. Please check and restart the script!",)
