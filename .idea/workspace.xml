@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Creating structured code package">
-      <change afterPath="$PROJECT_DIR$/Structured/source_code/defaults/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Structured/source_code/defaults/gui.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Structured/source_code/defaults/jump_session.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Structured/source_code/defaults/logging_code.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Structured/source_code/defaults/session.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/Interfaces.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/debug.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/Get_Interface_Info - Napalm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/Get_Interface_Info - Napalm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/Interface_Descriptions - Read.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/Interface_Descriptions - Read.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/Interface_Descriptions - Write.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/Interface_Descriptions - Write.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/Main - CDP Network Map.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/Main - CDP Network Map.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/source_code/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/source_code/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/source_code/archive/CDP_Network_Map.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/source_code/archive/Excel_Writer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/source_code/archive/Interface_Descriptions.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Structured/source_code/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/source_code/code.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/source_code/session_defaults/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/source_code/session_defaults/gui.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/source_code/session_defaults/logging_code.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/source_code/session_defaults/session.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/source_code/defaults/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/source_code/defaults/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623843781231</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Creating structured code package">
+      <created>1623847638746</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1623847638746</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

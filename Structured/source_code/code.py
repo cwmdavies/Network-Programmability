@@ -4,7 +4,6 @@ import pandas as pd
 import re
 from .defaults import *
 
-df = pd.read_excel(r'Interfaces.xlsx')
 IP_list = []
 CDP_Info_List = []
 interfaces = []
@@ -257,6 +256,7 @@ def get_int_description(int_name):
 
 
 def int_write(ip):
+    df = pd.read_excel(r'Interfaces.xlsx')
     commands = []
     ssh, jump_box, connection = jump_session(ip)
     if not connection:
