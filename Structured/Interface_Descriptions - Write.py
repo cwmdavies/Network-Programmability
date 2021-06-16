@@ -10,6 +10,7 @@
 #   of your choice.
 
 from source_code import *
+import time as timer
 
 
 def main():
@@ -17,8 +18,8 @@ def main():
     int_write(IP_Address)
     end = timer.time()
     elapsed = (end - start) / 60
-    output_log(f"Total execution time: {elapsed:.3} minutes.",)
-    output_log(f"Script Complete",)
+    log.info(f"Total execution time: {elapsed:.3} minutes.",)
+    log.info(f"Script Complete",)
 
 
 if __name__ == "__main__":

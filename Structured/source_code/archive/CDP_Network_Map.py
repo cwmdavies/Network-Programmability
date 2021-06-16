@@ -6,7 +6,6 @@
 
 import re
 import paramiko
-import datetime as time
 import ipaddress
 from gui import username, password
 
@@ -182,33 +181,3 @@ def find_ips(ip):
     for name in interface_names:
         command = f"show cdp neighbors {name} detail"
         cdp_details(ip, command, hostname)
-
-
-#######################################################################################################################
-#          Logging Functions
-#
-
-def error_log(message,):
-    date_time_object = time.datetime.now()
-    datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
-    error_file = open("Error Log.txt", "a")
-    error_file.write(f"{datetime} - {message}")
-    error_file.write("\n")
-    error_file.close()
-    if debug == 1:
-        print(message)
-
-
-def output_log(message,):
-    date_time_object = time.datetime.now()
-    datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
-    output_file = open("Output Log.txt", "a")
-    output_file.write(f"{datetime} - {message}")
-    output_file.write("\n")
-    output_file.close()
-    if debug == 1:
-        print(message)
-
-#
-#
-#######################################################################################################################

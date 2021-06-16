@@ -1,3 +1,13 @@
+from .logging_code import *
+from .gui import *
+import ipaddress
+import paramiko
+
+
+jump_server_address = '10.251.6.31'   # The internal ip Address for the Jump server
+local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
+
+
 def ip_check(ip):
     try:
         ipaddress.ip_address(ip)

@@ -10,16 +10,13 @@ from multiprocessing.pool import ThreadPool
 
 
 def main():
-    global CDP_Info_List
-    global IP_list
-
     start = timer.time()
     IP_list.append(IP_Address)
     pool = ThreadPool(30)
     i = 0
 
     try:
-        output_log(f"Script started for site: {Sitecode}",)
+        log.info(f"Script started for site: {Sitecode}",)
         print("You will be notified when the script finishes - "
               "This may take a while depending on the size of the network!")
         
@@ -66,13 +63,13 @@ def main():
                 cdp_detail.write("CDP_Nei_Info", "H", f"{index}", "Not Found",)
             index += 1
     except Exception as err:
-        error_log("Main Function Error: An unknown error occurred!")
-        error_log(f"\t Error: {err}")
+        log.error("Main Function Error: An unknown error occurred!")
+        log.error(f"\t Error: {err}")
     finally:
         end = timer.time()
         elapsed = (end - start) / 60
-        output_log(f"Total execution time: {elapsed:.3} minutes.",)
-        output_log(f"Script Complete for site: {Sitecode}",)
+        log.error(f"Total execution time: {elapsed:.3} minutes.",)
+        log.error(f"Script Complete for site: {Sitecode}",)
         messagebox(f"Script Complete for site: {Sitecode}", "Script Complete")
 
 

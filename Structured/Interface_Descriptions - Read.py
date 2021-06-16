@@ -35,14 +35,14 @@ def main():
             int_detail.write("Interface Descriptions", "B", f"{index}", entries["Description"],)
             index += 1
     except Exception as err:
-        error_log(f"Main function error: An unknown error occurred")
-        error_log(f"\t Error: {err}")
+        log.error(f"Main function error: An unknown error occurred")
+        log.error(f"\t Error: {err}")
 
     finally:   
         end = timer.time()
         elapsed = (end - start) / 60
-        output_log(f"Total execution time: {elapsed:.3} minutes.",)
-        output_log(f"Script Complete",)
+        log.info(f"Total execution time: {elapsed:.3} minutes.",)
+        log.info(f"Script Complete",)
 
 
 if __name__ == "__main__":
