@@ -2,15 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Testing napalm code">
-      <change afterPath="$PROJECT_DIR$/Jupyter Notebooks/Interfaces.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Napalm/Get_Interface_Info - Napalm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/Get_Interface_Info - Napalm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/Interface_Descriptions - Read.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/Interface_Descriptions - Write.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/Main - CDP Network Map.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/source_code/CDP_Network_Map.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/source_code/Excel_Writer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/source_code/Interface_Descriptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/source_code/Interface_Information.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/source_code/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/source_code/gui.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/source_code/logging_code.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/jupyter.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Jupyter Notebooks/jupyter.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Napalm/Get_Interface_Info.py" beforeDir="false" afterPath="$PROJECT_DIR$/Napalm/Get_Interface_Info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Napalm/Get_Interface_Info.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,7 +55,49 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.Interface_Descriptions - Read">
+    <configuration name="Get_Interface_Info - Napalm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Network-Programmability" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Structured" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Structured/Get_Interface_Info - Napalm.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Interface_Descriptions - Read" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Network-Programmability" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Structured" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Structured/Interface_Descriptions - Read.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="logging_code" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Network-Programmability" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -62,6 +121,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Interface_Descriptions - Read" />
+        <item itemvalue="Python.Get_Interface_Info - Napalm" />
         <item itemvalue="Python.logging_code" />
       </list>
     </recent_temporary>
