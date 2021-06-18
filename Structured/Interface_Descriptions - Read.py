@@ -16,18 +16,18 @@ import time as timer
 def main():
     start = timer.time()
 
-    int_detail = source_code.ExcelWriter("Interfaces")
-    int_detail.add_sheets("Interface Descriptions",)
-    int_detail.write("Interface Descriptions", "A", "1", "Interface",)
-    int_detail.write("Interface Descriptions", "B", "1", "Description",)
-    int_detail.filter_cols("Interface Descriptions", "A", "30")
-    int_detail.filter_cols("Interface Descriptions", "B", "60")
-
     try:
         interface_names = source_code.get_interfaces(source_code.IP_Address)
 
         for int_name in interface_names:
             source_code.get_int_description(int_name)
+
+        int_detail = source_code.ExcelWriter("Interfaces")
+        int_detail.add_sheets("Interface Descriptions", )
+        int_detail.write("Interface Descriptions", "A", "1", "Interface", )
+        int_detail.write("Interface Descriptions", "B", "1", "Description", )
+        int_detail.filter_cols("Interface Descriptions", "A", "30")
+        int_detail.filter_cols("Interface Descriptions", "B", "60")
 
         index = 2
         for entries in source_code.interfaces:
@@ -35,8 +35,8 @@ def main():
             int_detail.write("Interface Descriptions", "B", f"{index}", entries["Description"],)
             index += 1
     except Exception as err:
-        source_code.log.error(f"Main function error: An unknown error occurred")
-        source_code.log.error(f"\t Error: {err}")
+        source_code.log.exception(f"Main function error: An unknown error occurred")
+        source_code.log.exception(f"\t Error: {err}")
 
     finally:   
         end = timer.time()

@@ -1,0 +1,137 @@
+[2021-06-18 09:57:13,585] ERROR    source_code.defaults.logging_code open_session function error: ip Address  is not a valid Address. Please check and restart the script!
+[2021-06-18 10:00:17,480] ERROR    source_code.defaults.logging_code open_session function error: ip Address  is not a valid Address. Please check and restart the script!
+[2021-06-18 10:00:17,486] ERROR    source_code.defaults.logging_code Main function error: An unknown error occurred
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:00:17,502] ERROR    source_code.defaults.logging_code 	 Error: not enough values to unpack (expected 3, got 2)
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:00:17,503] INFO     source_code.defaults.logging_code Total execution time: 0.000384 minutes.
+[2021-06-18 10:00:17,503] INFO     source_code.defaults.logging_code Script Complete
+[2021-06-18 10:04:08,346] ERROR    source_code.defaults.logging_code open_session function error: ip Address  is not a valid Address. Please check and restart the script!
+[2021-06-18 10:04:08,346] ERROR    source_code.defaults.logging_code Main function error: An unknown error occurred
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:04:08,348] ERROR    source_code.defaults.logging_code 	 Error: not enough values to unpack (expected 3, got 2)
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:04:08,348] INFO     source_code.defaults.logging_code Total execution time: 3.33e-05 minutes.
+[2021-06-18 10:04:08,349] INFO     source_code.defaults.logging_code Script Complete
+[2021-06-18 10:06:06,165] ERROR    source_code.defaults.logging_code open_session function error: ip Address  is not a valid Address. Please check and restart the script!
+[2021-06-18 10:06:06,166] ERROR    source_code.defaults.logging_code Main function error: An unknown error occurred
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:06:06,167] ERROR    source_code.defaults.logging_code 	 Error: not enough values to unpack (expected 3, got 2)
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:06:06,168] INFO     source_code.defaults.logging_code Total execution time: 4.99e-05 minutes.
+[2021-06-18 10:06:06,168] INFO     source_code.defaults.logging_code Script Complete
+[2021-06-18 10:06:54,053] ERROR    source_code.defaults.logging_code open_session function error: ip Address  is not a valid Address. Please check and restart the script!
+[2021-06-18 10:06:54,054] ERROR    source_code.defaults.logging_code Main function error: An unknown error occurred
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:06:54,056] ERROR    source_code.defaults.logging_code 	 Error: not enough values to unpack (expected 3, got 2)
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:06:54,056] INFO     source_code.defaults.logging_code Total execution time: 5e-05 minutes.
+[2021-06-18 10:06:54,056] INFO     source_code.defaults.logging_code Script Complete
+[2021-06-18 10:07:06,813] ERROR    source_code.defaults.logging_code open_session function error: ip Address  is not a valid Address. Please check and restart the script!
+[2021-06-18 10:07:06,814] ERROR    source_code.defaults.logging_code Main function error: An unknown error occurred
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:07:06,817] ERROR    source_code.defaults.logging_code 	 Error: not enough values to unpack (expected 3, got 2)
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:07:06,818] INFO     source_code.defaults.logging_code Total execution time: 8.33e-05 minutes.
+[2021-06-18 10:07:06,818] INFO     source_code.defaults.logging_code Script Complete
+[2021-06-18 10:08:47,804] ERROR    source_code.defaults.logging_code open_session function error: ip Address  is not a valid Address. Please check and restart the script!
+[2021-06-18 10:08:47,805] ERROR    source_code.defaults.logging_code Main function error: An unknown error occurred
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:08:47,808] ERROR    source_code.defaults.logging_code 	 Error: not enough values to unpack (expected 3, got 2)
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:08:47,808] INFO     source_code.defaults.logging_code Total execution time: 6.66e-05 minutes.
+[2021-06-18 10:08:47,809] INFO     source_code.defaults.logging_code Script Complete
+[2021-06-18 10:10:28,788] ERROR    source_code.defaults.logging_code open_session function error: ip Address  is not a valid Address. Please check and restart the script!
+[2021-06-18 10:10:28,788] ERROR    source_code.defaults.logging_code Main function error: An unknown error occurred
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:10:28,803] ERROR    source_code.defaults.logging_code 	 Error: not enough values to unpack (expected 3, got 2)
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:10:28,804] INFO     source_code.defaults.logging_code Total execution time: 0.000278 minutes.
+[2021-06-18 10:10:28,804] INFO     source_code.defaults.logging_code Script Complete
+[2021-06-18 10:10:40,871] ERROR    source_code.defaults.logging_code open_session function error: ip Address  is not a valid Address. Please check and restart the script!
+[2021-06-18 10:10:40,871] ERROR    source_code.defaults.logging_code Main function error: An unknown error occurred
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:10:40,871] ERROR    source_code.defaults.logging_code 	 Error: not enough values to unpack (expected 3, got 2)
+Traceback (most recent call last):
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\Interface_Descriptions - Read.py", line 20, in main
+    interface_names = source_code.get_interfaces(source_code.IP_Address)
+  File "C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Structured\source_code\code.py", line 188, in get_interfaces
+    ssh, jump_box, connection = jump_session(ip)
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-06-18 10:10:40,871] INFO     source_code.defaults.logging_code Total execution time: 0.0 minutes.
+[2021-06-18 10:10:40,871] INFO     source_code.defaults.logging_code Script Complete

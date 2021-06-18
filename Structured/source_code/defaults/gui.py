@@ -1,12 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
 import tkinter.messagebox
-
+from tkinter import filedialog
 
 # root window
 root = tk.Tk()
 root.eval('tk::PlaceWindow . center')
-root.geometry("300x300")
+root.geometry("300x400")
 root.resizable(False, False)
 root.title('Site Details')
 
@@ -17,6 +17,7 @@ password_var = tk.StringVar()
 IP_Address_var = tk.StringVar()
 Site_code_var = tk.StringVar()
 Debugging_var = tk.IntVar()
+
 
 # Site details frame
 Site_details = ttk.Frame(root)
@@ -57,9 +58,23 @@ Debugging_label.pack(fill='x', expand=True)
 Debugging_entry = ttk.Entry(Site_details, textvariable=Debugging_var)
 Debugging_entry.pack(fill='x', expand=True)
 
+
+# Open file dialog button
+def get_filename():
+    open_dialog = filedialog.askopenfilename(parent=root, initialdir='.', title='Choose an excel file')
+    resultLabel.config(text=open_dialog)
+    return open_dialog
+
+
+open_file = ttk.Button(Site_details, text='Open a File', width=15, command=get_filename)
+open_file.pack(expand=True, pady=10)
+
+resultLabel = ttk.Label(Site_details, text="", wraplength=300)
+resultLabel.pack(fill='x', expand=True)
+
 # Submit button
 Submit_button = ttk.Button(Site_details, text="Submit", command=root.destroy)
-Submit_button.pack(fill='x', expand=True, pady=10)
+Submit_button.pack(fill='x', pady=10)
 
 
 root.attributes('-topmost', True)

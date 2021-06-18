@@ -12,53 +12,12 @@
 import napalm
 from openpyxl import load_workbook, Workbook
 import datetime as time
-import os
 from getpass import getpass
 import ipaddress
 
 debug = 1
-username = input("Please enter your username: ")
-password = getpass("Please enter your password: ")
-IP_Address = input("Please enter an ip Address: ")
-
-
-class ExcelWriter:
-    def __init__(self, name):
-        self.i = 0
-        self.name = name
-        self.filename = self.name + ".xlsx"
-        if os.path.exists(f"{self.filename}"):
-            os.remove(f"{self.filename}")
-        workbook = Workbook()
-        workbook.save(filename=self.filename)
-
-    def get_sheets(self):
-        workbook = load_workbook(filename=self.filename)
-        return workbook.sheetnames
-
-    def add_sheets(self, *col_name):
-        workbook = load_workbook(filename=self.filename)
-        for value in col_name:
-            if value not in workbook.sheetnames:
-                workbook.create_sheet(value)
-            else:
-                output_log(f"{value} already exists in {self.name}. Ignoring column creation!")
-        if "Sheet" in workbook.sheetnames:
-            del workbook["Sheet"]
-        workbook.save(filename=self.filename)
-
-    def write(self, sheet, key, index, value):
-        workbook = load_workbook(filename=self.filename)
-        ws = workbook[f"{sheet}"]
-        ws[f"{key}{index}"] = value
-        workbook.save(filename=self.filename)
-
-    def filter_cols(self, sheet, col, width):
-        workbook = load_workbook(filename=self.filename)
-        ws = workbook[f"{sheet}"]
-        ws.auto_filter.ref = ws.dimensions
-        ws.column_dimensions[f'{col}'].width = width
-        workbook.save(filename=self.filename)
+username = input("Enter your Username: ")
+password = getpass("Enter your Password: ")
 
 
 def ip_check(ip):
@@ -99,37 +58,67 @@ def output_log(message,):
 #######################################################################################################################
 
 
-def main():
-    driver_ios = napalm.get_network_driver("ios")    
-    device = driver_ios(hostname=IP_Address, username=username, password=password)
+def interfaces(ip):
+    driver_ios = napalm.get_network_driver("ios")
+    device = driver_ios(hostname=ip, username=username, password=password)
     device.open()
     device_interfaces = device.get_interfaces()
     device.close()
+    return device_interfaces
 
-    int_detail = ExcelWriter("Interfaces")
-    int_detail.add_sheets("Interface configuration",)
-    int_detail.write("Interface configuration", "A", "1", "Interface",)
-    int_detail.write("Interface configuration", "B", "1", "is_enabled",)
-    int_detail.write("Interface configuration", "C", "1", "is_up",)
-    int_detail.write("Interface configuration", "D", "1", "Description",)
-    int_detail.write("Interface configuration", "E", "1", "MTU",)
-    int_detail.write("Interface configuration", "F", "1", "Speed",)
-    int_detail.filter_cols("Interface configuration", "A", "30")
-    int_detail.filter_cols("Interface configuration", "B", "15")
-    int_detail.filter_cols("Interface configuration", "C", "15")
-    int_detail.filter_cols("Interface configuration", "D", "50")
-    int_detail.filter_cols("Interface configuration", "E", "10")
-    int_detail.filter_cols("Interface configuration", "F", "10")
 
-    index = 2
-    for interfaces in device_interfaces:
-        int_detail.write("Interface configuration", "A", f"{index}", interfaces,)
-        int_detail.write("Interface configuration", "B", f"{index}", device_interfaces[interfaces]["is_enabled"],)
-        int_detail.write("Interface configuration", "C", f"{index}", device_interfaces[interfaces]["is_up"],)
-        int_detail.write("Interface configuration", "D", f"{index}", device_interfaces[interfaces]["description"],)
-        int_detail.write("Interface configuration", "E", f"{index}", device_interfaces[interfaces]["mtu"],)
-        int_detail.write("Interface configuration", "F", f"{index}", device_interfaces[interfaces]["speed"],)
-        index += 1
+def get_hostname(ip):
+    driver_ios = napalm.get_network_driver("ios")
+    device = driver_ios(hostname=ip, username=username, password=password)
+    device.open()
+    device_facts = device.get_facts()
+    device.close()
+    return device_facts["hostname"]
+
+
+def main():
+    ip_list = []
+    with open("ips.txt", "r") as text:
+        for IP_Address in text:
+            ip_list.append(IP_Address.strip())
+
+    for IP in ip_list:
+        device_hostname = get_hostname(IP)
+        device_interfaces = interfaces(IP)
+
+        filename = f"Interfaces_{device_hostname}.xlsx"
+
+        workbook = Workbook()
+        workbook.save(filename=filename)
+        workbook = load_workbook(filename=filename)
+        workbook.create_sheet("Interface configuration")
+        del workbook["Sheet"]
+        ws = workbook["Interface configuration"]
+        ws[f"A1"] = device_hostname
+        ws[f"B1"] = IP
+        ws[f"A3"] = "Interface"
+        ws[f"B3"] = "is_enabled"
+        ws[f"C3"] = "is_up"
+        ws[f"D3"] = "Description"
+        ws[f"E3"] = "MTU"
+        ws[f"F3"] = "Speed"
+        ws.column_dimensions['A'].width = "25"
+        ws.column_dimensions['B'].width = "15"
+        ws.column_dimensions['C'].width = "10"
+        ws.column_dimensions['D'].width = "60"
+        ws.column_dimensions['E'].width = "10"
+        ws.column_dimensions['F'].width = "10"
+
+        index = 4
+        for interface in device_interfaces:
+            ws[f"A{index}"] = interface
+            ws[f"B{index}"] = device_interfaces[interface]["is_enabled"]
+            ws[f"C{index}"] = device_interfaces[interface]["is_up"]
+            ws[f"D{index}"] = device_interfaces[interface]["description"]
+            ws[f"E{index}"] = device_interfaces[interface]["mtu"]
+            ws[f"F{index}"] = device_interfaces[interface]["speed"]
+            workbook.save(filename=filename)
+            index += 1
 
 
 if __name__ == "__main__":

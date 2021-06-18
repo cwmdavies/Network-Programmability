@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Removed old, unused files">
-      <change afterPath="$PROJECT_DIR$/Structured/Interfaces.xlsx" afterDir="false" />
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="debugging option on gui">
+      <change afterPath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/TextFSM-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Jupyter Notebooks/TextFSM.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Jupyter Notebooks/template.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Napalm/Interfaces_gb-brw1-001asw001.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Napalm/Interfaces_gb-brw1-001asw002.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Napalm/Interfaces_gb-brw1-001asw003.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Napalm/Interfaces_gb-brw1-002asw001.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structured/CDP Network Map.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Structured/debug.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TEXTFSM/cdpinfo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/jupyter-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/jupyter.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Napalm/Get_Interface_Info - Napalm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Napalm/Get_Interface_Info - Napalm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map Script/CDP Network Map - Jumper Server Edition.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map Script/CDP Network Map - Jumper Server Edition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/Interface_Descriptions - Read.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/Interface_Descriptions - Read.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/Main - CDP Network Map.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Structured/source_code/defaults/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/source_code/defaults/gui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/source_code/defaults/logging_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/source_code/defaults/logging_code.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEXTFSM/cdp_detail_config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TEXTFSM/cdp_detail_config.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +63,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
-  <component name="RunManager" selected="Python.Interface_Descriptions - Read">
+  <component name="RunManager" selected="Python.gui">
     <configuration name="Get_Interface_Info - Napalm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Network-Programmability" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -154,9 +171,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.gui" />
         <item itemvalue="Python.Interface_Descriptions - Read" />
         <item itemvalue="Python.logging_code (1)" />
-        <item itemvalue="Python.gui" />
         <item itemvalue="Python.Get_Interface_Info - Napalm" />
         <item itemvalue="Python.logging_code" />
       </list>
@@ -290,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623848533945</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="debugging option on gui">
+      <created>1623850515162</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1623850515162</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -312,7 +336,8 @@
     <MESSAGE value="Testing napalm code" />
     <MESSAGE value="Creating structured code package" />
     <MESSAGE value="Removed old, unused files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed old, unused files" />
+    <MESSAGE value="debugging option on gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="debugging option on gui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

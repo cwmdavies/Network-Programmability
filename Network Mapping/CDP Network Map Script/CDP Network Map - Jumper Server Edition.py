@@ -128,6 +128,7 @@ def MessageBox(text, title):
 
 ############################# End of Tkinter Code #############################
 
+
 def open_session(IP):
     try:
         output_log(f"Trying to establish a connection to: {IP}")
