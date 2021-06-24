@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="cleaned up GUI">
-      <change afterPath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Structured/Get_Interface_Info - Napalm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/Get_Interface_Info - Napalm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/source_code/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/source_code/code.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/source_code/defaults/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/source_code/defaults/gui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -326,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624528806278</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="cleaned up GUI">
+      <created>1624539158804</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1624539158804</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

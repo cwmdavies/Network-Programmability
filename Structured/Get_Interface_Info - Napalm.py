@@ -19,8 +19,8 @@ def main():
             ip_list.append(IP_Address.strip())
 
     for IP in ip_list:
-        device_hostname = source_code.np_get_hostname(source_code.IP_Address)
-        device_interfaces = source_code.np_get_interfaces(source_code.IP_Address)
+        device_hostname = source_code.np_get_hostname(IP)
+        device_interfaces = source_code.np_get_interfaces(IP)
 
         filename = f"Interfaces_{device_hostname}.xlsx"
 
