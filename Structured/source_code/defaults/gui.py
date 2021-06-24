@@ -16,6 +16,8 @@ password_var = tk.StringVar()
 IP_Address_var = tk.StringVar()
 Site_code_var = tk.StringVar()
 Debugging_var = tk.IntVar()
+file_loc_var = tk.StringVar()
+file_loc = ""
 
 # Site details frame
 Site_details = ttk.Frame(root)
@@ -57,7 +59,6 @@ Debugging_entry.pack(fill='x', expand=True)
 def get_filename():
     open_dialog = filedialog.askopenfilename(parent=root, initialdir='.', title='Select a File')
     resultLabel.config(text=open_dialog)
-    return open_dialog
 
 
 open_file_label = ttk.Label(Site_details, text="\nSelect a file with multiple IP Addresses - Optional!")

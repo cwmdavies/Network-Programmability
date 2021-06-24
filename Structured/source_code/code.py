@@ -3,6 +3,7 @@ import os
 import pandas as pd
 import re
 from .defaults import *
+import napalm
 
 IP_list = []
 CDP_Info_List = []
@@ -287,3 +288,21 @@ def int_write(ip):
     finally:
         ssh.close()
         jump_box.close()
+
+
+def np_get_interfaces(ip):
+    driver_ios = napalm.get_network_driver("ios")
+    device = driver_ios(hostname=ip, username=username, password=password)
+    device.open()
+    device_interfaces = device.get_interfaces()
+    device.close()
+    return device_interfaces
+
+
+def np_get_hostname(ip):
+    driver_ios = napalm.get_network_driver("ios")
+    device = driver_ios(hostname=ip, username=username, password=password)
+    device.open()
+    device_facts = device.get_facts()
+    device.close()
+    return device_facts["hostname"]

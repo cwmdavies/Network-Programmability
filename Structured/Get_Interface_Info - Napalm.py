@@ -10,40 +10,51 @@
 #   to an excel spreadsheet.
 
 import source_code
-import napalm
 
 
 def main():
-    driver_ios = napalm.get_network_driver("ios")
-    device = driver_ios(hostname=source_code.IP_Address, username=source_code.username, password=source_code.password)
-    device.open()
-    device_interfaces = device.get_interfaces()
-    device.close()
+    ip_list = []
+    with open("ips.txt", "r") as text:
+        for IP_Address in text:
+            ip_list.append(IP_Address.strip())
 
-    int_detail = source_code.ExcelWriter("Interfaces")
-    int_detail.add_sheets("Interface configuration",)
-    int_detail.write("Interface configuration", "A", "1", "Interface",)
-    int_detail.write("Interface configuration", "B", "1", "is_enabled",)
-    int_detail.write("Interface configuration", "C", "1", "is_up",)
-    int_detail.write("Interface configuration", "D", "1", "Description",)
-    int_detail.write("Interface configuration", "E", "1", "MTU",)
-    int_detail.write("Interface configuration", "F", "1", "Speed",)
-    int_detail.filter_cols("Interface configuration", "A", "30")
-    int_detail.filter_cols("Interface configuration", "B", "15")
-    int_detail.filter_cols("Interface configuration", "C", "15")
-    int_detail.filter_cols("Interface configuration", "D", "50")
-    int_detail.filter_cols("Interface configuration", "E", "10")
-    int_detail.filter_cols("Interface configuration", "F", "10")
+    for IP in ip_list:
+        device_hostname = source_code.np_get_hostname(source_code.IP_Address)
+        device_interfaces = source_code.np_get_interfaces(source_code.IP_Address)
 
-    index = 2
-    for interface in device_interfaces:
-        int_detail.write("Interface configuration", "A", f"{index}", interface,)
-        int_detail.write("Interface configuration", "B", f"{index}", device_interfaces[interface]["is_enabled"],)
-        int_detail.write("Interface configuration", "C", f"{index}", device_interfaces[interface]["is_up"],)
-        int_detail.write("Interface configuration", "D", f"{index}", device_interfaces[interface]["description"],)
-        int_detail.write("Interface configuration", "E", f"{index}", device_interfaces[interface]["mtu"],)
-        int_detail.write("Interface configuration", "F", f"{index}", device_interfaces[interface]["speed"],)
-        index += 1
+        filename = f"Interfaces_{device_hostname}.xlsx"
+
+        workbook = source_code.Workbook()
+        workbook.save(filename=filename)
+        workbook = source_code.load_workbook(filename=filename)
+        workbook.create_sheet("Interface configuration")
+        del workbook["Sheet"]
+        ws = workbook["Interface configuration"]
+        ws[f"A1"] = device_hostname
+        ws[f"B1"] = source_code.IP_Address
+        ws[f"A3"] = "Interface"
+        ws[f"B3"] = "is_enabled"
+        ws[f"C3"] = "is_up"
+        ws[f"D3"] = "Description"
+        ws[f"E3"] = "MTU"
+        ws[f"F3"] = "Speed"
+        ws.column_dimensions['A'].width = "25"
+        ws.column_dimensions['B'].width = "15"
+        ws.column_dimensions['C'].width = "10"
+        ws.column_dimensions['D'].width = "60"
+        ws.column_dimensions['E'].width = "10"
+        ws.column_dimensions['F'].width = "10"
+
+        index = 4
+        for interface in device_interfaces:
+            ws[f"A{index}"] = interface
+            ws[f"B{index}"] = device_interfaces[interface]["is_enabled"]
+            ws[f"C{index}"] = device_interfaces[interface]["is_up"]
+            ws[f"D{index}"] = device_interfaces[interface]["description"]
+            ws[f"E{index}"] = device_interfaces[interface]["mtu"]
+            ws[f"F{index}"] = device_interfaces[interface]["speed"]
+            workbook.save(filename=filename)
+            index += 1
 
 
 if __name__ == "__main__":
