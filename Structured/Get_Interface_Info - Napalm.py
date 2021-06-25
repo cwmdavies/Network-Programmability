@@ -14,9 +14,12 @@ import source_code
 
 def main():
     ip_list = []
-    with open("ips.txt", "r") as text:
-        for IP_Address in text:
-            ip_list.append(IP_Address.strip())
+    if source_code.file_loc:
+        with open(source_code.file_loc, "r") as file:
+            for IP_Address in file:
+                ip_list.append(IP_Address.strip())
+    else:
+        ip_list.append(source_code.IP_Address.strip())
 
     for IP in ip_list:
         device_hostname = source_code.np_get_hostname(IP)
@@ -28,16 +31,22 @@ def main():
         workbook.save(filename=filename)
         workbook = source_code.load_workbook(filename=filename)
         workbook.create_sheet("Interface configuration")
+        workbook.create_sheet("Switch Information")
         del workbook["Sheet"]
+        ws = workbook["Switch Information"]
+        ws[f"A1"] = "Hostname"
+        ws[f"B1"] = "IP Address"
+        ws[f"A2"] = device_hostname
+        ws[f"B2"] = IP
+        ws.column_dimensions['A'].width = "20"
+        ws.column_dimensions['B'].width = "15"
         ws = workbook["Interface configuration"]
-        ws[f"A1"] = device_hostname
-        ws[f"B1"] = source_code.IP_Address
-        ws[f"A3"] = "Interface"
-        ws[f"B3"] = "is_enabled"
-        ws[f"C3"] = "is_up"
-        ws[f"D3"] = "Description"
-        ws[f"E3"] = "MTU"
-        ws[f"F3"] = "Speed"
+        ws[f"A1"] = "Interface"
+        ws[f"B1"] = "is_enabled"
+        ws[f"C1"] = "is_up"
+        ws[f"D1"] = "Description"
+        ws[f"E1"] = "MTU"
+        ws[f"F1"] = "Speed"
         ws.column_dimensions['A'].width = "25"
         ws.column_dimensions['B'].width = "15"
         ws.column_dimensions['C'].width = "10"
@@ -45,7 +54,7 @@ def main():
         ws.column_dimensions['E'].width = "10"
         ws.column_dimensions['F'].width = "10"
 
-        index = 4
+        index = 2
         for interface in device_interfaces:
             ws[f"A{index}"] = interface
             ws[f"B{index}"] = device_interfaces[interface]["is_enabled"]

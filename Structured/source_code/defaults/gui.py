@@ -57,8 +57,10 @@ Debugging_entry.pack(fill='x', expand=True)
 
 # Open file dialog button
 def get_filename():
+    global file_loc
     open_dialog = filedialog.askopenfilename(parent=root, initialdir='.', title='Select a File')
     resultLabel.config(text=open_dialog)
+    file_loc = open_dialog
 
 
 open_file_label = ttk.Label(Site_details, text="\nSelect a file with multiple IP Addresses - Optional!")
