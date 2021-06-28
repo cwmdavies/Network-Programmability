@@ -39,9 +39,10 @@ def get_cdp_details(ip):
     with open("template.txt") as f:
         re_table = textfsm.TextFSM(f)
         result = re_table.ParseText(stdout)
+    collection_of_results = [dict(zip(re_table.header, entry)) for entry in result]
     ssh.close()
     jump_box.close()
-    return result
+    return collection_of_results
 
 
 def main():
