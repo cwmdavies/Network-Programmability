@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="changes to variables">
-      <change afterPath="$PROJECT_DIR$/Interfaces_gb-brw1-001asw001.xlsx" afterDir="false" />
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="changes to Napalm code">
+      <change afterPath="$PROJECT_DIR$/TEXTFSM/output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TEXTFSM/template.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/Get_Interface_Info - Napalm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/Get_Interface_Info - Napalm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structured/source_code/defaults/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structured/source_code/defaults/gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEXTFSM/cdp_detail_config.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEXTFSM/cdpinfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/TEXTFSM/cdpinfo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +48,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
-  <component name="RunManager" selected="Python.Get_Interface_Info - Napalm">
+  <component name="RunManager" selected="Python.cdpinfo">
     <configuration name="Get_Interface_Info - Napalm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Network-Programmability" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -82,6 +83,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Structured/Interface_Descriptions - Read.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="cdpinfo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Network-Programmability" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TEXTFSM" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TEXTFSM/cdpinfo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -132,34 +154,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="logging_code" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Network-Programmability" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Logging" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Logging/logging_code.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.cdpinfo" />
         <item itemvalue="Python.Get_Interface_Info - Napalm" />
         <item itemvalue="Python.gui" />
         <item itemvalue="Python.Interface_Descriptions - Read" />
         <item itemvalue="Python.logging_code (1)" />
-        <item itemvalue="Python.logging_code" />
       </list>
     </recent_temporary>
   </component>
@@ -340,7 +341,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624539295374</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="changes to Napalm code">
+      <created>1624626638457</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1624626638457</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -367,7 +375,8 @@
     <MESSAGE value="Changes to Jupyter" />
     <MESSAGE value="cleaned up GUI" />
     <MESSAGE value="changes to variables" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes to variables" />
+    <MESSAGE value="changes to Napalm code" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes to Napalm code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
