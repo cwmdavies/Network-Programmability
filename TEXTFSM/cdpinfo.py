@@ -7,8 +7,9 @@
 import paramiko
 import textfsm
 from getpass import getpass
+from openpyxl import load_workbook, Workbook
 
-IPAddr = input("Enter an IP Address")
+IPAddr = input("Enter an IP Address: ")
 username = input("Enter your username: ")
 password = getpass("Enter your Password: ")
 jump_server_address = '10.251.6.31'   # The internal ip Address for the Jump server
@@ -47,7 +48,41 @@ def get_cdp_details(ip):
 
 def main():
     cdp_details = get_cdp_details(IPAddr)
-    print(cdp_details)
+
+    filename = "CDP_Neighbors_Detail.xlsx"
+    workbook = Workbook()
+    workbook.save(filename=filename)
+    workbook = load_workbook(filename=filename)
+    workbook.create_sheet("CDP Neighbors Detail")
+    del workbook["Sheet"]
+    ws = workbook["CDP Neighbors Detail"]
+    ws["A1"] = "DESTINATION_HOST"
+    ws["B1"] = "MANAGEMENT_IP"
+    ws["C1"] = "PLATFORM"
+    ws["D1"] = "REMOTE_PORT"
+    ws["E1"] = "LOCAL_PORT"
+    ws["F1"] = "SOFTWARE_VERSION"
+    ws["G1"] = "CAPABILITIES"
+    ws.column_dimensions['A'].width = "42"
+    ws.column_dimensions['B'].width = "22"
+    ws.column_dimensions['C'].width = "42"
+    ws.column_dimensions['D'].width = "22"
+    ws.column_dimensions['E'].width = "25"
+    ws.column_dimensions['F'].width = "120"
+    ws.column_dimensions['G'].width = "42"
+
+    index = 2
+    for entry in cdp_details:
+        ws[f"A{index}"] = entry["DESTINATION_HOST"]
+        ws[f"B{index}"] = entry["MANAGEMENT_IP"]
+        ws[f"C{index}"] = entry["PLATFORM"]
+        ws[f"D{index}"] = entry["REMOTE_PORT"]
+        ws[f"E{index}"] = entry["LOCAL_PORT"]
+        ws[f"F{index}"] = entry["SOFTWARE_VERSION"]
+        ws[f"G{index}"] = entry["CAPABILITIES"]
+        workbook.save(filename=filename)
+        index += 1
+    workbook.save(filename=filename)
 
 
 if __name__ == "__main__":
