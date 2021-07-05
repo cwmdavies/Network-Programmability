@@ -1,5 +1,5 @@
-Value Required DESTINATION_HOST (\S+)
-Value MANAGEMENT_IP (\d+\.\d+\.\d+\.\d+|\w+\.\w+\.\w+)
+Value Required REMOTE_HOST (\S+)
+Value REMOTE_IP (\d+\.\d+\.\d+\.\d+|\w+\.\w+\.\w+)
 Value PLATFORM (.*)
 Value REMOTE_PORT (.*)
 Value LOCAL_PORT (.*)
@@ -7,7 +7,7 @@ Value SOFTWARE_VERSION (.*$)
 Value CAPABILITIES (.+?)
 
 Start
-  ^Device ID: ${DESTINATION_HOST}
+  ^Device ID: ${REMOTE_HOST}
   ^Entry address\(es\)\s*:\s* -> ParseIP
   ^Platform\s*:\s*${PLATFORM}\s*,\s*Capabilities\s*:\s*${CAPABILITIES}\s+$$
   ^Platform\s*:\s*${PLATFORM}\s*,\s*Capabilities\s*:\s*${CAPABILITIES}$$
@@ -15,7 +15,7 @@ Start
   ^Version : -> GetVersion
 
 ParseIP
-  ^.*IP address: ${MANAGEMENT_IP} -> Start
+  ^.*IP address: ${REMOTE_IP} -> Start
   ^Platform\s*:\s*${PLATFORM}\s*,\s*Capabilities\s*:\s*${CAPABILITIES}\s+$$ -> Start
   ^Platform\s*:\s*${PLATFORM}\s*,\s*Capabilities\s*:\s*${CAPABILITIES}$$ -> Start
   ^.* -> Start
