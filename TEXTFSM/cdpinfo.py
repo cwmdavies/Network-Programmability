@@ -15,7 +15,7 @@ username = input("Enter your username: ")
 password = getpass("Enter your Password: ")
 jump_server_address = '10.251.6.31'   # The internal ip Address for the Jump server
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
-IPLIST = []
+IP_LIST = []
 collection_of_results = []
 filename = "CDP_Neighbors_Detail.xlsx"
 index = 2
@@ -29,6 +29,7 @@ def ip_check(ip):
         return False
 
 
+# noinspection PyBroadException,PyTypeChecker
 def jump_session(ip):
     if not ip_check(ip):
         print(f"open_session function error: "
@@ -66,8 +67,11 @@ def get_cdp_details(ip):
     for entry in result:
         entry['LOCAL_HOST'] = hostname
         collection_of_results.append(entry)
-        if entry["REMOTE_IP"] not in IPLIST:
-            IPLIST.append(entry["REMOTE_IP"])
+
+        if 'Switch' in entry['CAPABILITIES']:
+            if entry["REMOTE_IP"] not in IP_LIST:
+                IP_LIST.append(entry["REMOTE_IP"])
+
     ssh.close()
     jump_box.close()
 
@@ -90,8 +94,29 @@ def get_hostname(ip):
 
 def to_excel(cdp_details):
     global index
+    workbook = Workbook()
+    workbook.create_sheet("CDP Neighbors Detail")
+    del workbook["Sheet"]
+    workbook.save(filename=filename)
     workbook = load_workbook(filename=filename)
     ws = workbook["CDP Neighbors Detail"]
+    ws["A1"] = "LOCAL_HOST"
+    ws["B1"] = "LOCAL_PORT"
+    ws["C1"] = "REMOTE_HOST"
+    ws["D1"] = "REMOTE_PORT"
+    ws["E1"] = "REMOTE_IP"
+    ws["F1"] = "PLATFORM"
+    ws["G1"] = "SOFTWARE_VERSION"
+    ws["H1"] = "CAPABILITIES"
+    ws.column_dimensions['A'].width = "25"
+    ws.column_dimensions['B'].width = "25"
+    ws.column_dimensions['C'].width = "45"
+    ws.column_dimensions['D'].width = "25"
+    ws.column_dimensions['E'].width = "25"
+    ws.column_dimensions['F'].width = "25"
+    ws.column_dimensions['G'].width = "120"
+    ws.column_dimensions['H'].width = "45"
+    workbook.save(filename=filename)
     try:
         for entry in cdp_details:
             ws[f"A{index}"] = entry["LOCAL_HOST"]
@@ -113,39 +138,15 @@ def to_excel(cdp_details):
 
 
 def main():
-    IPLIST.append(IPAddr)
-
-    workbook = Workbook()
-    workbook.create_sheet("CDP Neighbors Detail")
-    del workbook["Sheet"]
-    workbook.save(filename=filename)
-    workbook = load_workbook(filename=filename)
-    ws = workbook["CDP Neighbors Detail"]
-    ws["A1"] = "LOCAL_HOST"
-    ws["B1"] = "LOCAL_PORT"
-    ws["C1"] = "REMOTE_HOST"
-    ws["D1"] = "REMOTE_PORT"
-    ws["E1"] = "REMOTE_IP"
-    ws["F1"] = "PLATFORM"
-    ws["G1"] = "SOFTWARE_VERSION"
-    ws["H1"] = "CAPABILITIES"
-    ws.column_dimensions['A'].width = "22"
-    ws.column_dimensions['B'].width = "22"
-    ws.column_dimensions['C'].width = "42"
-    ws.column_dimensions['D'].width = "22"
-    ws.column_dimensions['E'].width = "22"
-    ws.column_dimensions['F'].width = "42"
-    ws.column_dimensions['G'].width = "120"
-    ws.column_dimensions['H'].width = "42"
-    workbook.save(filename=filename)
+    IP_LIST.append(IPAddr)
 
     i = 0
-    while i < len(IPLIST):
-        limit = i + min(30, (len(IPLIST) - i))
-        IP_Addresses = IPLIST[i:limit]
+    while i < len(IP_LIST):
+        limit = i + min(30, (len(IP_LIST) - i))
+        ip_addresses = IP_LIST[i:limit]
 
-        for IP in IP_Addresses:
-            cdp_details = get_cdp_details(IP)
+        for IP in ip_addresses:
+            get_cdp_details(IP)
 
         i = limit
     to_excel(collection_of_results)
