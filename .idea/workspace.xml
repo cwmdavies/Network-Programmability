@@ -43,8 +43,13 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/TEXTFSM/TEXTFSM_TEMPLATES" />
     <property name="settings.editor.selected.configurable" value="http.proxy" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\TEXTFSM\TEXTFSM_TEMPLATES" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.cdpinfo">
     <configuration name="Get_Interface_Info - Napalm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -406,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626794388283</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="text fsm script changes">
+      <created>1626862341613</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1626862341613</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

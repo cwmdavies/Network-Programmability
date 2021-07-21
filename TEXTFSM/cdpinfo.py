@@ -13,7 +13,7 @@ import ipaddress
 IPAddr = input("Enter an IP Address: ")
 username = input("Enter your username: ")
 password = getpass("Enter your Password: ")
-jump_server_address = '10.251.6.31'   # The internal ip Address for the Jump server
+jump_server_address = '10.251.6.31'  # The internal ip Address for the Jump server
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
 IP_LIST = []
 collection_of_results = []
@@ -66,12 +66,12 @@ def get_cdp_details(ip):
     result = [dict(zip(re_table.header, entry)) for entry in result]
     for entry in result:
         entry['LOCAL_HOST'] = hostname
+        entry['LOCAL_IP'] = ip
         collection_of_results.append(entry)
 
-        if 'Switch' in entry['CAPABILITIES']:
-            if entry["REMOTE_IP"] not in IP_LIST:
+        if entry["REMOTE_IP"] not in IP_LIST:
+            if 'Switch' in entry['CAPABILITIES']:
                 IP_LIST.append(entry["REMOTE_IP"])
-
     ssh.close()
     jump_box.close()
 
@@ -83,10 +83,13 @@ def get_hostname(ip):
     _, stdout, _ = ssh.exec_command("show run | inc hostname")
     stdout = stdout.read()
     stdout = stdout.decode("utf-8")
-    with open("TEXTFSM_TEMPLATES/hostname.txt") as f:
-        re_table = textfsm.TextFSM(f)
-        result = re_table.ParseText(stdout)
-        hostname = result[0][0]
+    try:
+        with open("TEXTFSM_TEMPLATES/hostname.txt") as f:
+            re_table = textfsm.TextFSM(f)
+            result = re_table.ParseText(stdout)
+            hostname = result[0][0]
+    except:
+        hostname = "Not Found"
     ssh.close()
     jump_box.close()
     return hostname
