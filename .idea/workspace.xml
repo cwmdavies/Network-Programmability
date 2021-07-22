@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="text fsm script changes">
+      <change afterPath="$PROJECT_DIR$/TEXTFSM/Example results/CAY2 - CDP_Neighbors_Detail.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TEXTFSM/Example results/SEV1 - CDP_Neighbors_Detail.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/CDP_Neighbors_Detail.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Jupyter Notebooks/CDP_Neighbors_Detail.xlsx" afterDir="false" />
@@ -418,7 +420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626862341613</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="text fsm script changes">
+      <created>1626874436694</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1626874436694</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
