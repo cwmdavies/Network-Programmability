@@ -1,0 +1,6 @@
+01/11/2021 09:46:21 - Authentication to ip: 10.34.255.1 failed! Please check your ip, username and password.
+01/11/2021 09:46:21 - get_int_description - Function Error: No connection is available for ip: 10.34.255.1!
+01/11/2021 09:46:21 - get_int_description - Function Error: An unknown error occurred for ip: 10.34.255.1, on Interface: GigabitEthernet1/7!
+01/11/2021 09:46:21 - 	 Error: 'NoneType' object has no attribute 'exec_command'
+01/11/2021 09:46:21 - Main function error: An unknown error occurred
+01/11/2021 09:46:21 - 	 Error: 'NoneType' object has no attribute 'close'

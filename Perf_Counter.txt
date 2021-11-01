@@ -1,0 +1,19 @@
+import time
+
+start = time.perf_counter()
+
+**Do some stuff**
+time.sleep(5)
+
+end = time.perf_counter()
+print(f"{end - start:0.4f} seconds")
+
+
+
+
+def timer(seconds):
+     start = time.perf_counter()
+     time.sleep(seconds)
+     end = time.perf_counter()
+     print(f"{end - start:0.2f} seconds")
+

@@ -11,6 +11,9 @@ from openpyxl import load_workbook, Workbook
 import ipaddress
 import logging
 import sys
+import time
+from multiprocessing.pool import ThreadPool
+from multiprocessing import Lock
 
 Debugging = 0
 IPAddr = input("Enter an IP Address: ")
@@ -23,6 +26,8 @@ Hostnames_List = []
 collection_of_results = []
 filename = "CDP_Neighbors_Detail.xlsx"
 index = 2
+ThreadLock = Lock()
+
 
 # ---------------------------------------------------------
 # -------------- Logging Configuration Start --------------
@@ -62,13 +67,7 @@ elif Debugging == 1:
 # Define your own logger name
 log = logging.getLogger(__name__)
 
-''' Logger commands
-log.debug('This is a debug message')
-log.info('This is an info message')
-log.warning('This is a warning message')
-log.error('This is an error message')
-log.critical('This is a critical message')
-'''
+
 # --------------- Logging Configuration End ---------------
 # ---------------------------------------------------------
 
@@ -83,35 +82,42 @@ def ip_check(ip):
 
 def jump_session(ip):
     if not ip_check(ip):
-        log.error(f"open_session function error: "
-                  f"ip Address {ip} is not a valid Address. Please check and restart the script!",)
+        with ThreadLock:
+            log.error(f"open_session function error: "
+                    f"ip Address {ip} is not a valid Address. Please check and restart the script!",)
         return None, False
     try:
-        log.info(f"Trying to establish a connection to: {ip}")
+        with ThreadLock:
+            log.info(f"Trying to establish a connection to: {ip}")
         jump_box = paramiko.SSHClient()
         jump_box.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         jump_box.connect(jump_server_address, username=username, password=password)
         jump_box_transport = jump_box.get_transport()
         src_address = (local_IP_address, 22)
         destination_address = (ip, 22)
-        jump_box_channel = jump_box_transport.open_channel("direct-tcpip", destination_address, src_address)
+        jump_box_channel = jump_box_transport.open_channel("direct-tcpip", destination_address, src_address, timeout=4,)
         target = paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        target.connect(destination_address, username=username, password=password, sock=jump_box_channel)
-        log.info(f"Connection to ip: {ip} established")
+        target.connect(destination_address, username=username, password=password, sock=jump_box_channel, timeout=4,)
+        with ThreadLock:
+            log.info(f"Connection to ip: {ip} established")
         return target, jump_box, True
     except paramiko.ssh_exception.AuthenticationException:
-        log.error(f"Authentication to ip: {ip} failed! Please check your ip, username and password.")
+        with ThreadLock:
+            log.error(f"Authentication to ip: {ip} failed! Please check your ip, username and password.")
         return None, None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
-        log.error(f"Unable to connect to ip: {ip}!")
+        with ThreadLock:
+            log.error(f"Unable to connect to ip: {ip}!")
         return None, None, False
     except (ConnectionError, TimeoutError):
-        log.error(f"Timeout error occurred for ip: {ip}!")
+        with ThreadLock:
+            log.error(f"Timeout error occurred for ip: {ip}!")
         return None, None, False
     except Exception as err:
-        log.error(f"Open Session Error: An unknown error occurred for ip: {ip}!")
-        log.error(f"\t Error: {err}")
+        with ThreadLock:
+            log.error(f"Open Session Error: An unknown error occurred for ip: {ip}!")
+            log.error(f"\t Error: {err}")
         return None, None, False
 
 
@@ -125,7 +131,7 @@ def get_cdp_details(ip):
         _, stdout, _ = ssh.exec_command("show cdp neighbors detail")
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
-        with open("cdp_details.txt") as f:
+        with open("./textfsm/cdp_details.txt") as f:
             re_table = textfsm.TextFSM(f)
             result = re_table.ParseText(stdout)
         result = [dict(zip(re_table.header, entry)) for entry in result]
@@ -148,7 +154,7 @@ def get_hostname(ip):
     stdout = stdout.read()
     stdout = stdout.decode("utf-8")
     try:
-        with open("hostname.txt") as f:
+        with open("./textfsm/hostname.txt") as f:
             re_table = textfsm.TextFSM(f)
             result = re_table.ParseText(stdout)
             hostname = result[0][0]
@@ -208,19 +214,25 @@ def to_excel(cdp_details):
 
 
 def main():
+    start = time.perf_counter()
     IP_LIST.append(IPAddr)
+    pool = ThreadPool(10)
 
     i = 0
     while i < len(IP_LIST):
-        limit = i + min(30, (len(IP_LIST) - i))
+        limit = i + min(10, (len(IP_LIST) - i))
         ip_addresses = IP_LIST[i:limit]
 
-        for IP in ip_addresses:
-            get_cdp_details(IP)
+        pool.map(get_cdp_details, ip_addresses)
 
         i = limit
+    
+    pool.close()
+    pool.join()
+    
     to_excel(collection_of_results)
-
+    end = time.perf_counter()
+    print(f"{end - start:0.4f} seconds")
 
 if __name__ == "__main__":
     main()

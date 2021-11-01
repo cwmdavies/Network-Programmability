@@ -1,0 +1,36 @@
+01/11/2021 09:45:41 - Trying to establish a connection to: 10.34.255.1
+01/11/2021 09:45:43 - Connection to ip: 10.34.255.1 established
+01/11/2021 09:45:43 - retrieving list of interfaces from ip Address: 10.34.255.1
+01/11/2021 09:45:44 - List retrieval successful for ip Address: 10.34.255.1
+01/11/2021 09:45:44 - Trying to establish a connection to: 10.34.255.1
+01/11/2021 09:45:45 - Connection to ip: 10.34.255.1 established
+01/11/2021 09:45:50 - retrieving interface description for interface: FastEthernet1
+01/11/2021 09:45:53 - Description retrieval successful for interface: FastEthernet1
+01/11/2021 09:45:53 - Trying to establish a connection to: 10.34.255.1
+01/11/2021 09:45:55 - Connection to ip: 10.34.255.1 established
+01/11/2021 09:45:55 - retrieving interface description for interface: GigabitEthernet1/1
+01/11/2021 09:45:56 - Description retrieval successful for interface: GigabitEthernet1/1
+01/11/2021 09:45:56 - Trying to establish a connection to: 10.34.255.1
+01/11/2021 09:45:57 - Connection to ip: 10.34.255.1 established
+01/11/2021 09:45:57 - retrieving interface description for interface: GigabitEthernet1/2
+01/11/2021 09:46:01 - Description retrieval successful for interface: GigabitEthernet1/2
+01/11/2021 09:46:01 - Trying to establish a connection to: 10.34.255.1
+01/11/2021 09:46:03 - Connection to ip: 10.34.255.1 established
+01/11/2021 09:46:03 - retrieving interface description for interface: GigabitEthernet1/3
+01/11/2021 09:46:03 - Description retrieval successful for interface: GigabitEthernet1/3
+01/11/2021 09:46:03 - Trying to establish a connection to: 10.34.255.1
+01/11/2021 09:46:05 - Connection to ip: 10.34.255.1 established
+01/11/2021 09:46:05 - retrieving interface description for interface: GigabitEthernet1/4
+01/11/2021 09:46:06 - Description retrieval successful for interface: GigabitEthernet1/4
+01/11/2021 09:46:06 - Trying to establish a connection to: 10.34.255.1
+01/11/2021 09:46:07 - Connection to ip: 10.34.255.1 established
+01/11/2021 09:46:07 - retrieving interface description for interface: GigabitEthernet1/5
+01/11/2021 09:46:08 - Description retrieval successful for interface: GigabitEthernet1/5
+01/11/2021 09:46:08 - Trying to establish a connection to: 10.34.255.1
+01/11/2021 09:46:09 - Connection to ip: 10.34.255.1 established
+01/11/2021 09:46:09 - retrieving interface description for interface: GigabitEthernet1/6
+01/11/2021 09:46:10 - Description retrieval successful for interface: GigabitEthernet1/6
+01/11/2021 09:46:10 - Trying to establish a connection to: 10.34.255.1
+01/11/2021 09:46:21 - retrieving interface description for interface: GigabitEthernet1/7
+01/11/2021 09:46:21 - Total execution time: 0.671 minutes.
+01/11/2021 09:46:21 - Script Complete

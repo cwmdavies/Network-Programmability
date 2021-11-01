@@ -1,0 +1,42 @@
+[2021-11-01 12:00:46,414] INFO     __main__     Trying to establish a connection to: 10.145.63.1
+[2021-11-01 12:00:46,519] INFO     paramiko.transport Connected (version 2.0, client OpenSSH_6.7p1)
+[2021-11-01 12:00:46,816] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-01 12:00:46,983] INFO     paramiko.transport Connected (version 2.0, client Cisco-1.25)
+[2021-11-01 12:00:47,499] INFO     paramiko.transport Auth banner: b'C\r\n*** WARNING ***\r\n\r\n This system is restricted to authorized users only.\r\n Any unauthorized access is strictly prohibited and\r\n will be prosecuted to the full extent of applicable\r\n local and international law. All activity is being\r\n logged and improper use will be reported.\r\n  IF YOUR ARE NOT AUTHORIZED TO ACCESS THIS SYSTEM,\r\n            DISCONNECT IMMEDIATELY!\r\n'
+[2021-11-01 12:00:47,769] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-01 12:00:47,769] INFO     __main__     Connection to ip: 10.145.63.1 established
+[2021-11-01 12:00:47,769] INFO     __main__     Trying to establish a connection to: 10.145.63.1
+[2021-11-01 12:00:47,872] INFO     paramiko.transport Connected (version 2.0, client OpenSSH_6.7p1)
+[2021-11-01 12:00:48,163] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-01 12:00:48,316] INFO     paramiko.transport Connected (version 2.0, client Cisco-1.25)
+[2021-11-01 12:00:48,859] INFO     paramiko.transport Auth banner: b'C\r\n*** WARNING ***\r\n\r\n This system is restricted to authorized users only.\r\n Any unauthorized access is strictly prohibited and\r\n will be prosecuted to the full extent of applicable\r\n local and international law. All activity is being\r\n logged and improper use will be reported.\r\n  IF YOUR ARE NOT AUTHORIZED TO ACCESS THIS SYSTEM,\r\n            DISCONNECT IMMEDIATELY!\r\n'
+[2021-11-01 12:00:49,124] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-01 12:00:49,125] INFO     __main__     Connection to ip: 10.145.63.1 established
+[2021-11-01 12:01:15,292] INFO     __main__     Trying to establish a connection to: 10.145.63.1
+[2021-11-01 12:01:15,397] INFO     paramiko.transport Connected (version 2.0, client OpenSSH_6.7p1)
+[2021-11-01 12:01:15,706] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-01 12:01:15,861] INFO     paramiko.transport Connected (version 2.0, client Cisco-1.25)
+[2021-11-01 12:01:16,388] INFO     paramiko.transport Auth banner: b'C\r\n*** WARNING ***\r\n\r\n This system is restricted to authorized users only.\r\n Any unauthorized access is strictly prohibited and\r\n will be prosecuted to the full extent of applicable\r\n local and international law. All activity is being\r\n logged and improper use will be reported.\r\n  IF YOUR ARE NOT AUTHORIZED TO ACCESS THIS SYSTEM,\r\n            DISCONNECT IMMEDIATELY!\r\n'
+[2021-11-01 12:01:18,050] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-01 12:01:18,050] INFO     __main__     Connection to ip: 10.145.63.1 established
+[2021-11-01 12:01:18,050] INFO     __main__     Trying to establish a connection to: 10.145.63.1
+[2021-11-01 12:01:18,157] INFO     paramiko.transport Connected (version 2.0, client OpenSSH_6.7p1)
+[2021-11-01 12:01:18,448] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-01 12:01:18,613] INFO     paramiko.transport Connected (version 2.0, client Cisco-1.25)
+[2021-11-01 12:01:19,141] INFO     paramiko.transport Auth banner: b'C\r\n*** WARNING ***\r\n\r\n This system is restricted to authorized users only.\r\n Any unauthorized access is strictly prohibited and\r\n will be prosecuted to the full extent of applicable\r\n local and international law. All activity is being\r\n logged and improper use will be reported.\r\n  IF YOUR ARE NOT AUTHORIZED TO ACCESS THIS SYSTEM,\r\n            DISCONNECT IMMEDIATELY!\r\n'
+[2021-11-01 12:01:19,414] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-01 12:01:19,414] INFO     __main__     Connection to ip: 10.145.63.1 established
+[2021-11-01 12:01:58,413] INFO     __main__     Trying to establish a connection to: 10.145.63.1
+[2021-11-01 12:01:58,516] INFO     paramiko.transport Connected (version 2.0, client OpenSSH_6.7p1)
+[2021-11-01 12:01:58,819] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-01 12:01:58,979] INFO     paramiko.transport Connected (version 2.0, client Cisco-1.25)
+[2021-11-01 12:01:59,496] INFO     paramiko.transport Auth banner: b'C\r\n*** WARNING ***\r\n\r\n This system is restricted to authorized users only.\r\n Any unauthorized access is strictly prohibited and\r\n will be prosecuted to the full extent of applicable\r\n local and international law. All activity is being\r\n logged and improper use will be reported.\r\n  IF YOUR ARE NOT AUTHORIZED TO ACCESS THIS SYSTEM,\r\n            DISCONNECT IMMEDIATELY!\r\n'
+[2021-11-01 12:01:59,762] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-01 12:01:59,762] INFO     __main__     Connection to ip: 10.145.63.1 established
+[2021-11-01 12:01:59,772] INFO     __main__     Trying to establish a connection to: 10.145.63.1
+[2021-11-01 12:01:59,862] INFO     paramiko.transport Connected (version 2.0, client OpenSSH_6.7p1)
+[2021-11-01 12:02:00,146] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-01 12:02:00,313] INFO     paramiko.transport Connected (version 2.0, client Cisco-1.25)
+[2021-11-01 12:02:00,833] INFO     paramiko.transport Auth banner: b'C\r\n*** WARNING ***\r\n\r\n This system is restricted to authorized users only.\r\n Any unauthorized access is strictly prohibited and\r\n will be prosecuted to the full extent of applicable\r\n local and international law. All activity is being\r\n logged and improper use will be reported.\r\n  IF YOUR ARE NOT AUTHORIZED TO ACCESS THIS SYSTEM,\r\n            DISCONNECT IMMEDIATELY!\r\n'
+[2021-11-01 12:02:01,102] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-01 12:02:01,103] INFO     __main__     Connection to ip: 10.145.63.1 established
