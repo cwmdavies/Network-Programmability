@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Added TextFSM Templates">
+      <change afterPath="$PROJECT_DIR$/Jupyter Notebooks/cisco_ios_show_interfaces.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Jupyter Notebooks/debug.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network Mapping/Interface Descriptions Script/Interfaces.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network Mapping/Interface Descriptions Script/cisco_ios_show_interfaces.textfsm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1tc0NvpRtHTFZcVTEbwsHNd6CA2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/TEXTFSM/TEXTFSM_TEMPLATES" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\TEXTFSM\TEXTFSM_TEMPLATES" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\christopher.davies1\AppData\Roaming\Subversion</configuration>
+    <myIsUseDefaultProxy>true</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="" />
+      <created>1623053033895</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1623053033895</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Added output">
+      <created>1623060045260</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1623060045260</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Testing Logger code">
+      <created>1623065882819</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1623065882819</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Testing Logger code">
+      <created>1623066951460</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1623066951460</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Testing Logger code">
+      <created>1623067025342</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1623067025342</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Testing Logger code">
+      <created>1623068000726</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1623068000726</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Testing Logger code">
+      <created>1623322306958</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1623322306958</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Testing Logger code">
+      <created>1623322760477</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1623322760477</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Testing Logger code">
+      <created>1623322821690</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1623322821690</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Testing Logger code">
+      <created>1623322871788</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1623322871788</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Testing napalm code">
+      <created>1623407761365</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1623407761365</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Creating structured code package">
+      <created>1623840693477</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1623840693477</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Creating structured code package">
+      <created>1623843752365</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1623843752365</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Creating structured code package">
+      <created>1623843781231</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1623843781231</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Creating structured code package">
+      <created>1623847638746</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1623847638746</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Creating structured code package">
+      <created>1623848248240</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1623848248240</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Creating structured code package">
+      <created>1623848380719</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1623848380719</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Removed old, unused files">
+      <created>1623848533945</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1623848533945</updated>
+    </task>
+    <task id="LOCAL-00018" summary="debugging option on gui">
+      <created>1623850515162</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1623850515162</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Changes to Napalm code">
+      <created>1624019143094</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1624019143094</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Changes to Napalm code">
+      <created>1624021052732</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1624021052732</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Changes to Jupyter">
+      <created>1624455864968</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1624455864968</updated>
+    </task>
+    <task id="LOCAL-00022" summary="cleaned up GUI">
+      <created>1624528806278</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1624528806278</updated>
+    </task>
+    <task id="LOCAL-00023" summary="cleaned up GUI">
+      <created>1624539158804</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1624539158804</updated>
+    </task>
+    <task id="LOCAL-00024" summary="changes to variables">
+      <created>1624539295374</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1624539295374</updated>
+    </task>
+    <task id="LOCAL-00025" summary="changes to Napalm code">
+      <created>1624626638457</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1624626638457</updated>
+    </task>
+    <task id="LOCAL-00026" summary="TEXTFSM Testing">
+      <created>1624888447977</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1624888447977</updated>
+    </task>
+    <task id="LOCAL-00027" summary="TEXTFSM Testing">
+      <created>1624890088152</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1624890088152</updated>
+    </task>
+    <task id="LOCAL-00028" summary="write to excel for text fsm script">
+      <created>1625475358669</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1625475358669</updated>
+    </task>
+    <task id="LOCAL-00029" summary="text fsm script changes">
+      <created>1625478982854</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1625478982854</updated>
+    </task>
+    <task id="LOCAL-00030" summary="text fsm script changes">
+      <created>1625484793816</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1625484793816</updated>
+    </task>
+    <task id="LOCAL-00031" summary="text fsm script changes">
+      <created>1625497043753</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1625497043753</updated>
+    </task>
+    <task id="LOCAL-00032" summary="text fsm script changes">
+      <created>1626794250973</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1626794250973</updated>
+    </task>
+    <task id="LOCAL-00033" summary="text fsm script changes">
+      <created>1626794388283</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1626794388283</updated>
+    </task>
+    <task id="LOCAL-00034" summary="text fsm script changes">
+      <created>1626862341613</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1626862341613</updated>
+    </task>
+    <task id="LOCAL-00035" summary="text fsm script changes">
+      <created>1626874436694</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1626874436694</updated>
+    </task>
+    <task id="LOCAL-00036" summary="text fsm script changes">
+      <created>1626948163656</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1626948163656</updated>
+    </task>
+    <task id="LOCAL-00037" summary="text fsm script changes">
+      <created>1626951077611</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1626951077611</updated>
+    </task>
+    <task id="LOCAL-00038" summary="text fsm script changes">
+      <created>1628250855577</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1628250855577</updated>
+    </task>
+    <task id="LOCAL-00039" summary="text fsm script changes">
+      <created>1628250874034</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1628250874034</updated>
+    </task>
+    <task id="LOCAL-00040" summary="IP Thread Pinger creation">
+      <created>1633524457445</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1633524457445</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Cleanup">
+      <created>1633524525544</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1633524525544</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Cleanup">
+      <created>1635859641835</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1635859641835</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Added TextFSM Templates">
+      <created>1635863880600</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1635863880600</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Added TextFSM Templates">
+      <created>1635864528058</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1635864528058</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added output" />
+    <MESSAGE value="Testing Logger code" />
+    <MESSAGE value="Testing napalm code" />
+    <MESSAGE value="Creating structured code package" />
+    <MESSAGE value="Removed old, unused files" />
+    <MESSAGE value="debugging option on gui" />
+    <MESSAGE value="Changes to Napalm code" />
+    <MESSAGE value="Changes to Jupyter" />
+    <MESSAGE value="cleaned up GUI" />
+    <MESSAGE value="changes to variables" />
+    <MESSAGE value="changes to Napalm code" />
+    <MESSAGE value="TEXTFSM Testing" />
+    <MESSAGE value="write to excel for text fsm script" />
+    <MESSAGE value="text fsm script changes" />
+    <MESSAGE value="IP Thread Pinger creation" />
+    <MESSAGE value="Cleanup" />
+    <MESSAGE value="Added TextFSM Templates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added TextFSM Templates" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Network Mapping/CDP Network Map Script/CDP Network Map.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
