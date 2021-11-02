@@ -25,7 +25,7 @@ password = getpass("Please enter your password: ")
 IP_Address = input("Please enter an ip Address: ")
 
 commands = []
-df = pd.read_excel(r'Interfaces.xlsx')
+df = pd.read_excel(r'Interface Details.xlsx')
 
 ######################################################################################################################
 #          Logging Functions
@@ -113,8 +113,8 @@ def int_write(ip):
         commands.append("'''")
         commands.append("conf t")
         for num in range(len(df)):
-            commands.append(f"interface {df['Interface'][num]}")
-            commands.append(f"description {df['Description'][num]}")
+            commands.append(f"interface {df['INTERFACE'][num]}")
+            commands.append(f"description {df['DESCRIPTION'][num]}")
         commands.append("end")
         commands.append("exit")
         commands.append("'''")
