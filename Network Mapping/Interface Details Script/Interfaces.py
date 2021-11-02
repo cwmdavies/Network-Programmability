@@ -125,106 +125,104 @@ def get_interfaces(ip):
 
 
 def main():
-    try:
-        interfaces = get_interfaces(IPAddr)
+    interfaces = get_interfaces(IPAddr)
 
-        index = 2
-        workbook = Workbook()
-        workbook.create_sheet("Interface Details")
-        del workbook["Sheet"]
-        workbook.save(filename=filename)
-        workbook = load_workbook(filename=filename)
-        ws = workbook["Interface Details"]
-        ws["A1"] = "INTERFACE"
-        ws["B1"] = "LINK_STATUS"
-        ws["C1"] = "PROTOCOL_STATUS"
-        ws["D1"] = "HARDWARE_TYPE"
-        ws["E1"] = "ADDRESS"
-        ws["F1"] = "BIA"
-        ws["G1"] = "DESCRIPTION"
-        ws["H1"] = "IP_ADDRESS"
-        ws["I1"] = "MTU"
-        ws["J1"] = "DUPLEX"
-        ws["K1"] = "SPEED"
-        ws["L1"] = "MEDIA_TYPE"
-        ws["M1"] = "BANDWIDTH"
-        ws["N1"] = "DELAY"
-        ws["O1"] = "ENCAPSULATION"
-        ws["P1"] = "LAST_INPUT"
-        ws["Q1"] = "LAST_OUTPUT"
-        ws["R1"] = "LAST_OUTPUT_HANG"
-        ws["S1"] = "QUEUE_STRATEGY"
-        ws["T1"] = "INPUT_RATE"
-        ws["U1"] = "OUTPUT_RATE"
-        ws["V1"] = "INPUT_PACKETS"
-        ws["W1"] = "OUTPUT_PACKETS"
-        ws["X1"] = "INPUT_ERRORS"
-        ws["Y1"] = "CRC"
-        ws["Z1"] = "ABORT"
-        ws["AA1"] = "OUTPUT_ERRORS"
-        ws.column_dimensions['A'].width = "30"
-        ws.column_dimensions['B'].width = "30"
-        ws.column_dimensions['C'].width = "30"
-        ws.column_dimensions['D'].width = "30"
-        ws.column_dimensions['E'].width = "30"
-        ws.column_dimensions['F'].width = "30"
-        ws.column_dimensions['G'].width = "50"
-        ws.column_dimensions['H'].width = "30"
-        ws.column_dimensions['I'].width = "30"
-        ws.column_dimensions['J'].width = "30"
-        ws.column_dimensions['K'].width = "30"
-        ws.column_dimensions['L'].width = "30"
-        ws.column_dimensions['M'].width = "30"
-        ws.column_dimensions['N'].width = "30"
-        ws.column_dimensions['O'].width = "30"
-        ws.column_dimensions['P'].width = "30"
-        ws.column_dimensions['Q'].width = "30"
-        ws.column_dimensions['R'].width = "30"
-        ws.column_dimensions['S'].width = "30"
-        ws.column_dimensions['T'].width = "30"
-        ws.column_dimensions['U'].width = "30"
-        ws.column_dimensions['V'].width = "30"
-        ws.column_dimensions['W'].width = "30"
-        ws.column_dimensions['X'].width = "30"
-        ws.column_dimensions['Y'].width = "30"
-        ws.column_dimensions['Z'].width = "30"
-        ws.column_dimensions['AA'].width = "30"
-        workbook.save(filename=filename)
+    index = 2
+    workbook = Workbook()
+    workbook.create_sheet("Interface Details")
+    del workbook["Sheet"]
+    workbook.save(filename=filename)
+    workbook = load_workbook(filename=filename)
+    ws = workbook["Interface Details"]
+    ws["A1"] = "INTERFACE"
+    ws["B1"] = "LINK_STATUS"
+    ws["C1"] = "PROTOCOL_STATUS"
+    ws["D1"] = "HARDWARE_TYPE"
+    ws["E1"] = "ADDRESS"
+    ws["F1"] = "BIA"
+    ws["G1"] = "DESCRIPTION"
+    ws["H1"] = "IP_ADDRESS"
+    ws["I1"] = "MTU"
+    ws["J1"] = "DUPLEX"
+    ws["K1"] = "SPEED"
+    ws["L1"] = "MEDIA_TYPE"
+    ws["M1"] = "BANDWIDTH"
+    ws["N1"] = "DELAY"
+    ws["O1"] = "ENCAPSULATION"
+    ws["P1"] = "LAST_INPUT"
+    ws["Q1"] = "LAST_OUTPUT"
+    ws["R1"] = "LAST_OUTPUT_HANG"
+    ws["S1"] = "QUEUE_STRATEGY"
+    ws["T1"] = "INPUT_RATE"
+    ws["U1"] = "OUTPUT_RATE"
+    ws["V1"] = "INPUT_PACKETS"
+    ws["W1"] = "OUTPUT_PACKETS"
+    ws["X1"] = "INPUT_ERRORS"
+    ws["Y1"] = "CRC"
+    ws["Z1"] = "ABORT"
+    ws["AA1"] = "OUTPUT_ERRORS"
+    ws.column_dimensions['A'].width = "30"
+    ws.column_dimensions['B'].width = "30"
+    ws.column_dimensions['C'].width = "30"
+    ws.column_dimensions['D'].width = "30"
+    ws.column_dimensions['E'].width = "30"
+    ws.column_dimensions['F'].width = "30"
+    ws.column_dimensions['G'].width = "50"
+    ws.column_dimensions['H'].width = "30"
+    ws.column_dimensions['I'].width = "30"
+    ws.column_dimensions['J'].width = "30"
+    ws.column_dimensions['K'].width = "30"
+    ws.column_dimensions['L'].width = "30"
+    ws.column_dimensions['M'].width = "30"
+    ws.column_dimensions['N'].width = "30"
+    ws.column_dimensions['O'].width = "30"
+    ws.column_dimensions['P'].width = "30"
+    ws.column_dimensions['Q'].width = "30"
+    ws.column_dimensions['R'].width = "30"
+    ws.column_dimensions['S'].width = "30"
+    ws.column_dimensions['T'].width = "30"
+    ws.column_dimensions['U'].width = "30"
+    ws.column_dimensions['V'].width = "30"
+    ws.column_dimensions['W'].width = "30"
+    ws.column_dimensions['X'].width = "30"
+    ws.column_dimensions['Y'].width = "30"
+    ws.column_dimensions['Z'].width = "30"
+    ws.column_dimensions['AA'].width = "30"
+    workbook.save(filename=filename)
 
-        for entries in interfaces:
-            ws[f"A{index}"] = entries["INTERFACE"]
-            ws[f"B{index}"] = entries["LINK_STATUS"]
-            ws[f"C{index}"] = entries["PROTOCOL_STATUS"]
-            ws[f"D{index}"] = entries["HARDWARE_TYPE"]
-            ws[f"E{index}"] = entries["ADDRESS"]
-            ws[f"F{index}"] = entries["BIA"]
-            ws[f"G{index}"] = entries["DESCRIPTION"]
-            ws[f"H{index}"] = entries["IP_ADDRESS"]
-            ws[f"I{index}"] = entries["MTU"]
-            ws[f"J{index}"] = entries["DUPLEX"]
-            ws[f"K{index}"] = entries["SPEED"]
-            ws[f"L{index}"] = entries["MEDIA_TYPE"]
-            ws[f"M{index}"] = entries["BANDWIDTH"]
-            ws[f"N{index}"] = entries["DELAY"]
-            ws[f"O{index}"] = entries["ENCAPSULATION"]
-            ws[f"P{index}"] = entries["LAST_INPUT"]
-            ws[f"Q{index}"] = entries["LAST_OUTPUT"]
-            ws[f"R{index}"] = entries["LAST_OUTPUT_HANG"]
-            ws[f"S{index}"] = entries["QUEUE_STRATEGY"]
-            ws[f"T{index}"] = entries["INPUT_RATE"]
-            ws[f"U{index}"] = entries["OUTPUT_RATE"]
-            ws[f"V{index}"] = entries["INPUT_PACKETS"]
-            ws[f"W{index}"] = entries["OUTPUT_PACKETS"]
-            ws[f"X{index}"] = entries["INPUT_ERRORS"]
-            ws[f"Y{index}"] = entries["CRC"]
-            ws[f"Z{index}"] = entries["ABORT"]
-            ws[f"AA{index}"] = entries["OUTPUT_ERRORS"]
-            index += 1
+    for entries in interfaces:
+        ws[f"A{index}"] = entries["INTERFACE"]
+        ws[f"B{index}"] = entries["LINK_STATUS"]
+        ws[f"C{index}"] = entries["PROTOCOL_STATUS"]
+        ws[f"D{index}"] = entries["HARDWARE_TYPE"]
+        ws[f"E{index}"] = entries["ADDRESS"]
+        ws[f"F{index}"] = entries["BIA"]
+        ws[f"G{index}"] = entries["DESCRIPTION"]
+        ws[f"H{index}"] = entries["IP_ADDRESS"]
+        ws[f"I{index}"] = entries["MTU"]
+        ws[f"J{index}"] = entries["DUPLEX"]
+        ws[f"K{index}"] = entries["SPEED"]
+        ws[f"L{index}"] = entries["MEDIA_TYPE"]
+        ws[f"M{index}"] = entries["BANDWIDTH"]
+        ws[f"N{index}"] = entries["DELAY"]
+        ws[f"O{index}"] = entries["ENCAPSULATION"]
+        ws[f"P{index}"] = entries["LAST_INPUT"]
+        ws[f"Q{index}"] = entries["LAST_OUTPUT"]
+        ws[f"R{index}"] = entries["LAST_OUTPUT_HANG"]
+        ws[f"S{index}"] = entries["QUEUE_STRATEGY"]
+        ws[f"T{index}"] = entries["INPUT_RATE"]
+        ws[f"U{index}"] = entries["OUTPUT_RATE"]
+        ws[f"V{index}"] = entries["INPUT_PACKETS"]
+        ws[f"W{index}"] = entries["OUTPUT_PACKETS"]
+        ws[f"X{index}"] = entries["INPUT_ERRORS"]
+        ws[f"Y{index}"] = entries["CRC"]
+        ws[f"Z{index}"] = entries["ABORT"]
+        ws[f"AA{index}"] = entries["OUTPUT_ERRORS"]
+        index += 1
 
-        workbook.save(filename="Interface Details.xlsx")
+    workbook.save(filename="Interface Details.xlsx")
 
-    finally:
-        log.info(f"Script Complete", )
+    log.info(f"Script Complete", )
 
 
 if __name__ == "__main__":
