@@ -9,15 +9,16 @@
 #   command and writes it in a neat format
 #   to an excel spreadsheet.
 
-import os
 import paramiko
-import datetime as time
 from openpyxl import load_workbook, Workbook
 import re
 import time as timer
 from getpass import getpass
 import ipaddress
+import logging
+import sys
 
+Debugging = 0
 jump_server_address = '10.251.6.31'   # The internal ip Address for the Jump server
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
 username = input("Please enter your username: ")
@@ -25,45 +26,48 @@ password = getpass("Please enter your password: ")
 IP_Address = input("Please enter an ip Address: ")
 debug = 0
 interfaces = list()
+filename = "Interface Descriptions.xlsx"
 
+# ---------------------------------------------------------
+# -------------- Logging Configuration Start --------------
 
-class ExcelWriter:
-    def __init__(self, name):
-        self.i = 0
-        self.name = name
-        self.filename = self.name + ".xlsx"
-        if os.path.exists(f"{self.filename}"):
-            os.remove(f"{self.filename}")
-        workbook = Workbook()
-        workbook.save(filename=self.filename)
+# Log file location
+logfile = 'debug.log'
+# Define the log format
+log_format = (
+    '[%(asctime)s] %(levelname)-8s %(name)-12s %(message)s')
 
-    def get_sheets(self):
-        workbook = load_workbook(filename=self.filename)
-        return workbook.sheetnames
+# Define basic configuration
+if Debugging == 0:
+    logging.basicConfig(
+        # Define logging level
+        level=logging.INFO,
+        # Declare the object we created to format the log messages
+        format=log_format,
+        # Declare handlers
+        handlers=[
+            logging.FileHandler(logfile),
+            logging.StreamHandler(sys.stdout),
+        ]
+    )
+elif Debugging == 1:
+    logging.basicConfig(
+        # Define logging level
+        level=logging.DEBUG,
+        # Declare the object we created to format the log messages
+        format=log_format,
+        # Declare handlers
+        handlers=[
+            logging.FileHandler(logfile),
+            logging.StreamHandler(sys.stdout),
+        ]
+    )
 
-    def add_sheets(self, *col_name):
-        workbook = load_workbook(filename=self.filename)
-        for value in col_name:
-            if value not in workbook.sheetnames:
-                workbook.create_sheet(value)
-            else:
-                output_log(f"{value} already exists in {self.name}. Ignoring column creation!")
-        if "Sheet" in workbook.sheetnames:
-            del workbook["Sheet"]
-        workbook.save(filename=self.filename)
+# Define your own logger name
+log = logging.getLogger(__name__)
 
-    def write(self, sheet, key, index, value):
-        workbook = load_workbook(filename=self.filename)
-        ws = workbook[f"{sheet}"]
-        ws[f"{key}{index}"] = value
-        workbook.save(filename=self.filename)
-
-    def filter_cols(self, sheet, col, width):
-        workbook = load_workbook(filename=self.filename)
-        ws = workbook[f"{sheet}"]
-        ws.auto_filter.ref = ws.dimensions
-        ws.column_dimensions[f'{col}'].width = width
-        workbook.save(filename=self.filename)
+# --------------- Logging Configuration End ---------------
+# ---------------------------------------------------------
 
 
 def ip_check(ip):
@@ -76,35 +80,36 @@ def ip_check(ip):
 
 def open_session(ip):
     if not ip_check(ip):
-        error_log(f"open_session function error: "
+        log.error(f"open_session function error: "
                   f"ip Address {ip} is not a valid Address. Please check and restart the script!",)
         return None, False
     try:
-        output_log(f"Trying to establish a connection to: {ip}")
+        log.info(f"Trying to establish a connection to: {ip}")
         jump_box = paramiko.SSHClient()
         jump_box.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         jump_box.connect(jump_server_address, username=username, password=password)
         jump_box_transport = jump_box.get_transport()
         src_address = (local_IP_address, 22)
         destination_address = (ip, 22)
-        jump_box_channel = jump_box_transport.open_channel("direct-tcpip", destination_address, src_address)
+        jump_box_channel = jump_box_transport.open_channel("direct-tcpip", destination_address, src_address, timeout=4,)
         target = paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        target.connect(destination_address, username=username, password=password, sock=jump_box_channel)
-        output_log(f"Connection to ip: {ip} established")
+        target.connect(destination_address, username=username, password=password, sock=jump_box_channel, timeout=4,
+                       auth_timeout=4, banner_timeout=4)
+        log.info(f"Connection to ip: {ip} established")
         return target, jump_box, True
     except paramiko.ssh_exception.AuthenticationException:
-        error_log(f"Authentication to ip: {ip} failed! Please check your ip, username and password.")
+        log.error(f"Authentication to ip: {ip} failed! Please check your ip, username and password.")
         return None, None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
-        error_log(f"Unable to connect to ip: {ip}!")
+        log.error(f"Unable to connect to ip: {ip}!")
         return None, None, False
     except (ConnectionError, TimeoutError):
-        error_log(f"Timeout error occurred for ip: {ip}!")
+        log.error(f"Timeout error occurred for ip: {ip}!")
         return None, None, False
     except Exception as err:
-        error_log(f"Open Session Error: An unknown error occurred for ip: {ip}!")
-        error_log(f"\t Error: {err}")
+        log.error(f"Open Session Error: An unknown error occurred for ip: {ip}!")
+        log.error(f"\t Error: {err}")
         return None, None, False
 
 
@@ -114,7 +119,7 @@ def get_interfaces(ip):
     if not connection:
         return None
     try:
-        output_log(f"retrieving list of interfaces from ip Address: {ip}")
+        log.info(f"retrieving list of interfaces from ip Address: {ip}")
         _, stdout, _ = ssh.exec_command("show ip interface brief")
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
@@ -124,21 +129,21 @@ def get_interfaces(ip):
             temp_interface_name = match.group(1)
             temp_interface_name = temp_interface_name.strip()
             interface_names.append(temp_interface_name)
-        output_log(f"List retrieval successful for ip Address: {ip}")
+        log.info(f"List retrieval successful for ip Address: {ip}")
         return interface_names
     except paramiko.ssh_exception.AuthenticationException:
-        error_log(f"Interfaces function Error: Authentication to ip: "
+        log.error(f"Interfaces function Error: Authentication to ip: "
                   f"{ip} failed! Please check your ip, username and password.")
         return None
     except paramiko.ssh_exception.NoValidConnectionsError:
-        error_log(f"Interfaces function Error: Unable to connect to ip: {ip}!")
+        log.error(f"Interfaces function Error: Unable to connect to ip: {ip}!")
         return None
     except (ConnectionError, TimeoutError):
-        error_log(f"Interfaces function Error: Timeout error occurred for ip: {ip}!")
+        log.error(f"Interfaces function Error: Timeout error occurred for ip: {ip}!")
         return None
     except Exception as err:
-        error_log(f"Interfaces function Error: An unknown error occurred for ip: {ip}!")
-        error_log(f"\t Error: {err}")
+        log.error(f"Interfaces function Error: An unknown error occurred for ip: {ip}!")
+        log.error(f"\t Error: {err}")
         return None
     finally:
         ssh.close()
@@ -151,9 +156,9 @@ def get_int_description(int_name):
     command = f"show run interface {int_name} | inc description"
     ssh, jump_box, connection = open_session(IP_Address)
     if not connection:
-        error_log(f"get_int_description - Function Error: No connection is available for ip: {IP_Address}!")
+        log.error(f"get_int_description - Function Error: No connection is available for ip: {IP_Address}!")
     try:
-        output_log(f"retrieving interface description for interface: {int_name}")
+        log.info(f"retrieving interface description for interface: {int_name}")
         _, stdout, _ = ssh.exec_command(command)
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
@@ -163,51 +168,21 @@ def get_int_description(int_name):
         int_description = int_description.strip("description")
         interfaces_dict["Interface"] = int_name
         interfaces_dict["Description"] = int_description
-        output_log(f"Description retrieval successful for interface: {int_name}")
+        log.info(f"Description retrieval successful for interface: {int_name}")
     except TypeError:
         interfaces_dict["Interface"] = int_name
         interfaces_dict["Description"] = "No Description found"
     except paramiko.ssh_exception.SSHException:
-        error_log(f"get_int_description - Function Error: "
+        log.error(f"get_int_description - Function Error: "
                   f"There is an error connecting or establishing SSH session to ip Address {IP_Address}")
     except Exception as err:
-        error_log(f"get_int_description - Function Error: An unknown error occurred for ip: {IP_Address}, "
+        log.error(f"get_int_description - Function Error: An unknown error occurred for ip: {IP_Address}, "
                   f"on Interface: {int_name}!")
-        error_log(f"\t Error: {err}")
+        log.error(f"\t Error: {err}")
     finally:
         interfaces.append(interfaces_dict)
         ssh.close()
         jump_box.close()
-
-
-#######################################################################################################################
-#          Logging Functions
-#
-
-def error_log(message,):
-    date_time_object = time.datetime.now()
-    datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
-    error_file = open("Error Log.txt", "a")
-    error_file.write(f"{datetime} - {message}")
-    error_file.write("\n")
-    error_file.close()
-    if debug == 1:
-        print(message)
-
-
-def output_log(message,):
-    date_time_object = time.datetime.now()
-    datetime = date_time_object.strftime("%d/%m/%Y %H:%M:%S")
-    output_file = open("Output Log.txt", "a")
-    output_file.write(f"{datetime} - {message}")
-    output_file.write("\n")
-    output_file.close()
-    if debug == 1:
-        print(message)
-
-#
-#
-#######################################################################################################################
 
 
 def main():
@@ -216,13 +191,6 @@ def main():
     
     start = timer.time()
 
-    int_detail = ExcelWriter("Interfaces")
-    int_detail.add_sheets("Interface Descriptions",)
-    int_detail.write("Interface Descriptions", "A", "1", "Interface",)
-    int_detail.write("Interface Descriptions", "B", "1", "Description",)
-    int_detail.filter_cols("Interface Descriptions", "A", "30")
-    int_detail.filter_cols("Interface Descriptions", "B", "60")
-
     try:
         interface_names = get_interfaces(IP_Address)
 
@@ -230,19 +198,30 @@ def main():
             get_int_description(int_name)
 
         index = 2
+        workbook = Workbook()
+        workbook.create_sheet("Interface Descriptions")
+        del workbook["Sheet"]
+        workbook.save(filename=filename)
+        workbook = load_workbook(filename=filename)
+        ws = workbook["Interface Descriptions"]
+        ws["A1"] = "Interface"
+        ws["B1"] = "Description"
+        ws.column_dimensions['A'].width = "30"
+        ws.column_dimensions['B'].width = "30"
+        workbook.save(filename=filename)
+
         for entries in interfaces:
-            int_detail.write("Interface Descriptions", "A", f"{index}", entries["Interface"],)
-            int_detail.write("Interface Descriptions", "B", f"{index}", entries["Description"],)
+            ws[f"A{index}"] = entries["Interface"]
+            ws[f"B{index}"] = entries["Description"]
             index += 1
-    except Exception as err:
-        error_log(f"Main function error: An unknown error occurred")
-        error_log(f"\t Error: {err}")
+
+            workbook.save(filename=filename)
 
     finally:   
         end = timer.time()
         elapsed = (end - start) / 60
-        output_log(f"Total execution time: {elapsed:.3} minutes.",)
-        output_log(f"Script Complete",)
+        log.info(f"Total execution time: {elapsed:.3} minutes.",)
+        log.info(f"Script Complete",)
 
 
 if __name__ == "__main__":

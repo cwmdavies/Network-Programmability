@@ -19,7 +19,7 @@ Debugging = 0
 IPAddr = input("Enter an IP Address: ")
 username = input("Enter your username: ")
 password = getpass("Enter your Password: ")
-jump_server_address = '10.251.6.31'  # The internal ip Address for the Jump server
+jump_server_address = '10.251.131.6'  # The internal ip Address for the Jump server
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
 IP_LIST = []
 Hostnames_List = []
@@ -67,7 +67,6 @@ elif Debugging == 1:
 # Define your own logger name
 log = logging.getLogger(__name__)
 
-
 # --------------- Logging Configuration End ---------------
 # ---------------------------------------------------------
 
@@ -84,7 +83,7 @@ def jump_session(ip):
     if not ip_check(ip):
         with ThreadLock:
             log.error(f"open_session function error: "
-                    f"ip Address {ip} is not a valid Address. Please check and restart the script!",)
+                      f"ip Address {ip} is not a valid Address. Please check and restart the script!",)
         return None, False
     try:
         with ThreadLock:
@@ -98,26 +97,27 @@ def jump_session(ip):
         jump_box_channel = jump_box_transport.open_channel("direct-tcpip", destination_address, src_address, timeout=4,)
         target = paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        target.connect(destination_address, username=username, password=password, sock=jump_box_channel, timeout=4,)
+        target.connect(destination_address, username=username, password=password, sock=jump_box_channel, timeout=4,
+                       auth_timeout=4, banner_timeout=4)
         with ThreadLock:
-            log.info(f"Connection to ip: {ip} established")
+            log.info(f"Connection to IP: {ip} established")
         return target, jump_box, True
     except paramiko.ssh_exception.AuthenticationException:
         with ThreadLock:
-            log.error(f"Authentication to ip: {ip} failed! Please check your ip, username and password.")
+            log.error(f"Authentication to IP: {ip} failed! Please check your ip, username and password.")
         return None, None, False
     except paramiko.ssh_exception.NoValidConnectionsError:
         with ThreadLock:
-            log.error(f"Unable to connect to ip: {ip}!")
+            log.error(f"Unable to connect to IP: {ip}!")
         return None, None, False
     except (ConnectionError, TimeoutError):
         with ThreadLock:
-            log.error(f"Timeout error occurred for ip: {ip}!")
+            log.error(f"Connection or Timeout error occurred for IP: {ip}!")
         return None, None, False
     except Exception as err:
         with ThreadLock:
-            log.error(f"Open Session Error: An unknown error occurred for ip: {ip}!")
-            log.error(f"\t Error: {err}")
+            log.error(f"Open Session Error: An unknown error occurred for IP: {ip}!")
+            log.error(f"{err}")
         return None, None, False
 
 
@@ -131,9 +131,10 @@ def get_cdp_details(ip):
         _, stdout, _ = ssh.exec_command("show cdp neighbors detail")
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
-        with open("./textfsm/cdp_details.txt") as f:
-            re_table = textfsm.TextFSM(f)
-            result = re_table.ParseText(stdout)
+        with ThreadLock:
+            with open("./textfsm/cdp_details.txt") as f:
+                re_table = textfsm.TextFSM(f)
+                result = re_table.ParseText(stdout)
         result = [dict(zip(re_table.header, entry)) for entry in result]
         for entry in result:
             entry['LOCAL_HOST'] = hostname
@@ -154,10 +155,11 @@ def get_hostname(ip):
     stdout = stdout.read()
     stdout = stdout.decode("utf-8")
     try:
-        with open("./textfsm/hostname.txt") as f:
-            re_table = textfsm.TextFSM(f)
-            result = re_table.ParseText(stdout)
-            hostname = result[0][0]
+        with ThreadLock:
+            with open("./textfsm/hostname.txt") as f:
+                re_table = textfsm.TextFSM(f)
+                result = re_table.ParseText(stdout)
+                hostname = result[0][0]
     except:
         hostname = "Not Found"
     ssh.close()
@@ -207,14 +209,15 @@ def to_excel(cdp_details):
             workbook.save(filename=filename)
             index += 1
     except Exception as err:
-        print("An Exception Occurred")
-        print({err})
+        log.error("An Exception Occurred")
+        log.error({err})
 
     workbook.save(filename=filename)
 
 
 def main():
     start = time.perf_counter()
+
     IP_LIST.append(IPAddr)
     pool = ThreadPool(10)
 
@@ -231,8 +234,10 @@ def main():
     pool.join()
     
     to_excel(collection_of_results)
+
     end = time.perf_counter()
     print(f"{end - start:0.4f} seconds")
+
 
 if __name__ == "__main__":
     main()
