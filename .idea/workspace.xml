@@ -5,15 +5,250 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Cleanup">
+      <change afterPath="$PROJECT_DIR$/Network Mapping/Archive/Structured/CDP Network Map.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network Mapping/Archive/Structured/source_code/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network Mapping/Archive/Structured/source_code/code.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network Mapping/Archive/Structured/source_code/defaults/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network Mapping/Archive/Structured/source_code/defaults/gui.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network Mapping/Archive/Structured/source_code/defaults/jump_session.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network Mapping/Archive/Structured/source_code/defaults/logging_code.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network Mapping/Archive/Structured/source_code/defaults/session.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_dir.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_access-list.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_access-session.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_adjacency.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_alert_counters.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_aliases.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_archive.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_authentication_sessions.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_bfd_neighbors_details.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_boot.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_capability_feature_routing.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_cdp_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_cdp_neighbors_detail.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_clock.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_controller_t1.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_crypto_session_detail.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_dhcp_lease.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_dmvpn.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_dot1x_all.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_environment_power_all.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_environment_temperature.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_etherchannel_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_hosts_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_interface_transceiver.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_interfaces.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_interfaces_description.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_interfaces_status.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_interfaces_switchport.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_inventory.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_access-lists.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_arp.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_bgp.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_bgp_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_bgp_neighbors_advertised-routes.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_bgp_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_bgp_vpnv4_all_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_cef.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_cef_detail.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_device_tracking_all.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_eigrp_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_eigrp_topology.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_flow_toptalkers.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_interface.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_interface_brief.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_mroute.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_ospf_database.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_ospf_database_network.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_ospf_database_router.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_ospf_interface_brief.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_ospf_neighbor.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_prefix-list.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_route.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_route_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_source_binding.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ip_vrf_interfaces.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ipv6_interface_brief.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_ipv6_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_isdn_status.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_isis_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_license.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_lldp_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_lldp_neighbors_detail.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_logging.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_mac-address-table.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_module.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_module_online_diag.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_module_status.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_module_submodule.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_mpls_interfaces.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_object-group.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_platform_diag.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_port-security_interface_interface.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_power_available.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_power_status.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_power_supplies.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_processes_cpu.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_processes_memory_sorted.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_redundancy.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_route-map.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_running-config_partition_access-list.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_running-config_partition_route-map.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_snmp_community.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_snmp_user.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_spanning-tree.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_standby.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_standby_brief.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_switch_detail.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_switch_detail_stack_ports.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_tacacs.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_version.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_vlan.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_vrf.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_vrrp_all.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_vrrp_brief.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_show_vtp_status.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/IOS/cisco_ios_traceroute.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_access-lists.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_cdp_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_cdp_neighbors_detail.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_clock.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_configuration_session_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_cts_interface_all.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_cts_interface_brief.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_environment.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_environment_temperature.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_feature.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_fex.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_fex_id.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_flogi_database.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_forwarding_adjacency.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_forwarding_ipv4_route.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_hostname.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_hsrp_all.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_interface.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_interface_brief.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_interface_description.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_interface_status.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_interface_transceiver.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_interface_transceiver_details.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_interfaces_switchport.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_inventory.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_adjacency.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_arp.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_arp_detail.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_bgp.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_bgp_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_bgp_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_bgp_summary_vrf.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_community-list.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_dhcp_relay_address.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_interface.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_interface_brief.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_interface_vrf_all.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_ospf_database.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_ospf_neighbor.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ip_route.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_ipv6_interface_brief.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_l2rib_internal_permanently-frozen-list.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_license_usage.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_lldp_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_lldp_neighbors_detail.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_mac_address-table.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_module.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_port-channel_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_processes_cpu.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_route-map.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_vdc.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_version.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_vlan.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_vpc.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_vrf.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/NXOS/cisco_nxos_show_vrf_interface.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/S300/cisco_s300_show_interfaces_status.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/S300/cisco_s300_show_lldp_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/S300/cisco_s300_show_mac_address-table.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/S300/cisco_s300_show_version.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_802.11a.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_802.11a_cleanair_config.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_advanced_802.11a_channel.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_ap_config_general.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_ap_image_all.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_ap_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_band-select.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_cdp_neighbors_detail.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_client_detail.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_exclusionlist.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_interface_detailed_id.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_interface_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_inventory.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_mobility_anchor.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_mobility_sum.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_port_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_radius_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_redundancy_detail.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_redundancy_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_rf-profile_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_stats_port_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_sysinfo.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_tacacs_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_time.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/WLC/cisco_wlc_ssh_show_wlan_sum.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_admin_show_controller_fabric_health.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_admin_show_environment_fan.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_admin_show_environment_power.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_admin_show_inventory.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_admin_show_platform.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_admin_show_vm.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_arp.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_asic-errors_all_location.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_bfd_sessions.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_bgp.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_bgp_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_bgp_vrf_all_ipv4_unicast_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_cdp_neighbors_detail.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_cef_drops_location.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_configuration_commit_list.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_controller_fabric_plane_all.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_controllers_HundredGigabitEthernet.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_controllers_all_phy.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_controllers_fabric_fia_drops_egress_location.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_controllers_fabric_fia_drops_ingress_location.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_controllers_fabric_fia_errors_egress_location.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_controllers_fabric_fia_errors_ingress_location.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_dhcp_ipv4_proxy_binding.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_drops_np_all.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_hsrp.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_interface_brief.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_interfaces.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_interfaces_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_ip_bgp_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_ip_interface_brief.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_ip_route.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_ipv6_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_isis_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_lldp_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_lpts_pifib_hardware_police_location.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_mpls_ldp_neighbor_brief.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_ospf_neighbor.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_pim_neighbor.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_processes_cpu.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_redundancy_summary.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_rsvp_neighbors.textfsm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextFSM/XR/cisco_xr_show_version.textfsm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/CDP_Neighbors_Detail.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/CDP_Neighbors_Detail.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/Interface Descriptions Script/Error Log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/Interface Descriptions Script/Interface_Descriptions - Read.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/Interface Descriptions Script/Interface_Descriptions - Read.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/Interface Descriptions Script/Interfaces.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/Interface Descriptions Script/Output Log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/CDP Network Map.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/Get_Interface_Info - Napalm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/Interface_Descriptions - Read.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/Interface_Descriptions - Write.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/source_code/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/source_code/code.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/source_code/defaults/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/source_code/defaults/gui.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/source_code/defaults/jump_session.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/source_code/defaults/logging_code.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structured/source_code/defaults/session.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -474,7 +709,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633524525544</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Cleanup">
+      <created>1635859641835</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1635859641835</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
