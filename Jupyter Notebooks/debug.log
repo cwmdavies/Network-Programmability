@@ -1,0 +1,24 @@
+[2021-11-02 14:57:52,988] INFO     __main__     Trying to establish a connection to: 10.145.61.10
+[2021-11-02 14:57:53,081] INFO     paramiko.transport Connected (version 2.0, client OpenSSH_7.4)
+[2021-11-02 14:57:53,562] INFO     paramiko.transport Auth banner: b'\\S\nKernel \\r on an \\m\n\n'
+[2021-11-02 14:57:53,563] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-02 14:57:53,786] INFO     paramiko.transport Connected (version 2.0, client Cisco-1.25)
+[2021-11-02 14:57:56,484] INFO     paramiko.transport Auth banner: b'\r\n*** WARNING ***\r\n This system is restricted to authorized users only.\r\n Any unauthorized access is strictly prohibited and\r\n will be prosecuted to the full extent of applicable\r\n local and international law. All activity is being\r\n logged and improper use will be reported.\r\n  IF YOUR ARE NOT AUTHORIZED TO ACCESS THIS SYSTEM,\r\n            DISCONNECT IMMEDIATELY!\r\n'
+[2021-11-02 14:57:56,771] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-02 14:57:56,772] INFO     __main__     Connection to IP: 10.145.61.10 established
+[2021-11-02 14:58:18,840] INFO     __main__     Trying to establish a connection to: 10.145.61.10
+[2021-11-02 14:58:18,915] INFO     paramiko.transport Connected (version 2.0, client OpenSSH_7.4)
+[2021-11-02 14:58:19,368] INFO     paramiko.transport Auth banner: b'\\S\nKernel \\r on an \\m\n\n'
+[2021-11-02 14:58:19,368] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-02 14:58:19,588] INFO     paramiko.transport Connected (version 2.0, client Cisco-1.25)
+[2021-11-02 14:58:22,252] INFO     paramiko.transport Auth banner: b'\r\n*** WARNING ***\r\n This system is restricted to authorized users only.\r\n Any unauthorized access is strictly prohibited and\r\n will be prosecuted to the full extent of applicable\r\n local and international law. All activity is being\r\n logged and improper use will be reported.\r\n  IF YOUR ARE NOT AUTHORIZED TO ACCESS THIS SYSTEM,\r\n            DISCONNECT IMMEDIATELY!\r\n'
+[2021-11-02 14:58:22,530] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-02 14:58:22,531] INFO     __main__     Connection to IP: 10.145.61.10 established
+[2021-11-02 15:11:55,681] INFO     __main__     Trying to establish a connection to: 10.145.61.10
+[2021-11-02 15:11:55,762] INFO     paramiko.transport Connected (version 2.0, client OpenSSH_7.4)
+[2021-11-02 15:11:56,233] INFO     paramiko.transport Auth banner: b'\\S\nKernel \\r on an \\m\n\n'
+[2021-11-02 15:11:56,233] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-02 15:11:56,469] INFO     paramiko.transport Connected (version 2.0, client Cisco-1.25)
+[2021-11-02 15:11:59,232] INFO     paramiko.transport Auth banner: b'\r\n*** WARNING ***\r\n This system is restricted to authorized users only.\r\n Any unauthorized access is strictly prohibited and\r\n will be prosecuted to the full extent of applicable\r\n local and international law. All activity is being\r\n logged and improper use will be reported.\r\n  IF YOUR ARE NOT AUTHORIZED TO ACCESS THIS SYSTEM,\r\n            DISCONNECT IMMEDIATELY!\r\n'
+[2021-11-02 15:11:59,517] INFO     paramiko.transport Authentication (password) successful!
+[2021-11-02 15:11:59,517] INFO     __main__     Connection to IP: 10.145.61.10 established
