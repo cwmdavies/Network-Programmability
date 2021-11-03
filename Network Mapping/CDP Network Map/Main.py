@@ -71,8 +71,8 @@ log = logging.getLogger(__name__)
 # ---------------------------------------------------------
 
 
-# Checks that the IP address is valid
-def ip_check(ip) -> None:
+# Checks that the IP address is valid. Returns True or false.
+def ip_check(ip) -> Bool:
     try:
         ipaddress.ip_address(ip)
         return True
