@@ -1,6 +1,6 @@
 ###############################################
 #            Under Construction               #
-#                Design Phase                 #
+#               Testing Phase                 #
 #                                             #
 ###############################################
 
@@ -71,7 +71,8 @@ log = logging.getLogger(__name__)
 # ---------------------------------------------------------
 
 
-def ip_check(ip):
+# Checks that the IP address is valid
+def ip_check(ip) -> None:
     try:
         ipaddress.ip_address(ip)
         return True
@@ -79,7 +80,8 @@ def ip_check(ip):
         return False
 
 
-def jump_session(ip):
+# Connected to the IP address through a jump host using SSH.
+def jump_session(ip) -> SSH_Session:
     if not ip_check(ip):
         with ThreadLock:
             log.error(f"open_session function error: "
@@ -121,7 +123,9 @@ def jump_session(ip):
         return None, None, False
 
 
-def get_cdp_details(ip):
+# Connects to the host's IP Address and runs the 'show cdp neighbors detail'
+# command and parses the output using TextFSM and saves it to a list of dicts.
+def get_cdp_details(ip) -> None:
     ssh, jump_box, connection = jump_session(ip)
     if not connection:
         return None
@@ -147,7 +151,9 @@ def get_cdp_details(ip):
     jump_box.close()
 
 
-def get_hostname(ip):
+# Connects to the host's IP Address and runs the 'show run | inc hostname'
+# command and parses the output using TextFSM and saves it to a list.
+def get_hostname(ip) -> Hostname:
     ssh, jump_box, connection = jump_session(ip)
     if not connection:
         return None
@@ -167,7 +173,9 @@ def get_hostname(ip):
     return hostname
 
 
-def to_excel(cdp_details):
+# Takes in the a list of dicts from the 'get_cdp_details' function and saves it in a neat format
+# to an excel spreadsheet.
+def to_excel(cdp_details) -> None:
     global index
     workbook = Workbook()
     workbook.create_sheet("CDP Neighbors Detail")
@@ -215,7 +223,8 @@ def to_excel(cdp_details):
     workbook.save(filename=filename)
 
 
-def main():
+# Main function that brings everything together.
+def main() -> None:
     start = time.perf_counter()
 
     IP_LIST.append(IPAddr)
@@ -229,10 +238,10 @@ def main():
         pool.map(get_cdp_details, ip_addresses)
 
         i = limit
-    
+
     pool.close()
     pool.join()
-    
+
     to_excel(collection_of_results)
 
     end = time.perf_counter()
