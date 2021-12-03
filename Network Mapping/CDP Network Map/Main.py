@@ -72,7 +72,7 @@ log = logging.getLogger(__name__)
 
 
 # Checks that the IP address is valid. Returns True or false.
-def ip_check(ip) -> Bool:
+def ip_check(ip):
     try:
         ipaddress.ip_address(ip)
         return True
@@ -81,7 +81,7 @@ def ip_check(ip) -> Bool:
 
 
 # Connected to the IP address through a jump host using SSH.
-def jump_session(ip) -> SSH_Session:
+def jump_session(ip):
     if not ip_check(ip):
         with ThreadLock:
             log.error(f"open_session function error: "
@@ -153,7 +153,7 @@ def get_cdp_details(ip) -> None:
 
 # Connects to the host's IP Address and runs the 'show run | inc hostname'
 # command and parses the output using TextFSM and saves it to a list.
-def get_hostname(ip) -> Hostname:
+def get_hostname(ip):
     ssh, jump_box, connection = jump_session(ip)
     if not connection:
         return None
@@ -195,7 +195,7 @@ def to_excel(cdp_details) -> None:
     ws.column_dimensions['A'].width = "25"
     ws.column_dimensions['B'].width = "25"
     ws.column_dimensions['C'].width = "25"
-    ws.column_dimensions['D'].width = "45"
+    ws.column_dimensions['D'].width = "25"
     ws.column_dimensions['E'].width = "25"
     ws.column_dimensions['F'].width = "25"
     ws.column_dimensions['G'].width = "25"
@@ -205,10 +205,10 @@ def to_excel(cdp_details) -> None:
     workbook.save(filename=filename)
     try:
         for entry in cdp_details:
-            ws[f"A{index}"] = entry["LOCAL_HOST"]
+            ws[f"A{index}"] = entry["LOCAL_HOST"].replace(".cns.muellergroup.com","")
             ws[f"B{index}"] = entry["LOCAL_PORT"]
             ws[f"C{index}"] = entry["LOCAL_IP"]
-            ws[f"D{index}"] = entry["REMOTE_HOST"]
+            ws[f"D{index}"] = entry["REMOTE_HOST"].replace(".cns.muellergroup.com","")
             ws[f"E{index}"] = entry["REMOTE_PORT"]
             ws[f"F{index}"] = entry["REMOTE_IP"]
             ws[f"G{index}"] = entry["PLATFORM"]
