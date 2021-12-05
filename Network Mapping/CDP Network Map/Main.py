@@ -4,6 +4,17 @@
 #                                             #
 ###############################################
 
+'''
+This script connects to a single IP Address and parses the "Show CDP Neighbor Detail" command output and saves it to a 
+list of dictionaries. It then uses this information to connect to each of the neighbouring switches to exstract the cdp 
+neightbor details of each neighbor while adding each dictionary of information to the list until there are no more 
+IP Addresses to connect to. When all neighboring information has been collected the information is saved to an excel spreadsheet.
+
+
+Threading is used to connect to multiple switches at a time. Each IP Address is checked to ensure each IP Address is valid.
+'''
+
+
 import paramiko
 import textfsm
 from getpass import getpass
@@ -71,7 +82,10 @@ log = logging.getLogger(__name__)
 # ---------------------------------------------------------
 
 
-# Checks that the IP address is valid. Returns True or false.
+'''
+Checks that the IP address is valid.
+Returns True or false.
+'''
 def ip_check(ip):
     try:
         ipaddress.ip_address(ip)
@@ -80,7 +94,10 @@ def ip_check(ip):
         return False
 
 
-# Connected to the IP address through a jump host using SSH.
+'''
+Connected to the IP address through a jump host using SSH.
+Returns the SSH session.
+'''
 def jump_session(ip):
     if not ip_check(ip):
         with ThreadLock:
@@ -123,9 +140,12 @@ def jump_session(ip):
         return None, None, False
 
 
-# Connects to the host's IP Address and runs the 'show cdp neighbors detail'
-# command and parses the output using TextFSM and saves it to a list of dicts.
-def get_cdp_details(ip) -> None:
+'''
+Connects to the host's IP Address and runs the 'show cdp neighbors detail'
+command and parses the output using TextFSM and saves it to a list of dicts.
+Returns None.
+'''
+def get_cdp_details(ip):
     ssh, jump_box, connection = jump_session(ip)
     if not connection:
         return None
@@ -150,9 +170,11 @@ def get_cdp_details(ip) -> None:
     ssh.close()
     jump_box.close()
 
-
-# Connects to the host's IP Address and runs the 'show run | inc hostname'
-# command and parses the output using TextFSM and saves it to a list.
+'''
+Connects to the host's IP Address and runs the 'show run | inc hostname'
+command and parses the output using TextFSM and saves it to a list.
+Returns the Hostname.
+'''
 def get_hostname(ip):
     ssh, jump_box, connection = jump_session(ip)
     if not connection:
@@ -173,9 +195,12 @@ def get_hostname(ip):
     return hostname
 
 
-# Takes in the a list of dicts from the 'get_cdp_details' function and saves it in a neat format
-# to an excel spreadsheet.
-def to_excel(cdp_details) -> None:
+'''
+Takes in a list of dicts from the 'get_cdp_details' function and saves it in a neat format
+to an excel spreadsheet.
+Returns None.
+'''
+def to_excel(cdp_details):
     global index
     workbook = Workbook()
     workbook.create_sheet("CDP Neighbors Detail")
@@ -224,7 +249,7 @@ def to_excel(cdp_details) -> None:
 
 
 # Main function that brings everything together.
-def main() -> None:
+def main():
     start = time.perf_counter()
 
     IP_LIST.append(IPAddr)
