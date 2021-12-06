@@ -5,11 +5,11 @@
 ###############################################
 
 '''
-This script connects to a single IP Address and parses the "Show CDP Neighbor Detail" command output and saves it to a 
-list of dictionaries. It then uses this information to connect to each of the neighbouring switches to exstract the cdp 
-neightbor details of each neighbor while adding each dictionary of information to the list until there are no more 
-IP Addresses to connect to. When all neighboring information has been collected the information is saved to an excel spreadsheet.
-
+This is a script that connects to a single IP Address and parses the "Show CDP Neighbors Detail" command output and saves it to a 
+list inside of a dictionary. It then uses this information to connect to each of the neighbouring switches to exstract the cdp 
+neightbour details of each neighbour while adding each dictionary of information to the list(One for each neighbour) until there
+are no more neighbouring switches to connect to. When all neighboring information has been collected and added as dictionaries to
+to the list the information is saved to an excel spreadsheet.
 
 Threading is used to connect to multiple switches at a time. Each IP Address is checked to ensure each IP Address is valid.
 '''
