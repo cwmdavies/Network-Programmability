@@ -5,7 +5,9 @@
 ###############################################
 
 '''
-
+A script that takes in an IP Address, two can be supplied if there are two core switches, and run the "Show CDP Neighbors Detail"
+command and saves it to a numpy array. This information is then used to rewrite the interface descriptions to ensure each is correct.
+A an excel spreadsheet is used to collect the information of the interfaces that were ammended.
 
 Threading is used to connect to multiple switches at a time. Each IP Address is checked to ensure each IP Address is valid.
 '''
