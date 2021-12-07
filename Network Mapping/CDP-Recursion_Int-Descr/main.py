@@ -24,6 +24,7 @@ from multiprocessing.pool import ThreadPool
 from multiprocessing import Lock
 import tkinter as tk
 from tkinter import ttk
+import numpy as np
 
 jump_server_address = '10.251.131.6'  # The internal ip Address for the Jump server
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
