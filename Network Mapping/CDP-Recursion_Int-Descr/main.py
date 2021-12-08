@@ -225,7 +225,7 @@ def get_cdp_details(ip):
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
         with ThreadLock:
-            with open("./textfsm/cdp_details.txt") as f:
+            with open("./TextFSM/cisco_ios_show_cdp_neighbors_detail.textfsm") as f:
                 re_table = textfsm.TextFSM(f)
                 result = re_table.ParseText(stdout)
         result = [dict(zip(re_table.header, entry)) for entry in result]
@@ -233,9 +233,9 @@ def get_cdp_details(ip):
             entry['LOCAL_HOST'] = hostname
             entry['LOCAL_IP'] = ip
             collection_of_results.append(entry)
-            if entry["REMOTE_IP"] not in IP_LIST:
+            if entry["MANAGEMENT_IP"] not in IP_LIST:
                 if 'Switch' in entry['CAPABILITIES']:
-                    IP_LIST.append(entry["REMOTE_IP"])
+                    IP_LIST.append(entry["MANAGEMENT_IP"])
     ssh.close()
     jump_box.close()
 
@@ -254,7 +254,7 @@ def get_hostname(ip):
     stdout = stdout.decode("utf-8")
     try:
         with ThreadLock:
-            with open("./textfsm/hostname.txt") as f:
+            with open("./textfsm/hostname.textfsm") as f:
                 re_table = textfsm.TextFSM(f)
                 result = re_table.ParseText(stdout)
                 hostname = result[0][0]
@@ -263,26 +263,6 @@ def get_hostname(ip):
     ssh.close()
     jump_box.close()
     return hostname
-
-
-'''
-Connects to the host's IP Address and runs the 'show interfaces'
-command and parses the output using TextFSM and saves it to a list
-of dictionaries.
-Returns the list.
-'''
-def get_interfaces(ip):
-    ssh, jump_box, connection = jump_session(ip)
-    _, stdout, _ = ssh.exec_command("show interfaces")
-    stdout = stdout.read()
-    stdout = stdout.decode("utf-8")
-    with open("cisco_ios_show_interfaces.textfsm") as f:
-        re_table = textfsm.TextFSM(f)
-        result = re_table.ParseText(stdout)
-    results = [dict(zip(re_table.header, entry)) for entry in result]
-    ssh.close()
-    jump_box.close()
-    return results
 
 
 '''
@@ -323,35 +303,13 @@ def int_write(ip):
         jump_box.close()
 
 
-'''
-Connects to the host's IP Address and runs the "Show Spanning Tree"
-command and saves the information to a list of dictionaries.
-Returns the list.
-'''
-def get_span_tree_info(ip):
-    ssh, jump_box, connection = jump_session(ip)
-    if not connection:
-        return None
-    _, stdout, _ = ssh.exec_command("show spanning-tree")
-    stdout = stdout.read()
-    stdout = stdout.decode("utf-8")
-    with ThreadLock:
-        with open("./textfsm/show_spanning-tree.textfsm") as f:
-            re_table = textfsm.TextFSM(f)
-            result = re_table.ParseText(stdout)
-    result = [dict(zip(re_table.header, entry)) for entry in result]
-    return result
-    ssh.close()
-    jump_box.close()
-
-
 """
-A function that connects to a hosts IP Address and a command. It runs the command on the host and parses the output using TextFSM.
-It saves the results in a Numpy Array.
+A function that connects to a hosts IP Address, a command and a list. It runs the command on the host and parses the output using TextFSM.
+It saves the results to the list.
 Example: interface_details = send_command("10.1.1.1", "show ip interface brief")
-Returns the Numpy Array
+Returns None
 """
-def send_command(ip: str, command: str):
+def send_command(ip: str, command: str, _list: list):
     if exists(f"./textfsm/cisco_ios_{command}.textfsm".replace(" ","_")):        
         ssh, jump_box, connection = jump_session(ip)
         if not connection:
@@ -363,10 +321,56 @@ def send_command(ip: str, command: str):
             re_table = textfsm.TextFSM(f)
             result = re_table.ParseText(stdout)
         results = [dict(zip(re_table.header, entry)) for entry in result]
-        resulsts_np = np.DataFrame(results)
-        return resulsts_np
+        for entry in results:
+            _list.append(entry)
         ssh.close()
         jump_box.close()
     else:
         log.error(f"The command: '{command}', cannot be found. "
                    "Check the command is correct and make sure the TextFSM file exists for that command.")
+
+
+def main():
+    # Start timer.
+    start = time.perf_counter()
+
+    # Define ammount of threads.
+    pool = ThreadPool(10)
+
+    # Added IP Addresses to the list if they exist, if not log an error.
+    if ip_check(IPAddr1):
+        IP_LIST.append(IPAddr1)
+    else:
+        log.error("Your IP Address is invalid. Please check and try again")
+    
+    if ip_check(IPAddr2):
+        IP_LIST.append(IPAddr2)
+    else:
+        log.error("Your IP Address is invalid. Please check and try again")
+
+    
+    # Start the CDP recursive lookup on the network and save the results.
+    i = 0
+    while i < len(IP_LIST):
+        limit = i + min(10, (len(IP_LIST) - i))
+        ip_addresses = IP_LIST[i:limit]
+
+        pool.map(get_cdp_details, ip_addresses)
+
+        i = limit
+
+    # Close off and join the pools together.
+    pool.close()
+    pool.join()
+
+    array = np.DataFrame(collection_of_results,columns=["LOCAL_HOST","LOCAL_IP","LOCAL_PORT","DESTINATION_HOST","REMOTE_PORT","MANAGEMENT_IP","PLATFORM","SOFTWARE_VERSION","CAPABILITIES"])
+    filepath = 'CDP_Neighbors_Detail.xlsx'
+    array.to_excel(filepath, index=False)
+
+    # End timer.
+    end = time.perf_counter()
+    print(f"{end - start:0.4f} seconds")
+
+
+if __name__ == "__main__":
+    main()

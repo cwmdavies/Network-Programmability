@@ -1,0 +1,10 @@
+Naming convention
+Uplink: Link to {switch_name}, Port {remote_port} [LC SMF]
+Downlink: Link to {switch_name}, Port {remote_port} [LC SMF]
+
+Interface Abreviations
+Hu
+Fo
+Twe
+Gig
+Fas

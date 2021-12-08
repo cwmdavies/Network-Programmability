@@ -1,16 +1,19 @@
 ###############################################
 #            Under Construction               #
-#               Design Phase                  #
+#               Testing Phase                 #
 #                                             #
 ###############################################
 
 '''
-A script that takes in an IP Address, two can be supplied if there are two core switches, and run the "Show CDP Neighbors Detail"
-command and saves it to a numpy array. This information is then used to rewrite the interface descriptions to ensure each is correct.
-A an excel spreadsheet is used to collect the information of the interfaces that were ammended.
+This is a script that connects to a single IP Address and parses the "Show CDP Neighbors Detail" command output and saves it to a 
+list inside of a dictionary. It then uses this information to connect to each of the neighbouring switches to exstract the cdp 
+neightbour details of each neighbour while adding each dictionary of information to the list(One for each neighbour) until there
+are no more neighbouring switches to connect to. When all neighboring information has been collected and added as dictionaries to
+to the list the information is saved to an excel spreadsheet.
 
 Threading is used to connect to multiple switches at a time. Each IP Address is checked to ensure each IP Address is valid.
 '''
+
 
 import paramiko
 import textfsm
@@ -22,11 +25,11 @@ import sys
 import time
 from multiprocessing.pool import ThreadPool
 from multiprocessing import Lock
-import tkinter as tk
-from tkinter import ttk
-import pandas as np
-from os.path import exists
 
+Debugging = 0
+IPAddr = input("Enter an IP Address: ")
+username = input("Enter your username: ")
+password = getpass("Enter your Password: ")
 jump_server_address = '10.251.131.6'  # The internal ip Address for the Jump server
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
 IP_LIST = []
@@ -37,80 +40,8 @@ index = 2
 ThreadLock = Lock()
 
 
-# -----------------------------------------------------------
-# --------------- TKinter Configuration Start ---------------
-
-# root window
-root = tk.Tk()
-root.eval('tk::PlaceWindow . center')
-root.geometry("300x350")
-root.resizable(False, True)
-root.title('Required Details')
-
-# store entries
-Username_var = tk.StringVar()
-password_var = tk.StringVar()
-IP_Address1_var = tk.StringVar()
-IP_Address2_var = tk.StringVar()
-Debugging_var = tk.IntVar()
-
-# Site details frame
-Site_details = ttk.Frame(root)
-Site_details.pack(padx=10, pady=10, fill='x', expand=True)
-
-# Username
-Username_label = ttk.Label(Site_details, text="Username:")
-Username_label.pack(fill='x', expand=True)
-Username_entry = ttk.Entry(Site_details, textvariable=Username_var)
-Username_entry.pack(fill='x', expand=True)
-Username_entry.focus()
-
-# Password
-password_label = ttk.Label(Site_details, text="\nPassword:")
-password_label.pack(fill='x', expand=True)
-password_entry = ttk.Entry(Site_details, textvariable=password_var, show="*")
-password_entry.pack(fill='x', expand=True)
-
-# ip Address 1
-IP_Address1_label = ttk.Label(Site_details, text="\nCore Switch 1:")
-IP_Address1_label.pack(fill='x', expand=True)
-IP_Address1_entry = ttk.Entry(Site_details, textvariable=IP_Address1_var)
-IP_Address1_entry.pack(fill='x', expand=True)
-
-# ip Address 2
-IP_Address2_label = ttk.Label(Site_details, text="\nCore Switch 2 (Optional):")
-IP_Address2_label.pack(fill='x', expand=True)
-IP_Address2_entry = ttk.Entry(Site_details, textvariable=IP_Address2_var)
-IP_Address2_entry.pack(fill='x', expand=True)
-
-# Debugging
-Debugging_label = ttk.Label(Site_details, text="\nDebugging (0 = OFF, 1 = ON):")
-Debugging_label.pack(fill='x', expand=True)
-Debugging_entry = ttk.Entry(Site_details, textvariable=Debugging_var)
-Debugging_entry.pack(fill='x', expand=True)
-
-resultLabel = ttk.Label(Site_details, text="", wraplength=300)
-resultLabel.pack(fill='x', expand=True)
-
-# Submit button
-Submit_button = ttk.Button(Site_details, text="Submit", command=root.destroy)
-Submit_button.pack(fill='x', pady=10)
-
-root.attributes('-topmost', True)
-root.mainloop()
-
-username = Username_var.get()
-password = password_var.get()
-IPAddr1 = IP_Address1_var.get()
-IPAddr2 = IP_Address2_var.get()
-Debugging = Debugging_var.get()
-
-# ---------------- TKinter Configuration End ----------------
-# -----------------------------------------------------------
-
-
-# -----------------------------------------------------------
-# --------------- Logging Configuration Start ---------------
+# ---------------------------------------------------------
+# -------------- Logging Configuration Start --------------
 
 # Log file location
 logfile = 'debug.log'
@@ -225,7 +156,7 @@ def get_cdp_details(ip):
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
         with ThreadLock:
-            with open("./TextFSM/cisco_ios_show_cdp_neighbors_detail.textfsm") as f:
+            with open("./textfsm/cdp_details.txt") as f:
                 re_table = textfsm.TextFSM(f)
                 result = re_table.ParseText(stdout)
         result = [dict(zip(re_table.header, entry)) for entry in result]
@@ -233,12 +164,11 @@ def get_cdp_details(ip):
             entry['LOCAL_HOST'] = hostname
             entry['LOCAL_IP'] = ip
             collection_of_results.append(entry)
-            if entry["MANAGEMENT_IP"] not in IP_LIST:
+            if entry["REMOTE_IP"] not in IP_LIST:
                 if 'Switch' in entry['CAPABILITIES']:
-                    IP_LIST.append(entry["MANAGEMENT_IP"])
+                    IP_LIST.append(entry["REMOTE_IP"])
     ssh.close()
     jump_box.close()
-
 
 '''
 Connects to the host's IP Address and runs the 'show run | inc hostname'
@@ -254,7 +184,7 @@ def get_hostname(ip):
     stdout = stdout.decode("utf-8")
     try:
         with ThreadLock:
-            with open("./textfsm/hostname.textfsm") as f:
+            with open("./textfsm/hostname.txt") as f:
                 re_table = textfsm.TextFSM(f)
                 result = re_table.ParseText(stdout)
                 hostname = result[0][0]
@@ -266,51 +196,79 @@ def get_hostname(ip):
 
 
 '''
-Connects to the host's IP Address and runs a list of commands
-on the switch to rename the interfaces descriptions.
-Returns the list.
+Takes in a list of dicts from the 'get_cdp_details' function and saves it in a neat format
+to an excel spreadsheet.
+Returns None.
 '''
+def to_excel(cdp_details):
+    global index
+    workbook = Workbook()
+    workbook.create_sheet("CDP Neighbors Detail")
+    del workbook["Sheet"]
+    workbook.save(filename=filename)
+    workbook = load_workbook(filename=filename)
+    ws = workbook["CDP Neighbors Detail"]
+    ws["A1"] = "LOCAL_HOST"
+    ws["B1"] = "LOCAL_PORT"
+    ws["C1"] = "LOCAL_IP"
+    ws["D1"] = "REMOTE_HOST"
+    ws["E1"] = "REMOTE_PORT"
+    ws["F1"] = "REMOTE_IP"
+    ws["G1"] = "PLATFORM"
+    ws["H1"] = "SOFTWARE_VERSION"
+    ws["I1"] = "CAPABILITIES"
+    ws.column_dimensions['A'].width = "25"
+    ws.column_dimensions['B'].width = "25"
+    ws.column_dimensions['C'].width = "25"
+    ws.column_dimensions['D'].width = "25"
+    ws.column_dimensions['E'].width = "25"
+    ws.column_dimensions['F'].width = "25"
+    ws.column_dimensions['G'].width = "25"
+    ws.column_dimensions['H'].width = "120"
+    ws.column_dimensions['I'].width = "45"
+    ws.auto_filter.ref = ws.dimensions
+    workbook.save(filename=filename)
+    try:
+        for entry in cdp_details:
+            ws[f"A{index}"] = entry["LOCAL_HOST"].replace(".cns.muellergroup.com","")
+            ws[f"B{index}"] = entry["LOCAL_PORT"]
+            ws[f"C{index}"] = entry["LOCAL_IP"]
+            ws[f"D{index}"] = entry["REMOTE_HOST"].replace(".cns.muellergroup.com","")
+            ws[f"E{index}"] = entry["REMOTE_PORT"]
+            ws[f"F{index}"] = entry["REMOTE_IP"]
+            ws[f"G{index}"] = entry["PLATFORM"]
+            ws[f"H{index}"] = entry["SOFTWARE_VERSION"]
+            ws[f"I{index}"] = entry["CAPABILITIES"]
+            workbook.save(filename=filename)
+            index += 1
+    except Exception as err:
+        log.error("An Exception Occurred")
+        log.error({err})
+
+    workbook.save(filename=filename)
 
 
+# Main function that brings everything together.
 def main():
-    # Start timer.
     start = time.perf_counter()
 
-    # Define ammount of threads.
-    Thread_Count = 10
-    pool = ThreadPool(Thread_Count)
+    IP_LIST.append(IPAddr)
+    pool = ThreadPool(10)
 
-    # Added IP Addresses to the list if they exist, if not log an error.
-    if ip_check(IPAddr1):
-        IP_LIST.append(IPAddr1)
-    else:
-        log.error("Your IP Address is invalid. Please check and try again")
-    
-    if ip_check(IPAddr2):
-        IP_LIST.append(IPAddr2)
-    else:
-        log.error("Your IP Address is invalid. Please check and try again")
-
-    
-    # Start the CDP recursive lookup on the network and save the results.
     i = 0
     while i < len(IP_LIST):
-        limit = i + min(Thread_Count, (len(IP_LIST) - i))
+        limit = i + min(10, (len(IP_LIST) - i))
         ip_addresses = IP_LIST[i:limit]
 
         pool.map(get_cdp_details, ip_addresses)
 
         i = limit
 
-    # Close off and join the pools together.
     pool.close()
     pool.join()
 
-    array = np.DataFrame(collection_of_results,columns=["LOCAL_HOST","LOCAL_IP","LOCAL_PORT","DESTINATION_HOST","REMOTE_PORT","MANAGEMENT_IP","PLATFORM","SOFTWARE_VERSION","CAPABILITIES"])
-    filepath = 'CDP_Neighbors_Detail.xlsx'
-    array.to_excel(filepath, index=False)
+    to_excel(collection_of_results)
 
-    # End timer.
     end = time.perf_counter()
     print(f"{end - start:0.4f} seconds")
 
