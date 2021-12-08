@@ -24,7 +24,8 @@ from multiprocessing.pool import ThreadPool
 from multiprocessing import Lock
 import tkinter as tk
 from tkinter import ttk
-import numpy as np
+import pandas as np
+from os.path import exists
 
 jump_server_address = '10.251.131.6'  # The internal ip Address for the Jump server
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
@@ -42,14 +43,15 @@ ThreadLock = Lock()
 # root window
 root = tk.Tk()
 root.eval('tk::PlaceWindow . center')
-root.geometry("300x300")
+root.geometry("300x350")
 root.resizable(False, True)
 root.title('Required Details')
 
 # store entries
 Username_var = tk.StringVar()
 password_var = tk.StringVar()
-IP_Address_var = tk.StringVar()
+IP_Address1_var = tk.StringVar()
+IP_Address2_var = tk.StringVar()
 Debugging_var = tk.IntVar()
 
 # Site details frame
@@ -64,16 +66,22 @@ Username_entry.pack(fill='x', expand=True)
 Username_entry.focus()
 
 # Password
-password_label = ttk.Label(Site_details, text="Password:")
+password_label = ttk.Label(Site_details, text="\nPassword:")
 password_label.pack(fill='x', expand=True)
 password_entry = ttk.Entry(Site_details, textvariable=password_var, show="*")
 password_entry.pack(fill='x', expand=True)
 
-# ip Address
-IP_Address_label = ttk.Label(Site_details, text="IP Address:")
-IP_Address_label.pack(fill='x', expand=True)
-IP_Address_entry = ttk.Entry(Site_details, textvariable=IP_Address_var)
-IP_Address_entry.pack(fill='x', expand=True)
+# ip Address 1
+IP_Address1_label = ttk.Label(Site_details, text="\nCore Switch 1:")
+IP_Address1_label.pack(fill='x', expand=True)
+IP_Address1_entry = ttk.Entry(Site_details, textvariable=IP_Address1_var)
+IP_Address1_entry.pack(fill='x', expand=True)
+
+# ip Address 2
+IP_Address2_label = ttk.Label(Site_details, text="\nCore Switch 2 (Optional):")
+IP_Address2_label.pack(fill='x', expand=True)
+IP_Address2_entry = ttk.Entry(Site_details, textvariable=IP_Address2_var)
+IP_Address2_entry.pack(fill='x', expand=True)
 
 # Debugging
 Debugging_label = ttk.Label(Site_details, text="\nDebugging (0 = OFF, 1 = ON):")
@@ -93,7 +101,8 @@ root.mainloop()
 
 username = Username_var.get()
 password = password_var.get()
-IPAddr = IP_Address_var.get()
+IPAddr1 = IP_Address1_var.get()
+IPAddr2 = IP_Address2_var.get()
 Debugging = Debugging_var.get()
 
 # ---------------- TKinter Configuration End ----------------
@@ -140,9 +149,6 @@ log = logging.getLogger(__name__)
 
 # --------------- Logging Configuration End ---------------
 # ---------------------------------------------------------
-
-
-
 
 
 '''
@@ -315,3 +321,52 @@ def int_write(ip):
     finally:
         ssh.close()
         jump_box.close()
+
+
+'''
+Connects to the host's IP Address and runs the "Show Spanning Tree"
+command and saves the information to a list of dictionaries.
+Returns the list.
+'''
+def get_span_tree_info(ip):
+    ssh, jump_box, connection = jump_session(ip)
+    if not connection:
+        return None
+    _, stdout, _ = ssh.exec_command("show spanning-tree")
+    stdout = stdout.read()
+    stdout = stdout.decode("utf-8")
+    with ThreadLock:
+        with open("./textfsm/show_spanning-tree.textfsm") as f:
+            re_table = textfsm.TextFSM(f)
+            result = re_table.ParseText(stdout)
+    result = [dict(zip(re_table.header, entry)) for entry in result]
+    return result
+    ssh.close()
+    jump_box.close()
+
+
+"""
+A function that connects to a hosts IP Address and a command. It runs the command on the host and parses the output using TextFSM.
+It saves the results in a Numpy Array.
+Example: interface_details = send_command("10.1.1.1", "show ip interface brief")
+Returns the Numpy Array
+"""
+def send_command(ip: str, command: str):
+    if exists(f"./textfsm/cisco_ios_{command}.textfsm".replace(" ","_")):        
+        ssh, jump_box, connection = jump_session(ip)
+        if not connection:
+            return None
+        _, stdout, _ = ssh.exec_command(command)
+        stdout = stdout.read()
+        stdout = stdout.decode("utf-8")
+        with open(f"./textfsm/cisco_ios_{command}.textfsm".replace(" ","_")) as f:
+            re_table = textfsm.TextFSM(f)
+            result = re_table.ParseText(stdout)
+        results = [dict(zip(re_table.header, entry)) for entry in result]
+        resulsts_np = np.DataFrame(results)
+        return resulsts_np
+        ssh.close()
+        jump_box.close()
+    else:
+        log.error(f"The command: '{command}', cannot be found. "
+                   "Check the command is correct and make sure the TextFSM file exists for that command.")
