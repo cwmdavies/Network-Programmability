@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Code cleanup">
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="TKinter layout changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
     </list>
@@ -63,13 +63,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623053033895</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Testing Logger code">
-      <created>1623066951460</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1623066951460</updated>
     </task>
     <task id="LOCAL-00004" summary="Testing Logger code">
       <created>1623067025342</created>
@@ -407,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639052672845</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="TKinter layout changes">
+      <created>1639053740553</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1639053740553</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -443,7 +443,8 @@
     <MESSAGE value="Added TextFSM Templates" />
     <MESSAGE value="New Get Interface detail script" />
     <MESSAGE value="Code cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code cleanup" />
+    <MESSAGE value="TKinter layout changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="TKinter layout changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

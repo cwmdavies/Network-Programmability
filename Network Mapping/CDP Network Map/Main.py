@@ -46,7 +46,7 @@ ThreadLock = Lock()
 root = tk.Tk()
 root.eval('tk::PlaceWindow . center')
 root.geometry("300x400")
-root.resizable(False, True)
+root.resizable(False, False)
 root.title('Required Details')
 
 # store entries
