@@ -260,13 +260,6 @@ def get_hostname(ip):
     return hostname
 
 
-'''
-Connects to the host's IP Address and runs a list of commands
-on the switch to rename the interfaces descriptions.
-Returns the list.
-'''
-
-
 def main():
     # Start timer.
     start = time.perf_counter()
