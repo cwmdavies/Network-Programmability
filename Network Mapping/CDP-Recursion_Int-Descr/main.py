@@ -4,13 +4,15 @@
 #                                             #
 ###############################################
 
-'''
-A script that takes in an IP Address, two can be supplied if there are two core switches, and run the "Show CDP Neighbors Detail"
-command and saves it to a numpy array. This information is then used to rewrite the interface descriptions to ensure each is correct.
-A an excel spreadsheet is used to collect the information of the interfaces that were ammended.
+"""
+A script that takes in an IP Address, two can be supplied if there are two core switches, and run the
+"Show CDP Neighbors Detail" command and saves it to a numpy array. This information is then used to rewrite
+the interface descriptions to ensure each is correct. A an excel spreadsheet is used to collect the information
+of the interfaces that were amended.
 
-Threading is used to connect to multiple switches at a time. Each IP Address is checked to ensure each IP Address is valid.
-'''
+Threading is used to connect to multiple switches at a time.
+Each IP Address is checked to ensure each IP Address is valid.
+"""
 
 import paramiko
 import textfsm
@@ -151,10 +153,8 @@ log = logging.getLogger(__name__)
 # ---------------------------------------------------------
 
 
-'''
-Checks that the IP address is valid.
-Returns True or false.
-'''
+# Checks that the IP address is valid.
+# Returns True or false.
 def ip_check(ip):
     try:
         ipaddress.ip_address(ip)
@@ -163,10 +163,8 @@ def ip_check(ip):
         return False
 
 
-'''
-Connected to the IP address through a jump host using SSH.
-Returns the SSH session.
-'''
+# Connected to the IP address through a jump host using SSH.
+# Returns the SSH session.
 def jump_session(ip):
     if not ip_check(ip):
         with ThreadLock:
@@ -209,11 +207,9 @@ def jump_session(ip):
         return None, None, False
 
 
-'''
-Connects to the host's IP Address and runs the 'show cdp neighbors detail'
-command and parses the output using TextFSM and saves it to a list of dicts.
-Returns None.
-'''
+# Connects to the host's IP Address and runs the 'show cdp neighbors detail'
+# command and parses the output using TextFSM and saves it to a list of dicts.
+# Returns None.
 def get_cdp_details(ip):
     ssh, jump_box, connection = jump_session(ip)
     if not connection:
@@ -240,11 +236,9 @@ def get_cdp_details(ip):
     jump_box.close()
 
 
-'''
-Connects to the host's IP Address and runs the 'show run | inc hostname'
-command and parses the output using TextFSM and saves it to a list.
-Returns the Hostname.
-'''
+# Connects to the host's IP Address and runs the 'show run | inc hostname'
+# command and parses the output using TextFSM and saves it to a list.
+# Returns the Hostname.
 def get_hostname(ip):
     ssh, jump_box, connection = jump_session(ip)
     if not connection:
@@ -265,14 +259,12 @@ def get_hostname(ip):
     return hostname
 
 
-'''
-Connects to the host's IP Address and runs a list of commands
-on the switch to rename the interfaces descriptions.
-Returns the list.
-'''
+# Connects to the host's IP Address and runs a list of commands
+# on the switch to rename the interfaces descriptions.
+# Returns the list.
 def int_write(ip):
     commands = []
-    ssh, jump_box, connection = open_session(ip)
+    ssh, jump_box, connection = jump_session(ip)
     if not connection:
         return None
     try:
@@ -303,21 +295,19 @@ def int_write(ip):
         jump_box.close()
 
 
-"""
-A function that connects to a hosts IP Address, a command and a list. It runs the command on the host and parses the output using TextFSM.
-It saves the results to the list.
-Example: interface_details = send_command("10.1.1.1", "show ip interface brief")
-Returns None
-"""
+# A function that connects to a hosts IP Address, a command and a list. It runs the command on the host and parses
+# the output using TextFSM. It saves the results to the list.
+# Example: interface_details = send_command("10.1.1.1", "show ip interface brief")
+# Returns None
 def send_command(ip: str, command: str, _list: list):
-    if exists(f"./textfsm/cisco_ios_{command}.textfsm".replace(" ","_")):        
+    if exists(f"./textfsm/cisco_ios_{command}.textfsm".replace(" ", "_")):
         ssh, jump_box, connection = jump_session(ip)
         if not connection:
             return None
         _, stdout, _ = ssh.exec_command(command)
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
-        with open(f"./textfsm/cisco_ios_{command}.textfsm".replace(" ","_")) as f:
+        with open(f"./textfsm/cisco_ios_{command}.textfsm".replace(" ", "_")) as f:
             re_table = textfsm.TextFSM(f)
             result = re_table.ParseText(stdout)
         results = [dict(zip(re_table.header, entry)) for entry in result]
@@ -327,15 +317,16 @@ def send_command(ip: str, command: str, _list: list):
         jump_box.close()
     else:
         log.error(f"The command: '{command}', cannot be found. "
-                   "Check the command is correct and make sure the TextFSM file exists for that command.")
+                  f"Check the command is correct and make sure the TextFSM file exists for that command.")
 
 
 def main():
     # Start timer.
     start = time.perf_counter()
 
-    # Define ammount of threads.
-    pool = ThreadPool(10)
+    # Define amount of threads.
+    thread_count = 10
+    pool = ThreadPool(thread_count)
 
     # Added IP Addresses to the list if they exist, if not log an error.
     if ip_check(IPAddr1):
@@ -348,11 +339,10 @@ def main():
     else:
         log.error("Your IP Address is invalid. Please check and try again")
 
-    
     # Start the CDP recursive lookup on the network and save the results.
     i = 0
     while i < len(IP_LIST):
-        limit = i + min(10, (len(IP_LIST) - i))
+        limit = i + min(thread_count, (len(IP_LIST) - i))
         ip_addresses = IP_LIST[i:limit]
 
         pool.map(get_cdp_details, ip_addresses)
@@ -363,7 +353,15 @@ def main():
     pool.close()
     pool.join()
 
-    array = np.DataFrame(collection_of_results,columns=["LOCAL_HOST","LOCAL_IP","LOCAL_PORT","DESTINATION_HOST","REMOTE_PORT","MANAGEMENT_IP","PLATFORM","SOFTWARE_VERSION","CAPABILITIES"])
+    array = np.DataFrame(collection_of_results, columns=["LOCAL_HOST",
+                                                         "LOCAL_IP",
+                                                         "LOCAL_PORT",
+                                                         "DESTINATION_HOST",
+                                                         "REMOTE_PORT",
+                                                         "MANAGEMENT_IP",
+                                                         "PLATFORM",
+                                                         "SOFTWARE_VERSION",
+                                                         "CAPABILITIES"])
     filepath = 'CDP_Neighbors_Detail.xlsx'
     array.to_excel(filepath, index=False)
 
