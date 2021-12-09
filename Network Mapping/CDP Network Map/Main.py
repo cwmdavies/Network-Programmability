@@ -235,8 +235,8 @@ def get_cdp_details(ip):
 
 
 # Connects to the host's IP Address and runs the 'show run | inc hostname'
-# command and parses the output using TextFSM and saves it to a list.
-# Returns the Hostname.
+# command and parses the output using TextFSM and saves as as string.
+# Returns the string.
 def get_hostname(ip):
     ssh, jump_box, connection = jump_session(ip)
     if not connection:

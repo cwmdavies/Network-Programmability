@@ -64,20 +64,6 @@
       <option name="presentableId" value="Default" />
       <updated>1623053033895</updated>
     </task>
-    <task id="LOCAL-00004" summary="Testing Logger code">
-      <created>1623067025342</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1623067025342</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Testing Logger code">
-      <created>1623068000726</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1623068000726</updated>
-    </task>
     <task id="LOCAL-00006" summary="Testing Logger code">
       <created>1623322306958</created>
       <option name="number" value="00006" />
@@ -407,7 +393,21 @@
       <option name="project" value="LOCAL" />
       <updated>1639053740553</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="TKinter layout changes">
+      <created>1639057874025</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1639057874025</updated>
+    </task>
+    <task id="LOCAL-00054" summary="TKinter layout changes">
+      <created>1639058837286</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1639058837286</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
