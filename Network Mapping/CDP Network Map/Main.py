@@ -303,7 +303,7 @@ def main():
 
     # End timer.
     end = time.perf_counter()
-    print(f"{end - start:0.4f} seconds")
+    log.info(f"Script finished in {end - start:0.4f} seconds")
 
 
 if __name__ == "__main__":
