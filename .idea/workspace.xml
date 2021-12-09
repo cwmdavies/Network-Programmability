@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Docstring changes">
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Removed unwanted files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Napalm/Interfaces_gb-brw1-001asw001.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Napalm/Interfaces_gb-brw1-001asw002.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Napalm/Interfaces_gb-brw1-001asw003.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Napalm/Interfaces_gb-brw1-002asw001.xlsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,13 +66,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623053033895</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Testing Logger code">
-      <created>1623322821690</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1623322821690</updated>
     </task>
     <task id="LOCAL-00009" summary="Testing Logger code">
       <created>1623322871788</created>
@@ -406,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639059395151</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Removed unwanted files">
+      <created>1639063565593</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1639063565593</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -419,7 +423,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -444,7 +447,8 @@
     <MESSAGE value="Code cleanup" />
     <MESSAGE value="TKinter layout changes" />
     <MESSAGE value="Docstring changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Docstring changes" />
+    <MESSAGE value="Removed unwanted files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unwanted files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
