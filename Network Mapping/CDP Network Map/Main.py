@@ -226,8 +226,9 @@ def get_cdp_details(ip):
                 result = re_table.ParseText(stdout)
         result = [dict(zip(re_table.header, entry)) for entry in result]
         for entry in result:
-            entry['LOCAL_HOST'] = hostname
+            entry['LOCAL_HOST'] = hostname.upper()
             entry['LOCAL_IP'] = ip
+            entry['DESTINATION_HOST'] = entry['DESTINATION_HOST'].replace(".cns.muellergroup.com", "").upper()
             collection_of_results.append(entry)
             if entry["MANAGEMENT_IP"] not in IP_LIST:
                 if 'Switch' in entry['CAPABILITIES']:
@@ -275,15 +276,10 @@ def main():
     pool = ThreadPool(thread_count)
 
     # Added IP Addresses to the list if they exist, if not log an error.
-    if ip_check(IPAddr1):
-        IP_LIST.append(IPAddr1)
-    else:
-        log.error("Your IP Address is invalid. Please check and try again")
-    
-    if ip_check(IPAddr2):
-        IP_LIST.append(IPAddr2)
-    else:
-        log.error("Your IP Address is invalid. Please check and try again")
+    IP_LIST.append(IPAddr1) if ip_check(IPAddr1) else log.error(
+        "No valid IP Address was found. Please check and try again")
+    IP_LIST.append(IPAddr2) if ip_check(IPAddr2) else log.info(
+        "No valid IP Address was found.")
 
     # Start the CDP recursive lookup on the network and save the results.
     i = 0

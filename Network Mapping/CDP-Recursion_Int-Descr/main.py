@@ -329,15 +329,10 @@ def main():
     pool = ThreadPool(thread_count)
 
     # Added IP Addresses to the list if they exist, if not log an error.
-    if ip_check(IPAddr1):
-        IP_LIST.append(IPAddr1)
-    else:
-        log.error("Your IP Address is invalid. Please check and try again")
-    
-    if ip_check(IPAddr2):
-        IP_LIST.append(IPAddr2)
-    else:
-        log.error("Your IP Address is invalid. Please check and try again")
+    IP_LIST.append(IPAddr1) if ip_check(IPAddr1) else log.error(
+        "No valid IP Address was found. Please check and try again")
+    IP_LIST.append(IPAddr2) if ip_check(IPAddr2) else log.error(
+        "No valid IP Address was found. Please check and try again")
 
     # Start the CDP recursive lookup on the network and save the results.
     i = 0
