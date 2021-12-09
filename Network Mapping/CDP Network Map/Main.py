@@ -45,7 +45,7 @@ ThreadLock = Lock()
 # root window
 root = tk.Tk()
 root.eval('tk::PlaceWindow . center')
-root.geometry("300x350")
+root.geometry("300x400")
 root.resizable(False, True)
 root.title('Required Details')
 
@@ -91,12 +91,9 @@ Debugging_label.pack(fill='x', expand=True)
 Debugging_entry = ttk.Entry(Site_details, textvariable=Debugging_var)
 Debugging_entry.pack(fill='x', expand=True)
 
-resultLabel = ttk.Label(Site_details, text="", wraplength=300)
-resultLabel.pack(fill='x', expand=True)
-
 # Submit button
 Submit_button = ttk.Button(Site_details, text="Submit", command=root.destroy)
-Submit_button.pack(fill='x', pady=10)
+Submit_button.pack(fill='x', pady=30)
 
 root.attributes('-topmost', True)
 root.mainloop()
@@ -124,7 +121,7 @@ log_format = (
 if Debugging == 0:
     logging.basicConfig(
         # Define logging level
-        level=logging.INFO,
+        level=logging.WARN,
         # Declare the object we created to format the log messages
         format=log_format,
         # Declare handlers
