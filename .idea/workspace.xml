@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="TKinter layout changes">
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Docstring changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,20 +62,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623053033895</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Testing Logger code">
-      <created>1623322306958</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1623322306958</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Testing Logger code">
-      <created>1623322760477</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1623322760477</updated>
     </task>
     <task id="LOCAL-00008" summary="Testing Logger code">
       <created>1623322821690</created>
@@ -407,7 +392,21 @@
       <option name="project" value="LOCAL" />
       <updated>1639058837286</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Docstring changes">
+      <created>1639059365951</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1639059365951</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Docstring changes">
+      <created>1639059395151</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1639059395151</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -444,7 +443,8 @@
     <MESSAGE value="New Get Interface detail script" />
     <MESSAGE value="Code cleanup" />
     <MESSAGE value="TKinter layout changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="TKinter layout changes" />
+    <MESSAGE value="Docstring changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Docstring changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
