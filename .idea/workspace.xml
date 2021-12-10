@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Removed unwanted files">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Napalm/Interfaces_gb-brw1-001asw001.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Napalm/Interfaces_gb-brw1-001asw002.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Napalm/Interfaces_gb-brw1-001asw003.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Napalm/Interfaces_gb-brw1-002asw001.xlsx" beforeDir="false" />
-    </list>
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Archived some old files" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,6 +28,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1tc0NvpRtHTFZcVTEbwsHNd6CA2" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -53,6 +50,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\TEXTFSM\TEXTFSM_TEMPLATES" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Archive" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -66,34 +66,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623053033895</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Testing Logger code">
-      <created>1623322871788</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1623322871788</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Testing napalm code">
-      <created>1623407761365</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1623407761365</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Creating structured code package">
-      <created>1623840693477</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1623840693477</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Creating structured code package">
-      <created>1623843752365</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1623843752365</updated>
     </task>
     <task id="LOCAL-00013" summary="Creating structured code package">
       <created>1623843781231</created>
@@ -410,7 +382,35 @@
       <option name="project" value="LOCAL" />
       <updated>1639063565593</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Removed unwanted files">
+      <created>1639063638960</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1639063638960</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Removed unwanted files">
+      <created>1639063762299</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1639063762299</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Removed unwanted files">
+      <created>1639063815024</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1639063815024</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Archived some old files">
+      <created>1639063945957</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1639063945957</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -448,7 +448,8 @@
     <MESSAGE value="TKinter layout changes" />
     <MESSAGE value="Docstring changes" />
     <MESSAGE value="Removed unwanted files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unwanted files" />
+    <MESSAGE value="Archived some old files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Archived some old files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
