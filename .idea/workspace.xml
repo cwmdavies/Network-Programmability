@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Spelling mistakes corrected">
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Added option to choose a jump server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
     </list>
@@ -62,6 +62,35 @@
       <recent name="C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Archive" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration>C:\Users\christopher.davies1\AppData\Roaming\Subversion</configuration>
@@ -77,14 +106,7 @@
       <workItem from="1639658894348" duration="419000" />
       <workItem from="1639663626880" duration="526000" />
       <workItem from="1639731890616" duration="1950000" />
-      <workItem from="1639741390616" duration="2394000" />
-    </task>
-    <task id="LOCAL-00015" summary="Creating structured code package">
-      <created>1623848248240</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1623848248240</updated>
+      <workItem from="1639741390616" duration="3091000" />
     </task>
     <task id="LOCAL-00016" summary="Creating structured code package">
       <created>1623848380719</created>
@@ -422,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639742233705</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Added option to choose a jump server">
+      <created>1639749007344</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1639749007344</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,7 +494,8 @@
     <MESSAGE value="Removed unwanted files" />
     <MESSAGE value="Archived some old files" />
     <MESSAGE value="Spelling mistakes corrected" />
-    <option name="LAST_COMMIT_MESSAGE" value="Spelling mistakes corrected" />
+    <MESSAGE value="Added option to choose a jump server" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added option to choose a jump server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -242,7 +242,7 @@ def get_cdp_details(ip):
             entry['DESTINATION_HOST'] = entry['DESTINATION_HOST'].replace(".cns.muellergroup.com", "").upper()
             collection_of_results.append(entry)
             if entry["MANAGEMENT_IP"] not in IP_LIST:
-                if 'Switch' in entry['CAPABILITIES']:
+                if 'Switch' in entry['CAPABILITIES'] and "Host" not in entry['CAPABILITIES']:
                     IP_LIST.append(entry["MANAGEMENT_IP"])
     ssh.close()
     jump_box.close()
