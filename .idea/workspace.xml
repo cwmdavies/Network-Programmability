@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Archived some old files">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_12_2021_15_26_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_12_2021_15_26__Default_Changelist_.xml" beforeDir="false" />
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Spelling mistakes corrected">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
     </list>
@@ -79,14 +77,7 @@
       <workItem from="1639658894348" duration="419000" />
       <workItem from="1639663626880" duration="526000" />
       <workItem from="1639731890616" duration="1950000" />
-      <workItem from="1639741390616" duration="813000" />
-    </task>
-    <task id="LOCAL-00014" summary="Creating structured code package">
-      <created>1623847638746</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1623847638746</updated>
+      <workItem from="1639741390616" duration="2394000" />
     </task>
     <task id="LOCAL-00015" summary="Creating structured code package">
       <created>1623848248240</created>
@@ -424,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639126594046</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Spelling mistakes corrected">
+      <created>1639742233704</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1639742233705</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -466,7 +464,8 @@
     <MESSAGE value="Docstring changes" />
     <MESSAGE value="Removed unwanted files" />
     <MESSAGE value="Archived some old files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Archived some old files" />
+    <MESSAGE value="Spelling mistakes corrected" />
+    <option name="LAST_COMMIT_MESSAGE" value="Spelling mistakes corrected" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

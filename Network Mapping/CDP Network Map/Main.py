@@ -29,7 +29,6 @@ from tkinter import ttk
 import pandas as np
 from os.path import exists
 
-jump_server_address = '10.251.131.6'  # The internal ip Address for the Jump server
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
 IP_LIST = []
 Hostnames_List = []
@@ -45,7 +44,7 @@ ThreadLock = Lock()
 # root window
 root = tk.Tk()
 root.eval('tk::PlaceWindow . center')
-root.geometry("300x400")
+root.geometry("300x500")
 root.resizable(False, False)
 root.title('Required Details')
 
@@ -91,9 +90,23 @@ Debugging_label.pack(fill='x', expand=True)
 Debugging_entry = ttk.Entry(Site_details, textvariable=Debugging_var)
 Debugging_entry.pack(fill='x', expand=True)
 
+# Dropdown Box
+dropdown_var = tk.StringVar()
+dropdown_var.set("10.251.131.6")
+dropdown_label = ttk.Label(Site_details, text="\nJumper Server")
+dropdown_label.pack(anchor="w")
+dropdown = ttk.Combobox(Site_details,
+                        values=["10.251.6.31", "10.251.131.6"],
+                        state="readonly", textvariable=dropdown_var,
+                        )
+dropdown.current(0)
+dropdown.pack(anchor="w")
+
+
 # Submit button
 Submit_button = ttk.Button(Site_details, text="Submit", command=root.destroy)
 Submit_button.pack(fill='x', pady=30)
+
 
 root.attributes('-topmost', True)
 root.mainloop()
@@ -103,6 +116,7 @@ password = password_var.get()
 IPAddr1 = IP_Address1_var.get()
 IPAddr2 = IP_Address2_var.get()
 Debugging = Debugging_var.get()
+jump_server = dropdown_var.get()
 
 # ---------------- TKinter Configuration End ----------------
 # -----------------------------------------------------------
@@ -173,7 +187,7 @@ def jump_session(ip):
             log.info(f"Trying to establish a connection to: {ip}")
         jump_box = paramiko.SSHClient()
         jump_box.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        jump_box.connect(jump_server_address, username=username, password=password)
+        jump_box.connect(jump_server, username=username, password=password)
         jump_box_transport = jump_box.get_transport()
         src_address = (local_IP_address, 22)
         destination_address = (ip, 22)
