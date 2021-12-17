@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Added option to choose a jump server">
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,13 +62,13 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="CDP Network Map" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Program Files\Python39\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -85,11 +84,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -106,14 +100,7 @@
       <workItem from="1639658894348" duration="419000" />
       <workItem from="1639663626880" duration="526000" />
       <workItem from="1639731890616" duration="1950000" />
-      <workItem from="1639741390616" duration="3091000" />
-    </task>
-    <task id="LOCAL-00016" summary="Creating structured code package">
-      <created>1623848380719</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1623848380719</updated>
+      <workItem from="1639741390616" duration="3627000" />
     </task>
     <task id="LOCAL-00017" summary="Removed old, unused files">
       <created>1623848533945</created>
@@ -451,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639749007344</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Minor Changes to the &quot;get_cdp_details&quot; function.&#10;&#10;added in an exception to the connections list">
+      <created>1639750006736</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1639750006736</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +464,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added output" />
     <MESSAGE value="Testing Logger code" />
     <MESSAGE value="Testing napalm code" />
     <MESSAGE value="Creating structured code package" />
@@ -495,7 +488,8 @@
     <MESSAGE value="Archived some old files" />
     <MESSAGE value="Spelling mistakes corrected" />
     <MESSAGE value="Added option to choose a jump server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added option to choose a jump server" />
+    <MESSAGE value="Minor Changes to the &quot;get_cdp_details&quot; function.&#10;&#10;added in an exception to the connections list" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor Changes to the &quot;get_cdp_details&quot; function.&#10;&#10;added in an exception to the connections list" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -507,5 +501,8 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Network_Programmability$CDP_Network_Map.coverage" NAME="CDP Network Map Coverage Results" MODIFIED="1639750106436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
   </component>
 </project>

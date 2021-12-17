@@ -1,0 +1,76 @@
+# root window
+root = tk.Tk()
+root.eval('tk::PlaceWindow . center')
+root.geometry("300x500")
+root.resizable(False, False)
+root.title('Required Details')
+
+# store entries
+Username_var = tk.StringVar()
+password_var = tk.StringVar()
+IP_Address1_var = tk.StringVar()
+IP_Address2_var = tk.StringVar()
+Debugging_var = tk.IntVar()
+
+# Site details frame
+Site_details = ttk.Frame(root)
+Site_details.pack(padx=10, pady=10, fill='x', expand=True)
+
+# Username
+Username_label = ttk.Label(Site_details, text="Username:")
+Username_label.pack(fill='x', expand=True)
+Username_entry = ttk.Entry(Site_details, textvariable=Username_var)
+Username_entry.pack(fill='x', expand=True)
+Username_entry.focus()
+
+# Password
+password_label = ttk.Label(Site_details, text="\nPassword:")
+password_label.pack(fill='x', expand=True)
+password_entry = ttk.Entry(Site_details, textvariable=password_var, show="*")
+password_entry.pack(fill='x', expand=True)
+
+# ip Address 1
+IP_Address1_label = ttk.Label(Site_details, text="\nCore Switch 1:")
+IP_Address1_label.pack(fill='x', expand=True)
+IP_Address1_entry = ttk.Entry(Site_details, textvariable=IP_Address1_var)
+IP_Address1_entry.pack(fill='x', expand=True)
+
+# ip Address 2
+IP_Address2_label = ttk.Label(Site_details, text="\nCore Switch 2 (Optional):")
+IP_Address2_label.pack(fill='x', expand=True)
+IP_Address2_entry = ttk.Entry(Site_details, textvariable=IP_Address2_var)
+IP_Address2_entry.pack(fill='x', expand=True)
+
+# Debugging
+Debugging_label = ttk.Label(Site_details, text="\nDebugging (0 = OFF, 1 = ON):")
+Debugging_label.pack(fill='x', expand=True)
+Debugging_entry = ttk.Entry(Site_details, textvariable=Debugging_var)
+Debugging_entry.pack(fill='x', expand=True)
+
+# Dropdown Box
+dropdown_var = tk.StringVar()
+dropdown_var.set("10.251.131.6")
+dropdown_label = ttk.Label(Site_details, text="\nJumper Server")
+dropdown_label.pack(anchor="w")
+dropdown = ttk.Combobox(Site_details,
+                        values=["10.251.6.31", "10.251.131.6"],
+                        state="readonly", textvariable=dropdown_var,
+                        )
+dropdown.current(0)
+dropdown.pack(anchor="w")
+
+
+# Submit button
+Submit_button = ttk.Button(Site_details, text="Submit", command=root.destroy)
+Submit_button.pack(fill='x', pady=30)
+
+
+root.attributes('-topmost', True)
+root.mainloop()
+
+username = Username_var.get()
+password = password_var.get()
+IPAddr1 = IP_Address1_var.get()
+IPAddr2 = IP_Address2_var.get()
+Debugging = Debugging_var.get()
+jump_server = dropdown_var.get()
