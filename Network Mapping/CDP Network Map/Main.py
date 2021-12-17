@@ -7,7 +7,7 @@
 """
 A script that takes in an IP Address, two can be supplied if there are two core switches, and run the
 "Show CDP Neighbors Detail" command and saves it to a numpy array. This information is then used to rewrite
-the interface descriptions to ensure each is correct. A an excel spreadsheet is used to collect the information
+the interface descriptions to ensure each is correct. An Excel spreadsheet is used to collect the information
 of the interfaces that were amended.
 
 Threading is used to connect to multiple switches at a time.
@@ -235,7 +235,7 @@ def get_cdp_details(ip):
 
 
 # Connects to the host's IP Address and runs the 'show run | inc hostname'
-# command and parses the output using TextFSM and saves as as string.
+# command and parses the output using TextFSM and saves as a string.
 # Returns the string.
 def get_hostname(ip):
     ssh, jump_box, connection = jump_session(ip)
