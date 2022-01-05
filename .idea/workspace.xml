@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Folder and files restructuring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,14 +104,7 @@
       <workItem from="1639741390616" duration="3627000" />
       <workItem from="1639750382710" duration="1136000" />
       <workItem from="1641385137906" duration="481000" />
-      <workItem from="1641385642524" duration="361000" />
-    </task>
-    <task id="LOCAL-00018" summary="debugging option on gui">
-      <created>1623850515162</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1623850515162</updated>
+      <workItem from="1641385642524" duration="2049000" />
     </task>
     <task id="LOCAL-00019" summary="Changes to Napalm code">
       <created>1624019143094</created>
@@ -448,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639750588100</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Folder and files restructuring">
+      <created>1641386106668</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1641386106669</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
