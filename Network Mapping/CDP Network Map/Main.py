@@ -176,7 +176,7 @@ def ip_check(ip):
         return False
 
 
-# Connected to the IP address through a jump host using SSH.
+# Connects to the IP address through a jump host using SSH.
 # Returns the SSH session.
 def jump_session(ip):
     if not ip_check(ip):
