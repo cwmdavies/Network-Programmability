@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="">
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Folder and files restructuring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,13 +101,9 @@
       <workItem from="1639663626880" duration="526000" />
       <workItem from="1639731890616" duration="1950000" />
       <workItem from="1639741390616" duration="3627000" />
-    </task>
-    <task id="LOCAL-00017" summary="Removed old, unused files">
-      <created>1623848533945</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1623848533945</updated>
+      <workItem from="1639750382710" duration="1136000" />
+      <workItem from="1641385137906" duration="481000" />
+      <workItem from="1641385642524" duration="361000" />
     </task>
     <task id="LOCAL-00018" summary="debugging option on gui">
       <created>1623850515162</created>
@@ -445,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639750006736</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Folder and files restructuring">
+      <created>1639750588099</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1639750588100</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +467,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Testing Logger code" />
     <MESSAGE value="Testing napalm code" />
     <MESSAGE value="Creating structured code package" />
     <MESSAGE value="Removed old, unused files" />
@@ -489,7 +491,8 @@
     <MESSAGE value="Spelling mistakes corrected" />
     <MESSAGE value="Added option to choose a jump server" />
     <MESSAGE value="Minor Changes to the &quot;get_cdp_details&quot; function.&#10;&#10;added in an exception to the connections list" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor Changes to the &quot;get_cdp_details&quot; function.&#10;&#10;added in an exception to the connections list" />
+    <MESSAGE value="Folder and files restructuring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Folder and files restructuring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

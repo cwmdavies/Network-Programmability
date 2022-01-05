@@ -4,7 +4,7 @@ import pandas as np
 
 
 """
-A function that connects to a hosts IP Address and a command. It runs the command on the host and parses the output using TextFSM.
+A function that takes in a hosts IP Address and a command. It runs the command on the host and parses the output using TextFSM.
 It saves the results in a Numpy Array.
 Example: interface_details = send_command("10.1.1.1", "show ip interface brief")
 Returns the Numpy Array
@@ -21,8 +21,8 @@ def send_command(ip: str, command: str):
             re_table = textfsm.TextFSM(f)
             result = re_table.ParseText(stdout)
         results = [dict(zip(re_table.header, entry)) for entry in result]
-        resulsts_np = np.DataFrame(results)
-        return resulsts_np
+        results_np = np.DataFrame(results)
+        return results_np
         ssh.close()
         jump_box.close()
     else:
