@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Folder and files restructuring">
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Docstrings amended.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
     </list>
@@ -30,6 +30,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -104,21 +107,9 @@
       <workItem from="1639741390616" duration="3627000" />
       <workItem from="1639750382710" duration="1136000" />
       <workItem from="1641385137906" duration="481000" />
-      <workItem from="1641385642524" duration="2049000" />
-    </task>
-    <task id="LOCAL-00019" summary="Changes to Napalm code">
-      <created>1624019143094</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1624019143094</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Changes to Napalm code">
-      <created>1624021052732</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1624021052732</updated>
+      <workItem from="1641385642524" duration="3050000" />
+      <workItem from="1641466375262" duration="991000" />
+      <workItem from="1642416129148" duration="2020000" />
     </task>
     <task id="LOCAL-00021" summary="Changes to Jupyter">
       <created>1624455864968</created>
@@ -449,7 +440,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641386106669</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Docstrings amended.">
+      <created>1641387746779</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1641387746779</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Docstrings amended.">
+      <created>1641388082901</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1641388082901</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -468,7 +473,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Testing napalm code" />
     <MESSAGE value="Creating structured code package" />
     <MESSAGE value="Removed old, unused files" />
     <MESSAGE value="debugging option on gui" />
@@ -493,7 +497,8 @@
     <MESSAGE value="Added option to choose a jump server" />
     <MESSAGE value="Minor Changes to the &quot;get_cdp_details&quot; function.&#10;&#10;added in an exception to the connections list" />
     <MESSAGE value="Folder and files restructuring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Folder and files restructuring" />
+    <MESSAGE value="Docstrings amended." />
+    <option name="LAST_COMMIT_MESSAGE" value="Docstrings amended." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -507,6 +512,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Network_Programmability$CDP_Network_Map.coverage" NAME="CDP Network Map Coverage Results" MODIFIED="1639750106436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
+    <SUITE FILE_PATH="coverage/Network_Programmability$CDP_Network_Map.coverage" NAME="CDP Network Map Coverage Results" MODIFIED="1642417856192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
   </component>
 </project>

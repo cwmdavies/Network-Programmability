@@ -38,7 +38,7 @@ collection_of_results = []
 filename = "CDP_Neighbors_Detail.xlsx"
 index = 2
 ThreadLock = Lock()
-
+timeout = 10
 
 # -----------------------------------------------------------
 # --------------- TKinter Configuration Start ---------------
@@ -55,7 +55,8 @@ Username_var = tk.StringVar()
 password_var = tk.StringVar()
 IP_Address1_var = tk.StringVar()
 IP_Address2_var = tk.StringVar()
-Debugging_var = tk.IntVar()
+Debugging_var = tk.StringVar()
+JumpServer_var = tk.StringVar()
 
 # Site details frame
 Site_details = ttk.Frame(root)
@@ -86,23 +87,24 @@ IP_Address2_label.pack(fill='x', expand=True)
 IP_Address2_entry = ttk.Entry(Site_details, textvariable=IP_Address2_var)
 IP_Address2_entry.pack(fill='x', expand=True)
 
-# Debugging
-Debugging_label = ttk.Label(Site_details, text="\nDebugging (0 = OFF, 1 = ON):")
-Debugging_label.pack(fill='x', expand=True)
-Debugging_entry = ttk.Entry(Site_details, textvariable=Debugging_var)
-Debugging_entry.pack(fill='x', expand=True)
+# Debugging Dropdown Box
+Debugging_var.set("Off")
+Debugging_label = ttk.Label(Site_details, text="\nDebugging")
+Debugging_label.pack(anchor="w")
+Debugging = ttk.Combobox(Site_details, values=["On", "Off"], state="readonly", textvariable=Debugging_var, )
+Debugging.current(0)
+Debugging.pack(anchor="w")
 
 # Dropdown Box
-dropdown_var = tk.StringVar()
-dropdown_var.set("10.251.131.6")
-dropdown_label = ttk.Label(Site_details, text="\nJumper Server")
-dropdown_label.pack(anchor="w")
-dropdown = ttk.Combobox(Site_details,
-                        values=["10.251.6.31", "10.251.131.6"],
-                        state="readonly", textvariable=dropdown_var,
-                        )
-dropdown.current(0)
-dropdown.pack(anchor="w")
+JumpServer_var.set("10.251.131.6")
+JumpServer_label = ttk.Label(Site_details, text="\nJumper Server")
+JumpServer_label.pack(anchor="w")
+JumpServer = ttk.Combobox(Site_details,
+                          values=["AR31NOC", "MMFTH1V-MGMTS02"],
+                          state="readonly", textvariable=JumpServer_var,
+                          )
+JumpServer.current(0)
+JumpServer.pack(anchor="w")
 
 
 # Submit button
@@ -117,8 +119,16 @@ username = Username_var.get()
 password = password_var.get()
 IPAddr1 = IP_Address1_var.get()
 IPAddr2 = IP_Address2_var.get()
-Debugging = Debugging_var.get()
-jump_server = dropdown_var.get()
+
+if Debugging_var.get() == "On":
+    Debugging = 1
+elif Debugging_var.get() == "Off":
+    Debugging = 0
+
+if JumpServer_var.get() == "AR31NOC":
+    jump_server = "10.251.6.31"
+elif JumpServer_var.get() == "MMFTH1V-MGMTS02":
+    jump_server = "10.251.131.6"
 
 # ---------------- TKinter Configuration End ----------------
 # -----------------------------------------------------------
@@ -193,11 +203,12 @@ def jump_session(ip):
         jump_box_transport = jump_box.get_transport()
         src_address = (local_IP_address, 22)
         destination_address = (ip, 22)
-        jump_box_channel = jump_box_transport.open_channel("direct-tcpip", destination_address, src_address, timeout=4,)
+        jump_box_channel = jump_box_transport.open_channel("direct-tcpip", destination_address, src_address,
+                                                           timeout=timeout,)
         target = paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        target.connect(destination_address, username=username, password=password, sock=jump_box_channel, timeout=4,
-                       auth_timeout=4, banner_timeout=4)
+        target.connect(destination_address, username=username, password=password, sock=jump_box_channel,
+                       timeout=timeout, auth_timeout=timeout, banner_timeout=timeout)
         with ThreadLock:
             log.info(f"Connection to IP: {ip} established")
         return target, jump_box, True
