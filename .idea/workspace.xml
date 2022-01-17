@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Docstrings amended.">
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Modified TKinter code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
     </list>
@@ -109,14 +109,7 @@
       <workItem from="1641385137906" duration="481000" />
       <workItem from="1641385642524" duration="3050000" />
       <workItem from="1641466375262" duration="991000" />
-      <workItem from="1642416129148" duration="2020000" />
-    </task>
-    <task id="LOCAL-00021" summary="Changes to Jupyter">
-      <created>1624455864968</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1624455864968</updated>
+      <workItem from="1642416129148" duration="3808000" />
     </task>
     <task id="LOCAL-00022" summary="cleaned up GUI">
       <created>1624528806278</created>
@@ -454,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641388082901</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Modified TKinter code">
+      <created>1642421733391</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1642421733391</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -473,7 +473,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Creating structured code package" />
     <MESSAGE value="Removed old, unused files" />
     <MESSAGE value="debugging option on gui" />
     <MESSAGE value="Changes to Napalm code" />
@@ -498,7 +497,8 @@
     <MESSAGE value="Minor Changes to the &quot;get_cdp_details&quot; function.&#10;&#10;added in an exception to the connections list" />
     <MESSAGE value="Folder and files restructuring" />
     <MESSAGE value="Docstrings amended." />
-    <option name="LAST_COMMIT_MESSAGE" value="Docstrings amended." />
+    <MESSAGE value="Modified TKinter code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified TKinter code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -512,6 +512,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Network_Programmability$CDP_Network_Map.coverage" NAME="CDP Network Map Coverage Results" MODIFIED="1642417856192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
+    <SUITE FILE_PATH="coverage/Network_Programmability$CDP_Network_Map.coverage" NAME="CDP Network Map Coverage Results" MODIFIED="1642429533228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
   </component>
 </project>

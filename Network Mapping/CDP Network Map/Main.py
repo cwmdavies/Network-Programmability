@@ -91,7 +91,7 @@ IP_Address2_entry.pack(fill='x', expand=True)
 Debugging_var.set("Off")
 Debugging_label = ttk.Label(Site_details, text="\nDebugging")
 Debugging_label.pack(anchor="w")
-Debugging = ttk.Combobox(Site_details, values=["On", "Off"], state="readonly", textvariable=Debugging_var, )
+Debugging = ttk.Combobox(Site_details, values=["Off", "On"], state="readonly", textvariable=Debugging_var, )
 Debugging.current(0)
 Debugging.pack(anchor="w")
 
@@ -100,7 +100,7 @@ JumpServer_var.set("10.251.131.6")
 JumpServer_label = ttk.Label(Site_details, text="\nJumper Server")
 JumpServer_label.pack(anchor="w")
 JumpServer = ttk.Combobox(Site_details,
-                          values=["AR31NOC", "MMFTH1V-MGMTS02"],
+                          values=["MMFTH1V-MGMTS02", "AR31NOC"],
                           state="readonly", textvariable=JumpServer_var,
                           )
 JumpServer.current(0)
