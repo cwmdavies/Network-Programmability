@@ -193,7 +193,7 @@ def jump_session(ip):
         with ThreadLock:
             log.error(f"open_session function error: "
                       f"ip Address {ip} is not a valid Address. Please check and restart the script!",)
-        return None, False
+        return None, None, False
     try:
         with ThreadLock:
             log.info(f"Trying to establish a connection to: {ip}")

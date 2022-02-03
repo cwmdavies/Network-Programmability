@@ -109,14 +109,9 @@
       <workItem from="1641385137906" duration="481000" />
       <workItem from="1641385642524" duration="3050000" />
       <workItem from="1641466375262" duration="991000" />
-      <workItem from="1642416129148" duration="3808000" />
-    </task>
-    <task id="LOCAL-00022" summary="cleaned up GUI">
-      <created>1624528806278</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1624528806278</updated>
+      <workItem from="1642416129148" duration="4254000" />
+      <workItem from="1642678361424" duration="17000" />
+      <workItem from="1643901931017" duration="1242000" />
     </task>
     <task id="LOCAL-00023" summary="cleaned up GUI">
       <created>1624539158804</created>
@@ -454,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642421733391</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Modified TKinter code">
+      <created>1642429599921</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1642429599921</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,6 +514,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Network_Programmability$CDP_Network_Map.coverage" NAME="CDP Network Map Coverage Results" MODIFIED="1642429533228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
+    <SUITE FILE_PATH="coverage/Network_Programmability$CDP_Network_Map.coverage" NAME="CDP Network Map Coverage Results" MODIFIED="1642429551788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
   </component>
 </project>
