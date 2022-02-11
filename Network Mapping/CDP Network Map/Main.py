@@ -5,10 +5,12 @@
 ###############################################
 
 """
-A script that takes in an IP Address, two can be supplied if there are two core switches, and run the
-"Show CDP Neighbors Detail" command and saves it to a numpy array. This information is then used to rewrite
-the interface descriptions to ensure each is correct. An Excel spreadsheet is used to collect the information
-of the interfaces that were amended.
+This script takes in up to two IP Addresses, preferably the core switches, runs the "Show CDP Neighbors Detail"
+command and saves the information to a list of dictionaries. Each dictionary is then parsed for the neighbouring
+IP Address for each CDP neighbour and saved to a separate list. Another list is used to store the IP Addresses
+of those that have been processed so no switch is connected to more than once. Each IP Address in the list
+is connected to, up to 10 at a time, to retrieve the same information. This recursion goes on until there are no
+more IP Address to connect to. The information is then converted to a numpy array and saved to an Excel spreadsheet.
 
 Threading is used to connect to multiple switches at a time.
 Each IP Address is checked to ensure each IP Address is valid.
@@ -36,7 +38,7 @@ collection_of_results = []
 filename = "CDP_Neighbors_Detail.xlsx"
 index = 2
 ThreadLock = Lock()
-
+timeout = 10
 
 # -----------------------------------------------------------
 # --------------- TKinter Configuration Start ---------------
@@ -53,7 +55,8 @@ Username_var = tk.StringVar()
 password_var = tk.StringVar()
 IP_Address1_var = tk.StringVar()
 IP_Address2_var = tk.StringVar()
-Debugging_var = tk.IntVar()
+Debugging_var = tk.StringVar()
+JumpServer_var = tk.StringVar()
 
 # Site details frame
 Site_details = ttk.Frame(root)
@@ -84,23 +87,24 @@ IP_Address2_label.pack(fill='x', expand=True)
 IP_Address2_entry = ttk.Entry(Site_details, textvariable=IP_Address2_var)
 IP_Address2_entry.pack(fill='x', expand=True)
 
-# Debugging
-Debugging_label = ttk.Label(Site_details, text="\nDebugging (0 = OFF, 1 = ON):")
-Debugging_label.pack(fill='x', expand=True)
-Debugging_entry = ttk.Entry(Site_details, textvariable=Debugging_var)
-Debugging_entry.pack(fill='x', expand=True)
+# Debugging Dropdown Box
+Debugging_var.set("Off")
+Debugging_label = ttk.Label(Site_details, text="\nDebugging")
+Debugging_label.pack(anchor="w")
+Debugging = ttk.Combobox(Site_details, values=["Off", "On"], state="readonly", textvariable=Debugging_var, )
+Debugging.current(0)
+Debugging.pack(anchor="w")
 
 # Dropdown Box
-dropdown_var = tk.StringVar()
-dropdown_var.set("10.251.131.6")
-dropdown_label = ttk.Label(Site_details, text="\nJumper Server")
-dropdown_label.pack(anchor="w")
-dropdown = ttk.Combobox(Site_details,
-                        values=["10.251.6.31", "10.251.131.6"],
-                        state="readonly", textvariable=dropdown_var,
-                        )
-dropdown.current(0)
-dropdown.pack(anchor="w")
+JumpServer_var.set("10.251.131.6")
+JumpServer_label = ttk.Label(Site_details, text="\nJumper Server")
+JumpServer_label.pack(anchor="w")
+JumpServer = ttk.Combobox(Site_details,
+                          values=["MMFTH1V-MGMTS02", "AR31NOC"],
+                          state="readonly", textvariable=JumpServer_var,
+                          )
+JumpServer.current(0)
+JumpServer.pack(anchor="w")
 
 
 # Submit button
@@ -115,8 +119,16 @@ username = Username_var.get()
 password = password_var.get()
 IPAddr1 = IP_Address1_var.get()
 IPAddr2 = IP_Address2_var.get()
-Debugging = Debugging_var.get()
-jump_server = dropdown_var.get()
+
+if Debugging_var.get() == "On":
+    Debugging = 1
+elif Debugging_var.get() == "Off":
+    Debugging = 0
+
+if JumpServer_var.get() == "AR31NOC":
+    jump_server = "10.251.6.31"
+elif JumpServer_var.get() == "MMFTH1V-MGMTS02":
+    jump_server = "10.251.131.6"
 
 # ---------------- TKinter Configuration End ----------------
 # -----------------------------------------------------------
@@ -174,14 +186,14 @@ def ip_check(ip):
         return False
 
 
-# Connected to the IP address through a jump host using SSH.
+# Connects to the IP address through a jump host using SSH.
 # Returns the SSH session.
 def jump_session(ip):
     if not ip_check(ip):
         with ThreadLock:
             log.error(f"open_session function error: "
                       f"ip Address {ip} is not a valid Address. Please check and restart the script!",)
-        return None, False
+        return None, None, False
     try:
         with ThreadLock:
             log.info(f"Trying to establish a connection to: {ip}")
@@ -191,11 +203,12 @@ def jump_session(ip):
         jump_box_transport = jump_box.get_transport()
         src_address = (local_IP_address, 22)
         destination_address = (ip, 22)
-        jump_box_channel = jump_box_transport.open_channel("direct-tcpip", destination_address, src_address, timeout=4,)
+        jump_box_channel = jump_box_transport.open_channel("direct-tcpip", destination_address, src_address,
+                                                           timeout=timeout,)
         target = paramiko.SSHClient()
         target.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        target.connect(destination_address, username=username, password=password, sock=jump_box_channel, timeout=4,
-                       auth_timeout=4, banner_timeout=4)
+        target.connect(destination_address, username=username, password=password, sock=jump_box_channel,
+                       timeout=timeout, auth_timeout=timeout, banner_timeout=timeout)
         with ThreadLock:
             log.info(f"Connection to IP: {ip} established")
         return target, jump_box, True

@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="New Get Interface detail script">
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Added simple script that sends a show command to the switch and uses textFSM to parse the data and saves the output to an Excel file.">
+      <change afterPath="$PROJECT_DIR$/TKinter_Test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +31,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -45,17 +49,95 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Jupyter Notebooks/Untitled1.ipynb" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\TEXTFSM\TEXTFSM_TEMPLATES" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Archive" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.TKinter_Test">
+    <configuration name="CDP Network Map" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files\Python39\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TKinter_Test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files\Python39\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TKinter_Test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files\Python39\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Network Mapping/Send Command Function" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Network Mapping/Send Command Function/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.TKinter_Test" />
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -69,174 +151,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623053033895</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Added output">
-      <created>1623060045260</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1623060045260</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Testing Logger code">
-      <created>1623065882819</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1623065882819</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Testing Logger code">
-      <created>1623066951460</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1623066951460</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Testing Logger code">
-      <created>1623067025342</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1623067025342</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Testing Logger code">
-      <created>1623068000726</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1623068000726</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Testing Logger code">
-      <created>1623322306958</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1623322306958</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Testing Logger code">
-      <created>1623322760477</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1623322760477</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Testing Logger code">
-      <created>1623322821690</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1623322821690</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Testing Logger code">
-      <created>1623322871788</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1623322871788</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Testing napalm code">
-      <created>1623407761365</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1623407761365</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Creating structured code package">
-      <created>1623840693477</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1623840693477</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Creating structured code package">
-      <created>1623843752365</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1623843752365</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Creating structured code package">
-      <created>1623843781231</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1623843781231</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Creating structured code package">
-      <created>1623847638746</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1623847638746</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Creating structured code package">
-      <created>1623848248240</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1623848248240</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Creating structured code package">
-      <created>1623848380719</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1623848380719</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Removed old, unused files">
-      <created>1623848533945</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1623848533945</updated>
-    </task>
-    <task id="LOCAL-00018" summary="debugging option on gui">
-      <created>1623850515162</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1623850515162</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Changes to Napalm code">
-      <created>1624019143094</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1624019143094</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Changes to Napalm code">
-      <created>1624021052732</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1624021052732</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Changes to Jupyter">
-      <created>1624455864968</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1624455864968</updated>
-    </task>
-    <task id="LOCAL-00022" summary="cleaned up GUI">
-      <created>1624528806278</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1624528806278</updated>
-    </task>
-    <task id="LOCAL-00023" summary="cleaned up GUI">
-      <created>1624539158804</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1624539158804</updated>
-    </task>
-    <task id="LOCAL-00024" summary="changes to variables">
-      <created>1624539295374</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1624539295374</updated>
+      <workItem from="1639658894348" duration="419000" />
+      <workItem from="1639663626880" duration="526000" />
+      <workItem from="1639731890616" duration="1950000" />
+      <workItem from="1639741390616" duration="3627000" />
+      <workItem from="1639750382710" duration="1136000" />
+      <workItem from="1641385137906" duration="481000" />
+      <workItem from="1641385642524" duration="3050000" />
+      <workItem from="1641466375262" duration="991000" />
+      <workItem from="1642416129148" duration="4254000" />
+      <workItem from="1642678361424" duration="17000" />
+      <workItem from="1643901931017" duration="1521000" />
+      <workItem from="1644326440579" duration="5245000" />
+      <workItem from="1644333367916" duration="733000" />
+      <workItem from="1644591556356" duration="2768000" />
     </task>
     <task id="LOCAL-00025" summary="changes to Napalm code">
       <created>1624626638457</created>
@@ -399,8 +327,193 @@
       <option name="project" value="LOCAL" />
       <updated>1635867807078</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Code cleanup">
+      <created>1639041962055</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1639041962055</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Code cleanup">
+      <created>1639052113205</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1639052113205</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Code cleanup">
+      <created>1639052187487</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1639052187487</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Code cleanup">
+      <created>1639052672845</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1639052672845</updated>
+    </task>
+    <task id="LOCAL-00052" summary="TKinter layout changes">
+      <created>1639053740553</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1639053740553</updated>
+    </task>
+    <task id="LOCAL-00053" summary="TKinter layout changes">
+      <created>1639057874025</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1639057874025</updated>
+    </task>
+    <task id="LOCAL-00054" summary="TKinter layout changes">
+      <created>1639058837286</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1639058837286</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Docstring changes">
+      <created>1639059365951</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1639059365951</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Docstring changes">
+      <created>1639059395151</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1639059395151</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Removed unwanted files">
+      <created>1639063565593</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1639063565593</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Removed unwanted files">
+      <created>1639063638960</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1639063638960</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Removed unwanted files">
+      <created>1639063762299</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1639063762299</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Removed unwanted files">
+      <created>1639063815024</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1639063815024</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Archived some old files">
+      <created>1639063945957</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1639063945957</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Archived some old files">
+      <created>1639126594045</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1639126594046</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Spelling mistakes corrected">
+      <created>1639742233704</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1639742233705</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Added option to choose a jump server">
+      <created>1639749007344</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1639749007344</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Minor Changes to the &quot;get_cdp_details&quot; function.&#10;&#10;added in an exception to the connections list">
+      <created>1639750006736</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1639750006736</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Folder and files restructuring">
+      <created>1639750588099</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1639750588100</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Folder and files restructuring">
+      <created>1641386106668</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1641386106669</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Docstrings amended.">
+      <created>1641387746779</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1641387746779</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Docstrings amended.">
+      <created>1641388082901</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1641388082901</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Modified TKinter code">
+      <created>1642421733391</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1642421733391</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Modified TKinter code">
+      <created>1642429599921</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1642429599921</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Fixed bug in jump_session function code">
+      <created>1643903451357</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1643903451358</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Added simple script that sends a show command to the switch and uses textFSM to parse the data and saves the output to an Excel file.">
+      <created>1644333479019</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1644333479019</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -415,12 +528,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added output" />
-    <MESSAGE value="Testing Logger code" />
-    <MESSAGE value="Testing napalm code" />
-    <MESSAGE value="Creating structured code package" />
-    <MESSAGE value="Removed old, unused files" />
-    <MESSAGE value="debugging option on gui" />
     <MESSAGE value="Changes to Napalm code" />
     <MESSAGE value="Changes to Jupyter" />
     <MESSAGE value="cleaned up GUI" />
@@ -433,7 +540,20 @@
     <MESSAGE value="Cleanup" />
     <MESSAGE value="Added TextFSM Templates" />
     <MESSAGE value="New Get Interface detail script" />
-    <option name="LAST_COMMIT_MESSAGE" value="New Get Interface detail script" />
+    <MESSAGE value="Code cleanup" />
+    <MESSAGE value="TKinter layout changes" />
+    <MESSAGE value="Docstring changes" />
+    <MESSAGE value="Removed unwanted files" />
+    <MESSAGE value="Archived some old files" />
+    <MESSAGE value="Spelling mistakes corrected" />
+    <MESSAGE value="Added option to choose a jump server" />
+    <MESSAGE value="Minor Changes to the &quot;get_cdp_details&quot; function.&#10;&#10;added in an exception to the connections list" />
+    <MESSAGE value="Folder and files restructuring" />
+    <MESSAGE value="Docstrings amended." />
+    <MESSAGE value="Modified TKinter code" />
+    <MESSAGE value="Fixed bug in jump_session function code" />
+    <MESSAGE value="Added simple script that sends a show command to the switch and uses textFSM to parse the data and saves the output to an Excel file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added simple script that sends a show command to the switch and uses textFSM to parse the data and saves the output to an Excel file." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -445,5 +565,11 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1644591584254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/Send Command Function" />
+    <SUITE FILE_PATH="coverage/Main_py$TKinter_Test.coverage" NAME="TKinter_Test Coverage Results" MODIFIED="1644594285354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Main_py$CDP_Network_Map.coverage" NAME="CDP Network Map Coverage Results" MODIFIED="1644327164064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
+    <SUITE FILE_PATH="coverage/Network_Programmability$CDP_Network_Map.coverage" NAME="CDP Network Map Coverage Results" MODIFIED="1642429551788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
   </component>
 </project>
