@@ -15,6 +15,7 @@ processing_bar.place(relx=0.5, rely=0.5, anchor=CENTER)
 
 # use processing_bar.stop() to stop it
 processing_bar.start(30)
+# Do something
 processing_bar.stop()
 
 root.mainloop()
