@@ -18,8 +18,6 @@ Each IP Address is checked to ensure each IP Address is valid.
 
 import paramiko
 import textfsm
-from getpass import getpass
-from openpyxl import load_workbook, Workbook
 import ipaddress
 import logging
 import sys
@@ -29,7 +27,6 @@ from multiprocessing import Lock
 import tkinter as tk
 from tkinter import ttk
 import pandas as np
-from os.path import exists
 
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
 IP_LIST = []

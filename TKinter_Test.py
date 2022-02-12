@@ -1,42 +1,20 @@
 from tkinter import *
-from tkinter import ttk
-from tkinter import messagebox
-from time import sleep
+import tkinter.ttk as ttk
 import threading
-
-
-def task(tk_root):
-    label = Label(tk_root, text='Progress Bar', font = "50")
-    label.pack(pady=5)
-
-    progress_bar = ttk.Progressbar(tk_root, orient=HORIZONTAL, length=220, mode="indeterminate")
-    progress_bar.pack(pady=20)
-
-    progress_bar.start()
-
-    tk_root.geometry("300x150")
-    tk_root.title("PythonLobby.com")
-    tk_root.mainloop()
-
-
-def process_of_unknown_duration(tk_root):
-    sleep(5)
-    print('Done')
-    tk_root.destroy()
-
-
+import time
 
 root = Tk()
-t1 = threading.Thread(target=process_of_unknown_duration, args=(root,), daemon=True)
-t1.start()
-task(root)  # This will block while the mainloop runs
-# t1.join()
+root.geometry("200x200")
+root.title("Progress Bar Demo")
 
-# hide main window
-msg_box = Tk()
-msg_box.withdraw()
+# Prepare the type of Progress bar needed (determinate or indeterminate mode)
+processing_bar = ttk.Progressbar(root, orient='horizontal', mode='indeterminate')
 
-# message box display
-messagebox.showinfo("Information", "Informative message")
+# Place the bar at the centre of the window
+processing_bar.place(relx=0.5, rely=0.5, anchor=CENTER)
 
+# use processing_bar.stop() to stop it
+processing_bar.start(30)
+processing_bar.stop()
 
+root.mainloop()
