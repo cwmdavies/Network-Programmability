@@ -15,8 +15,11 @@ from getpass import getpass
 import pandas as pd
 import time
 import ipaddress
+import logging
+import sys
 
-debug = 0
+
+Debugging = 0
 
 jump_server_address = '10.251.6.31'   # The internal ip Address for the Jump server
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
@@ -26,11 +29,12 @@ IP_Address = input("Please enter an ip Address: ")
 
 df = pd.read_excel(r'Interface Details.xlsx')
 
-# ---------------------------------------------------------
-# -------------- Logging Configuration Start --------------
+# -----------------------------------------------------------
+# --------------- Logging Configuration Start ---------------
 
 # Log file location
 logfile = 'debug.log'
+
 # Define the log format
 log_format = (
     '[%(asctime)s] %(levelname)-8s %(name)-12s %(message)s')
@@ -39,7 +43,7 @@ log_format = (
 if Debugging == 0:
     logging.basicConfig(
         # Define logging level
-        level=logging.INFO,
+        level=logging.WARN,
         # Declare the object we created to format the log messages
         format=log_format,
         # Declare handlers
@@ -69,7 +73,7 @@ log = logging.getLogger(__name__)
 
 
 # Takes in an IP address and checks that it is valid.
-def ip_check(ip) -> Bool:
+def ip_check(ip):
     try:
         ipaddress.ip_address(ip)
         return True
@@ -78,7 +82,7 @@ def ip_check(ip) -> Bool:
 
 
 # Takes in an IP address and connects to it through a jump host using SSH.
-def open_session(ip) -> SSH_Session:
+def open_session(ip):
     if not ip_check(ip):
         log.error(f"open_session function error: "
                   f"ip Address {ip} is not a valid Address. Please check and restart the script!",)
@@ -114,7 +118,7 @@ def open_session(ip) -> SSH_Session:
 
 # Takes in an IP Address, connects to it, parses the panda data frame to construct the interface description commands
 # and issues them to the host.
-def int_write(ip) -> None:
+def int_write(ip):
     commands = []
     ssh, jump_box, connection = open_session(ip)
     if not connection:
@@ -136,7 +140,7 @@ def int_write(ip) -> None:
         stdin.write(str.encode(commands))
         output = output.read()
         output = output.decode("utf-8")
-        output_log(f"Output:\n\t{output}")
+        log.info(f"Output:\n\t{output}")
         stdin.close()
         log.info(f"int_write function: Finished writing interface descriptions.")
     except Exception as err:
@@ -148,7 +152,7 @@ def int_write(ip) -> None:
 
 
 # Main function that brings everything together.
-def main() -> None:
+def main():
     start = time.perf_counter()
 
     int_write(IP_Address)

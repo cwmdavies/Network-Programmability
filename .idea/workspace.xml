@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Diagram testing">
-      <change beforePath="$PROJECT_DIR$/.idea/Network-Programmability.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Network-Programmability.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Cleanup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/Interface Details/Interfaces.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/Interface Details/Interfaces.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/Send Command Function/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/Send Command Function/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Network Mapping/Interface Details/Interface_Descriptions - Write.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/Interface Details/Interface_Descriptions - Write.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,14 +156,7 @@
       <workItem from="1649765431603" duration="1190000" />
       <workItem from="1651842724463" duration="50000" />
       <workItem from="1654608357929" duration="618000" />
-      <workItem from="1654610158955" duration="1571000" />
-    </task>
-    <task id="LOCAL-00028" summary="write to excel for text fsm script">
-      <created>1625475358669</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1625475358669</updated>
+      <workItem from="1654610158955" duration="2334000" />
     </task>
     <task id="LOCAL-00029" summary="text fsm script changes">
       <created>1625478982854</created>
@@ -504,7 +494,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645108347568</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Cleanup">
+      <created>1654612128464</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1654612128464</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +528,6 @@
     <MESSAGE value="write to excel for text fsm script" />
     <MESSAGE value="text fsm script changes" />
     <MESSAGE value="IP Thread Pinger creation" />
-    <MESSAGE value="Cleanup" />
     <MESSAGE value="Added TextFSM Templates" />
     <MESSAGE value="New Get Interface detail script" />
     <MESSAGE value="Code cleanup" />
@@ -548,7 +544,8 @@
     <MESSAGE value="Fixed bug in jump_session function code" />
     <MESSAGE value="Added simple script that sends a show command to the switch and uses textFSM to parse the data and saves the output to an Excel file." />
     <MESSAGE value="Diagram testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Diagram testing" />
+    <MESSAGE value="Cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
