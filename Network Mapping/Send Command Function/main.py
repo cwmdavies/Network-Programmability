@@ -1,13 +1,8 @@
 import paramiko
 import textfsm
-from getpass import getpass
-from openpyxl import load_workbook, Workbook
 import ipaddress
 import logging
 import sys
-import time
-from multiprocessing.pool import ThreadPool
-from multiprocessing import Lock
 import tkinter as tk
 from tkinter import ttk
 import pandas as np

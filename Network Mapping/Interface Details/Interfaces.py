@@ -25,11 +25,12 @@ collection_of_results = []
 filename = "Interface Details.xlsx"
 
 
-# ---------------------------------------------------------
-# -------------- Logging Configuration Start --------------
+# -----------------------------------------------------------
+# --------------- Logging Configuration Start ---------------
 
 # Log file location
 logfile = 'debug.log'
+
 # Define the log format
 log_format = (
     '[%(asctime)s] %(levelname)-8s %(name)-12s %(message)s')
@@ -38,7 +39,7 @@ log_format = (
 if Debugging == 0:
     logging.basicConfig(
         # Define logging level
-        level=logging.INFO,
+        level=logging.WARN,
         # Declare the object we created to format the log messages
         format=log_format,
         # Declare handlers
