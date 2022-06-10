@@ -35,7 +35,7 @@ collection_of_results = []
 filename = "CDP_Neighbors_Detail.xlsx"
 index = 2
 ThreadLock = Lock()
-timeout = 10
+timeout = 15
 
 # -----------------------------------------------------------
 # --------------- TKinter Configuration Start ---------------
@@ -249,7 +249,9 @@ def get_cdp_details(ip):
         for entry in result:
             entry['LOCAL_HOST'] = hostname.upper()
             entry['LOCAL_IP'] = ip
-            entry['DESTINATION_HOST'] = entry['DESTINATION_HOST'].replace(".cns.muellergroup.com", "").upper()
+            text = entry['DESTINATION_HOST']
+            head, sep, tail = text.partition('.')
+            entry['DESTINATION_HOST'] = head.upper()
             collection_of_results.append(entry)
             if entry["MANAGEMENT_IP"] not in IP_LIST:
                 if 'Switch' in entry['CAPABILITIES'] and "Host" not in entry['CAPABILITIES']:

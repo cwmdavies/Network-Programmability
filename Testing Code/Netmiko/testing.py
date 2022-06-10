@@ -21,10 +21,8 @@ try:
 except:
     try:
         device2
-    finally:
-        None
-finally:
-    None
+    except:
+        print("Failed to connect to device!")
 
 conn = netmiko.ConnectHandler(**device)
 
