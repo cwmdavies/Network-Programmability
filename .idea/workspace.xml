@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Cleanup">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing Code/Netmiko/testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Code/Netmiko/testing.py" afterDir="false" />
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Added section to remove the domain name from the end of the destination host by striping everything after the &quot;.&quot;">
+      <change afterPath="$PROJECT_DIR$/Network Mapping/Send Command Function/debug.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,14 +157,7 @@
       <workItem from="1654608357929" duration="618000" />
       <workItem from="1654610158955" duration="2445000" />
       <workItem from="1654781870058" duration="431000" />
-      <workItem from="1654862707282" duration="462000" />
-    </task>
-    <task id="LOCAL-00030" summary="text fsm script changes">
-      <created>1625484793816</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1625484793816</updated>
+      <workItem from="1654862707282" duration="566000" />
     </task>
     <task id="LOCAL-00031" summary="text fsm script changes">
       <created>1625497043753</created>
@@ -505,7 +495,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654612568153</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Added section to remove the domain name from the end of the destination host by striping everything after the &quot;.&quot;">
+      <created>1654863241365</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1654863241366</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -524,7 +521,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Changes to Jupyter" />
     <MESSAGE value="cleaned up GUI" />
     <MESSAGE value="changes to variables" />
     <MESSAGE value="changes to Napalm code" />
@@ -549,7 +545,8 @@
     <MESSAGE value="Added simple script that sends a show command to the switch and uses textFSM to parse the data and saves the output to an Excel file." />
     <MESSAGE value="Diagram testing" />
     <MESSAGE value="Cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup" />
+    <MESSAGE value="Added section to remove the domain name from the end of the destination host by striping everything after the &quot;.&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added section to remove the domain name from the end of the destination host by striping everything after the &quot;.&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
