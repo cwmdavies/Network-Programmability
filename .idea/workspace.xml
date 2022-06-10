@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Added section to remove the domain name from the end of the destination host by striping everything after the &quot;.&quot;">
-      <change afterPath="$PROJECT_DIR$/Network Mapping/Send Command Function/debug.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,13 +160,8 @@
       <workItem from="1654610158955" duration="2445000" />
       <workItem from="1654781870058" duration="431000" />
       <workItem from="1654862707282" duration="566000" />
-    </task>
-    <task id="LOCAL-00031" summary="text fsm script changes">
-      <created>1625497043753</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1625497043753</updated>
+      <workItem from="1654863631213" duration="58000" />
+      <workItem from="1654866965453" duration="5662000" />
     </task>
     <task id="LOCAL-00032" summary="text fsm script changes">
       <created>1626794250973</created>
@@ -502,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654863241366</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Added section to remove the domain name from the end of the destination host by striping everything after the &quot;.&quot;">
+      <created>1654863648786</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1654863648786</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -565,7 +569,7 @@
     <SUITE FILE_PATH="coverage/Main_py$TKinter_Test.coverage" NAME="TKinter_Test Coverage Results" MODIFIED="1644594285354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Main_py$Main.coverage" NAME="Main Coverage Results" MODIFIED="1647334316786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1647335707934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/Send Command Function" />
-    <SUITE FILE_PATH="coverage/testing_py$Main.coverage" NAME="Main Coverage Results" MODIFIED="1654862856452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
+    <SUITE FILE_PATH="coverage/testing_py$Main.coverage" NAME="Main Coverage Results" MODIFIED="1654872693756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
     <SUITE FILE_PATH="coverage/main_py$TKinter_Test.coverage" NAME="TKinter_Test Coverage Results" MODIFIED="1645090964706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/testing_py$main.coverage" NAME="main Coverage Results" MODIFIED="1654862843563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/Send Command Function" />
     <SUITE FILE_PATH="coverage/Main_py$CDP_Network_Map.coverage" NAME="CDP Network Map Coverage Results" MODIFIED="1644327164064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />

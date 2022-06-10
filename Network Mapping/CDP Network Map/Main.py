@@ -26,7 +26,7 @@ from multiprocessing.pool import ThreadPool
 from multiprocessing import Lock
 import tkinter as tk
 from tkinter import ttk
-import pandas as np
+import pandas as pd
 
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
 IP_LIST = []
@@ -311,7 +311,7 @@ def main():
     pool.close()
     pool.join()
 
-    array = np.DataFrame(collection_of_results, columns=["LOCAL_HOST",
+    array = pd.DataFrame(collection_of_results, columns=["LOCAL_HOST",
                                                          "LOCAL_IP",
                                                          "LOCAL_PORT",
                                                          "DESTINATION_HOST",
@@ -322,7 +322,19 @@ def main():
                                                          "CAPABILITIES"
                                                          ])
     filepath = 'CDP_Neighbors_Detail.xlsx'
-    array.to_excel(filepath, index=False)
+    writer = pd.ExcelWriter(filepath, engine='xlsxwriter')
+    array.to_excel(writer, sheet_name='Sheet1', index=False,)
+    workbook = writer.book
+    worksheet = writer.sheets['Sheet1']
+
+    worksheet.autofilter(0, 0, array.shape[0], array.shape[1])
+
+    for column in array:
+        column_width = max(array[column].astype(str).map(len).max(), len(column))
+        col_idx = array.columns.get_loc(column)
+        writer.sheets['Sheet1'].set_column(col_idx, col_idx, column_width)
+
+    writer.save()
 
     # End timer.
     end = time.perf_counter()
