@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Added section to remove the domain name from the end of the destination host by striping everything after the &quot;.&quot;">
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Added auto filter and autosize to excel columns">
+      <change afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/CDP_Neighbors_Detail.xlsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/debug.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Network Mapping/Send Command Function/debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Network Mapping/Send Command Function/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/Send Command Function/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +68,7 @@
       <recent name="C:\Users\christopher.davies1\OneDrive - Müller Service GmbH\Documents\Projects\Network-Programmability\Archive" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Main">
+  <component name="RunManager" selected="Python.main">
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Network-Programmability" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -113,8 +115,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Main" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -161,14 +163,8 @@
       <workItem from="1654781870058" duration="431000" />
       <workItem from="1654862707282" duration="566000" />
       <workItem from="1654863631213" duration="58000" />
-      <workItem from="1654866965453" duration="5662000" />
-    </task>
-    <task id="LOCAL-00032" summary="text fsm script changes">
-      <created>1626794250973</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1626794250973</updated>
+      <workItem from="1654866965453" duration="6015000" />
+      <workItem from="1655300195545" duration="971000" />
     </task>
     <task id="LOCAL-00033" summary="text fsm script changes">
       <created>1626794388283</created>
@@ -506,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654863648786</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Added auto filter and autosize to excel columns">
+      <created>1654872915433</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1654872915434</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -525,7 +528,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="cleaned up GUI" />
     <MESSAGE value="changes to variables" />
     <MESSAGE value="changes to Napalm code" />
     <MESSAGE value="TEXTFSM Testing" />
@@ -550,7 +552,8 @@
     <MESSAGE value="Diagram testing" />
     <MESSAGE value="Cleanup" />
     <MESSAGE value="Added section to remove the domain name from the end of the destination host by striping everything after the &quot;.&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added section to remove the domain name from the end of the destination host by striping everything after the &quot;.&quot;" />
+    <MESSAGE value="Added auto filter and autosize to excel columns" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added auto filter and autosize to excel columns" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -569,9 +572,9 @@
     <SUITE FILE_PATH="coverage/Main_py$TKinter_Test.coverage" NAME="TKinter_Test Coverage Results" MODIFIED="1644594285354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Main_py$Main.coverage" NAME="Main Coverage Results" MODIFIED="1647334316786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1647335707934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/Send Command Function" />
-    <SUITE FILE_PATH="coverage/testing_py$Main.coverage" NAME="Main Coverage Results" MODIFIED="1654872693756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
+    <SUITE FILE_PATH="coverage/testing_py$Main.coverage" NAME="Main Coverage Results" MODIFIED="1655300522576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
     <SUITE FILE_PATH="coverage/main_py$TKinter_Test.coverage" NAME="TKinter_Test Coverage Results" MODIFIED="1645090964706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/testing_py$main.coverage" NAME="main Coverage Results" MODIFIED="1654862843563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/Send Command Function" />
+    <SUITE FILE_PATH="coverage/testing_py$main.coverage" NAME="main Coverage Results" MODIFIED="1655300543566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/Send Command Function" />
     <SUITE FILE_PATH="coverage/Main_py$CDP_Network_Map.coverage" NAME="CDP Network Map Coverage Results" MODIFIED="1644327164064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />
     <SUITE FILE_PATH="coverage/main_py$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1645091490308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/Diagram" />
     <SUITE FILE_PATH="coverage/Network_Programmability$CDP_Network_Map.coverage" NAME="CDP Network Map Coverage Results" MODIFIED="1642429551788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Network Mapping/CDP Network Map" />

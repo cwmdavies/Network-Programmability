@@ -1,3 +1,14 @@
+###############################################
+#            Under Construction               #
+#               Design Phase                  #
+#                                             #
+###############################################
+
+"""
+This script takes in a single show command and outputs the information to an Excel file in a formatted way by using the
+TextFSM framework.
+"""
+
 import paramiko
 import textfsm
 import ipaddress
