@@ -26,6 +26,7 @@ from multiprocessing.pool import ThreadPool
 from multiprocessing import Lock
 import tkinter as tk
 from tkinter import ttk
+import ctypes
 import pandas as pd
 
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
@@ -339,6 +340,7 @@ def main():
     # End timer.
     end = time.perf_counter()
     log.info(f"Script finished in {end - start:0.4f} seconds")
+    ctypes.windll.user32.MessageBoxW(0, "Script Complete", "Info", 0x40000)
 
 
 if __name__ == "__main__":
