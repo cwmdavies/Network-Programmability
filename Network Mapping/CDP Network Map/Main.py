@@ -28,6 +28,7 @@ import tkinter as tk
 from tkinter import ttk
 import ctypes
 import pandas as pd
+from openpyxl import load_workbook
 
 local_IP_address = '127.0.0.1'  # ip Address of the machine you are connecting from
 IP_LIST = []
@@ -136,7 +137,7 @@ elif JumpServer_var.get() == "MMFTH1V-MGMTS02":
 # --------------- Logging Configuration Start ---------------
 
 # Log file location
-logfile = 'debug.log'
+logfile = '../debug.log'
 # Define the log format
 log_format = (
     '[%(asctime)s] %(levelname)-8s %(name)-12s %(message)s')
@@ -322,20 +323,22 @@ def main():
                                                          "SOFTWARE_VERSION",
                                                          "CAPABILITIES"
                                                          ])
-    filepath = 'CDP_Neighbors_Detail.xlsx'
-    writer = pd.ExcelWriter(filepath, engine='xlsxwriter')
-    array.to_excel(writer, sheet_name='Sheet1', index=False,)
-    workbook = writer.book
-    worksheet = writer.sheets['Sheet1']
+    filepath = '../CDP_Neighbors_Detail.xlsx'
+    array.to_excel(filepath, index=False)
 
-    worksheet.autofilter(0, 0, array.shape[0], array.shape[1])
-
-    for column in array:
-        column_width = max(array[column].astype(str).map(len).max(), len(column))
-        col_idx = array.columns.get_loc(column)
-        writer.sheets['Sheet1'].set_column(col_idx, col_idx, column_width)
-
-    writer.save()
+    workbook = load_workbook(filename=filepath)
+    ws = workbook["Sheet1"]
+    ws.auto_filter.ref = ws.dimensions
+    ws.column_dimensions['A'].width = "30"
+    ws.column_dimensions['B'].width = "30"
+    ws.column_dimensions['C'].width = "30"
+    ws.column_dimensions['D'].width = "30"
+    ws.column_dimensions['E'].width = "30"
+    ws.column_dimensions['F'].width = "30"
+    ws.column_dimensions['G'].width = "50"
+    ws.column_dimensions['H'].width = "120"
+    ws.column_dimensions['I'].width = "30"
+    workbook.save(filename=filepath)
 
     # End timer.
     end = time.perf_counter()
