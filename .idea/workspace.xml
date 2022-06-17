@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Added Message box">
+    <list default="true" id="a044551b-069f-43d3-94a5-a0bd78dcfaee" name="Default Changelist" comment="Modification to the Excel exporter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.cpython-39.pyw" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.cpython-39.pyw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Network Mapping/CDP Network Map/Main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,14 +165,8 @@
       <workItem from="1654866965453" duration="6015000" />
       <workItem from="1655300195545" duration="2617000" />
       <workItem from="1655378447180" duration="382000" />
-      <workItem from="1655378875974" duration="3795000" />
-    </task>
-    <task id="LOCAL-00035" summary="text fsm script changes">
-      <created>1626874436694</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1626874436694</updated>
+      <workItem from="1655378875974" duration="4138000" />
+      <workItem from="1655471774382" duration="689000" />
     </task>
     <task id="LOCAL-00036" summary="text fsm script changes">
       <created>1626948163656</created>
@@ -512,7 +504,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655302862254</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Modification to the Excel exporter">
+      <created>1655383270259</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1655383270259</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +530,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="TEXTFSM Testing" />
     <MESSAGE value="write to excel for text fsm script" />
     <MESSAGE value="text fsm script changes" />
     <MESSAGE value="IP Thread Pinger creation" />
@@ -556,7 +554,8 @@
     <MESSAGE value="Added auto filter and autosize to excel columns" />
     <MESSAGE value="Added Docstring" />
     <MESSAGE value="Added Message box" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Message box" />
+    <MESSAGE value="Modification to the Excel exporter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modification to the Excel exporter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
