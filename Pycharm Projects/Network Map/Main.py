@@ -244,7 +244,7 @@ def get_cdp_details(ip):
         stdout = stdout.read()
         stdout = stdout.decode("utf-8")
         with ThreadLock:
-            with open("./TextFSM/cisco_ios_show_cdp_neighbors_detail.textfsm") as f:
+            with open("textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm") as f:
                 re_table = textfsm.TextFSM(f)
                 result = re_table.ParseText(stdout)
         result = [dict(zip(re_table.header, entry)) for entry in result]
@@ -274,7 +274,7 @@ def get_hostname(ip):
     stdout = stdout.decode("utf-8")
     try:
         with ThreadLock:
-            with open("./textfsm/hostname.textfsm") as f:
+            with open("textfsm/hostname.textfsm") as f:
                 re_table = textfsm.TextFSM(f)
                 result = re_table.ParseText(stdout)
                 hostname = result[0][0]
